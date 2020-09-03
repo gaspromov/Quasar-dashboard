@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const Pool = require('pg').Pool;
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const authRoute = require('./routes/auth');
 
@@ -17,13 +18,9 @@ const pool = new Pool(config.get('database.auth'));
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
+app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
-app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader("Access-Control-Allow-Methods", "*");
-  res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
-});
 
 app.use('/auth', authRoute);
 
@@ -32,6 +29,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
+  console.log('Aapodkaopkaspokdakdasd');
   res.send(200);
 });
 
@@ -39,7 +37,7 @@ app.get('/logout', (req, res) => {
 
 })
 
-app.get('/token', (req, res) => {
+app.get('/token', (req, res, next) => {
     res.redirect(config.get('discord.loginUrl'));
 });
 
