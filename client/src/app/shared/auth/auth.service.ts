@@ -15,7 +15,7 @@ export class AuthService {
   }
 
   async auth() {
-    await this.http.get(`${this.url}/token`, {headers: this.headers}).toPromise();
+    await this.http.get(`${this.url}`, {headers: this.headers}).toPromise();
   }
 
 }

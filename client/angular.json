@@ -62,12 +62,12 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "proxyConfig": "src/proxy.conf.json",
             "browserTarget": "quasar:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "quasar:build:production",
-              "proxyConfig": "src/proxy.conf.json"
+              "browserTarget": "quasar:build:production"
             }
           }
         },
