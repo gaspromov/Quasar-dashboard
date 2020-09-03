@@ -1,0 +1,49 @@
+#%RAML 1.0
+title: Quasar Server API
+baseUri: https://localhost:3001
+version: v1
+
+types:
+  Token:
+    type: object
+    properties:
+      token_type: string
+      access_token: string
+  User:
+    type: object
+    properties:
+      name: string
+      avatar: string
+      user_group: string
+      locale: string
+      iat: integer
+
+/token:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            properties:
+              token: Token
+              user: User
+
+/users/@get:
+  get:
+    headers:
+      Content-Type:
+        type: string
+        default: application/json
+      token:
+        type: Token
+    responses:
+      200:
+        body:
+          application/json:
+            type: User
+      401:
+        description: |
+              Bad or expired token.
+      403:
+          description: |
+              Bad OAuth request

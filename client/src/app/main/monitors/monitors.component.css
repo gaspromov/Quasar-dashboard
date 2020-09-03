@@ -1,0 +1,67 @@
+.monitors{
+    display: grid;
+    grid-row-gap: 70px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.descript-block{
+    text-align: center;
+    display: grid;
+    grid-row-gap: 15px;
+    justify-self: center;
+}
+
+
+p{
+    padding: 0px;
+    margin: 0px;
+}
+
+.descript{
+    color: #5b5b5b;
+    font-size: 16pt;
+}
+
+.details{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+}
+
+.details .circle{
+    background-color: #000000;
+    border-radius: 100%;
+    width: 130px;
+    height: 130px;
+    padding: 30px;
+    border: 4px solid white;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.details .circle img{
+    height: 90%;
+}
+
+.details .point-img{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+.transition{
+    background-image: url("/assets/img/background/transition-main.png");
+    background-size: cover;
+    transform: scale(1, -1);
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    /* bottom: -1px;
+    
+    left: 0; */
+    height: 370px;
+    pointer-events: none;
+    width: 100%
+}

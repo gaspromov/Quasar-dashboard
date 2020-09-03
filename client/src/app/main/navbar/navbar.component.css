@@ -1,0 +1,35 @@
+nav{
+    background-color: #0d1223;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    padding-top: 10px ;
+    padding-bottom: 10px;
+    align-items: center;
+    color: white;
+    font-size: 14pt;
+}
+
+nav img{
+    width: 50px;
+}
+
+ul.menu{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 50px;
+    justify-self: center;
+    justify-items: center;
+    list-style: none;
+}
+
+
+
+ul.menu .active{
+    border-bottom: 1px solid green;
+}
+
+nav .link-dashboard a{
+    border: 2px solid;
+    padding: 9px 18px;
+    border-radius: 25px;
+}

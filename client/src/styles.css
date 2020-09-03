@@ -1,0 +1,76 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.indent{
+    padding: 0px 400px;
+}
+
+a, button, input[type=submit]{
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+  
+@media (min-width: 1471px){
+    .standart-padding{
+        padding-right: 300px;
+        padding-left: 300px;
+    }
+}
+
+@media (min-width: 1267px) and (max-width: 1470px){
+    .standart-padding{
+        padding-right: 200px;
+        padding-left: 200px;
+    }
+    
+}
+
+@media (min-width: 1161px) and (max-width: 1266px){
+    .standart-padding{
+        padding-right: 150px;
+        padding-left: 150px;
+    }
+    
+}
+
+@media (max-width: 1160px){
+    .standart-padding{
+        padding-right: 50px;
+        padding-left: 50px;
+
+    }
+}
+
+.nameOfDescript{
+    margin: 0px;
+    padding: 0px;
+    font-size: 30pt;
+}
+/* 
+::-webkit-scrollbar{
+    width:12px;
+}
+  
+::-webkit-scrollbar-thumb{
+    border-width:1px 1px 1px 2px;
+    border-color: #777;
+    border-color: rgb(8, 8, 8);
+    border-radius: 15px;
+}
+  
+::-webkit-scrollbar-thumb:hover{
+    border-width: 1px 1px 1px 2px;
+    border-color: #555;
+    background-color: #777;
+}
+  
+::-webkit-scrollbar-track{
+    border-width:2px;
+} */

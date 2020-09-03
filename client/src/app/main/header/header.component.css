@@ -1,0 +1,112 @@
+header{
+    background-image: url("/assets/img/background/header-back.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /* background-attachment: fixed; */
+    height: 700px;
+    width: 100%;
+    position: relative;
+}
+
+header>div.standart-padding{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-column-gap: 80px;
+}
+
+.about{
+    justify-self: start;
+    align-self: center;
+    display: grid;
+    grid-row-gap: 20px;
+}
+
+.about .name{
+    font-size: 56pt;
+    color: white;
+    margin: 0px;
+}
+
+.about .descript{
+    font-size: 16pt;
+    color: #d8d8d8;
+    margin: 0px;
+}
+
+.about .buy a{
+    padding: 9px 18px;
+    border: 2px solid white;
+    border-radius: 25px;
+    color: white;
+    background-color: #000000;
+}
+
+
+header .phone-success{
+    /* background-image: url("/assets/img/background/phone-success.png"); */
+    /* background-size: 100%;
+    background-repeat: no-repeat; */
+    /* background-position: center center; */
+    position: relative;
+    width: 300px;
+    justify-self: end;
+}
+
+header .phone-success img{
+    width: 100%;
+    position: relative;
+}  
+
+.phone-success .content-success{
+    position: absolute;
+    top: 35px;
+    word-wrap: break-word;
+    width: 265px;
+    display: block;
+    left: 20px;
+    overflow: auto;
+    height: 580px;
+}
+
+.content-success h3{
+    color: white;
+    text-align: center;
+}
+
+
+::-webkit-scrollbar{
+    width:5px;
+}
+  
+.content-success::-webkit-scrollbar-thumb{
+    border-width:1px 1px 1px 2px;
+    background-color: rgb(29, 29, 29);
+    border-radius: 15px;
+}
+  
+.content-success::-webkit-scrollbar-thumb:hover{
+    border-width: 1px 1px 1px 2px;
+    border-color: #555;
+    background-color: rgb(29, 29, 29);
+}
+  
+::-webkit-scrollbar-track:hover{
+    background-color: rgb(92, 92, 92);
+}
+  
+
+header .transition{
+    background-image: url("/assets/img/background/transition-main.png");
+    background-size: cover;
+    transform: scale(-1, 1);
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    height: 370px;
+    pointer-events: none;
+    width: 100%
+}
+

@@ -1,0 +1,49 @@
+.successes{
+    display: grid;
+    grid-row-gap: 40px;
+    background-image: url("/assets/img/background/successes.png");
+    padding-top: 200px;
+    color: white;
+    padding-right: 100px;
+    padding-left: 100px;
+    padding-bottom: 50px;
+}
+
+.nameOfDescript{
+    text-align: center;
+}
+
+.blockOfSuccesses{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 100px;
+}
+
+.perMonth{
+    padding: 30px 100px;
+    background-color: #000000;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    grid-row-gap: 20px;
+    text-align: center;
+}
+
+.perMonth .month{
+    margin: 0px;
+
+}
+
+.perMonth .img-success{
+    min-height: 200px;
+    width: 200px;
+}
+
+.perMonth .img-success img{
+    width: 100%;
+}
+
+.smth{
+    background-color: black;
+    border: 4px solid white;
+    border-radius: 10px;
+}

@@ -1,0 +1,29 @@
+{
+  "name": "quasar_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.1",
+    "connect-pg-simple": "^6.2.1",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.4",
+    "nsp": "^3.2.1",
+    "passport-discord": "^0.1.4",
+    "pg": "^8.3.2"
+  },
+  "devDependencies": {
+    "cookie-parser": "^1.4.5",
+    "helmet": "^4.1.0"
+  }
+}

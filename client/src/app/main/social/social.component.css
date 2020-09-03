@@ -1,0 +1,33 @@
+.social{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #000000;
+    display: grid;
+    grid-row-gap: 30px;
+    justify-items: center;
+    text-align: center;
+}
+
+h2{
+    color: white;
+    margin: 0px;
+}
+
+p{
+    font-size: 16pt;
+    margin: 0px;
+    color: #d8d8d8;
+}
+
+.img-links{
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-column-gap: 120px;
+    align-items: center;
+    justify-items: center;
+}
+
+.img-links img{
+    width: 70px;
+    
+}
