@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AuthService {
   headers: HttpHeaders;
-  url = "https://localhost:3001/token"
+  url = "http://localhost:3001/token"
 
   constructor(
     private http: HttpClient
