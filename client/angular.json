@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "quasar"
+    }
+  },
+  "defaultProject": "quasar",
+  "cli": {
+    "analytics": "216e4125-8786-43ae-8104-c065026429e6"
+  }
 }
