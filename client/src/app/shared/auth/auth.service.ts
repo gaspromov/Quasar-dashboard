@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AuthService {
   headers: HttpHeaders;
-  url = "http://localhost:3001/token"
+  url = "https://localhost:3001/token"
 
   constructor(
     private http: HttpClient
@@ -18,4 +18,5 @@ export class AuthService {
     // console.log(this.headers);
     await this.http.get(this.url, { headers: this.headers }).toPromise();
   }
+
 }
