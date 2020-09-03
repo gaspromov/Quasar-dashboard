@@ -29,8 +29,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-  console.log('Aapodkaopkaspokdakdasd');
-  res.send(200);
+  console.log({msg: 'hello'});
+  res.redirect(config.get('discord.loginUrl'));
 });
 
 app.get('/logout', (req, res) => {
@@ -38,7 +38,7 @@ app.get('/logout', (req, res) => {
 })
 
 app.get('/token', (req, res, next) => {
-    res.redirect(config.get('discord.loginUrl'));
+  res.redirect(config.get('discord.loginUrl'));
 });
 
 app.get('/users/@get', (req, res) => {
@@ -48,7 +48,7 @@ app.get('/users/@get', (req, res) => {
     jwt.verify(token.access_token,
       config.get('token.secret'),
       (err, user) => {
-        if(err)
+        if (err)
           res.send(401);
         else
           res.send(user);
