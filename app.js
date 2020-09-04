@@ -5,6 +5,7 @@ const Pool = require('pg').Pool;
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+let proxy = require('express-http-proxy');
 
 const authRoute = require('./routes/auth');
 
@@ -19,26 +20,18 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
 app.use(cors());
+
 app.use(helmet());
 app.use(bodyParser.json());
 
 app.use('/auth', authRoute);
 
-app.get('/', (req, res) => {
-  res.send(200);
-});
-
-app.post('/', (req, res) => {
-  console.log({msg: 'hello'});
-  res.redirect(config.get('discord.loginUrl'));
-});
-
 app.get('/logout', (req, res) => {
 
-})
+});
 
-app.get('/token', (req, res, next) => {
-  res.redirect(config.get('discord.loginUrl'));
+app.get('/login/discord', (req, res, next) => {
+  res.status(302).send(config.get('discord.loginUrl'));
 });
 
 app.get('/users/@get', (req, res) => {
