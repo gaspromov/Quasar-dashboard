@@ -31,7 +31,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/login/discord', (req, res, next) => {
-  res.status(200).send(config.get('discord.loginUrl'));
+  res.json(config.get('discord.loginUrl'));
 });
 
 app.get('/users/@get', (req, res) => {
