@@ -19,13 +19,13 @@ export class NavbarComponent implements OnInit {
     // window.location.href = ''
     await this.http.auth()
     .then( (w: any ={}) => {
-      console.log(w);
+      console.log("это не ошибка", w);
       // window.location.href =
-      console.log(w.error);
+      // console.log(w.error);
     })
     .catch(e =>{
-      console.log(e);
-      window.location.href =  e.error.text;
+      console.log("это ошибка", e);
+      // window.location.href =  e.error.text;
 
     })
   }
