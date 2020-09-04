@@ -11,11 +11,20 @@ export class AuthService {
   constructor(
     private http: HttpClient
   ) {
-    this.headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
   }
 
   async auth() {
-    await this.http.get(`${this.url}/login/discord`, {headers: this.headers}).toPromise();
+    
+    fetch('http://localhost:3001/login/discord', {
+    method: 'GET',
+    headers: {
+    'content-type': 'application/json',
+    }
+    }).then(result => result.json())
+    .then(console.log);
+    
+    // await this.http.get(`${this.url}/login/discord`, {headers: this.headers}).toPromise();
   }
 
 }
