@@ -6,7 +6,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class AuthService {
   headers: HttpHeaders;
-  url = ""
+  url = "";
 
   constructor(
     private http: HttpClient
@@ -15,7 +15,7 @@ export class AuthService {
   }
 
   async auth() {
-    await this.http.get(`${this.url}/token`, {headers: this.headers}).toPromise();
+    await this.http.get(`${this.url}/login/discord`, {headers: this.headers}).toPromise();
   }
 
 }

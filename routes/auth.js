@@ -33,7 +33,6 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/discord/redirect', (req, res, next) => {
-
   let data = {
     client_id: config.get('discord.clientID'),
     client_secret: config.get('discord.clientSecret'),
