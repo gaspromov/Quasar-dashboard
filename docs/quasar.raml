@@ -18,6 +18,27 @@ types:
       locale: string
       iat: integer
 
+/login/discord:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            properties:
+              url: string
+
+/auth/discord:
+  post:
+    queryParameters:
+      code: string
+    responses:
+      200:
+        body:
+          application/json:
+            properties:
+              token: Token
+              user: User
+
 /token:
   get:
     responses:

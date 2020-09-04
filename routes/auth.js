@@ -123,7 +123,7 @@ router.post('/discord', (req, res, next) => {
                         token: token,
                         user: user
                       }
-                      res.send(data);
+                      res.json(data);
                     })
                     .catch(next);
                   return client;
@@ -144,7 +144,7 @@ router.post('/discord', (req, res, next) => {
                     token: token,
                     user: user
                   }
-                  res.send(data);
+                  res.json(data);
                 }
               });
             client.release();
