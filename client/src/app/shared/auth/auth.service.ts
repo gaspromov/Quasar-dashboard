@@ -15,16 +15,7 @@ export class AuthService {
   }
 
   async auth() {
-    
-    fetch('http://localhost:3001/login/discord', {
-    method: 'GET',
-    headers: {
-    'content-type': 'application/json',
-    }
-    }).then(result => result.json())
-    .then(console.log);
-    
-    // await this.http.get(`${this.url}/login/discord`, {headers: this.headers}).toPromise();
+    return await this.http.get(`${this.url}/login/discord`, {headers: this.headers}).toPromise();
   }
 
 }

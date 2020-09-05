@@ -22,28 +22,14 @@ export class NavbarComponent implements OnInit {
   }
 
   async auth(){
-    // window.location.href = ''
-    // await this.http.auth()
-    // .then( w => {
-    //   console.log("это не ошибка", w);
-    //   // window.location.href =
-    //   // console.log(w.error);
-    // })
-    // .catch(e =>{
-    //   console.log("это ошибка", e);
-    //   // window.location.href =  e.error.text;
+    this.http.auth()
+    .then( (w: any = {}) => {
+      window.location.href = w.url;
+    })
+    .catch(e =>{
+      console.log(e);
 
-    // })
-    
-    
-    fetch('http://localhost:3001/login/discord', {
-    method: 'GET',
-    headers: {
-    'content-type': 'application/json',
-    }
-    }).then(result => console.log(result))
-    // .then(console.log);
-    
+    })
   }
 
 }
