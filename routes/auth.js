@@ -32,7 +32,7 @@ router.get('/', (req, res, next) => {
   res.render('auth', options);
 });
 
-router.get('/discord/redirect', (req, res, next) => {
+router.post('/discord', (req, res, next) => {
   let data = {
     client_id: config.get('discord.clientID'),
     client_secret: config.get('discord.clientSecret'),
@@ -123,7 +123,7 @@ router.get('/discord/redirect', (req, res, next) => {
                         token: token,
                         user: user
                       }
-                      res.send(data);
+                      res.json(data);
                     })
                     .catch(next);
                   return client;
@@ -144,7 +144,7 @@ router.get('/discord/redirect', (req, res, next) => {
                     token: token,
                     user: user
                   }
-                  res.send(data);
+                  res.json(data);
                 }
               });
             client.release();
