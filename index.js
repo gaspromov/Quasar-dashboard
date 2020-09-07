@@ -29,10 +29,12 @@ app.use(
 		cookie: {
 			maxAge: 60 * 1000 * 60 * 24,
 		},
-		saveUninitialized: true,
+		saveUninitialized: false,
 		resave: false,
 		name: 'discord.oauth2',
-		store: new MongoStore({ mongooseConnection: mongoose.connection }),
+		store: new MongoStore({
+			mongooseConnection: mongoose.connection,
+		}),
 	}),
 )
 
