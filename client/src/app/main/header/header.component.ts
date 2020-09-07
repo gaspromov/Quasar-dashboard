@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  params;
 
-  constructor() { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+  ) {
+    // console.log(this.params)
+   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.params = await this.activatedRoute.queryParams.toPromise()
+    console.log(this.params)
   }
 
 }
