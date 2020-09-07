@@ -9,7 +9,11 @@ nav{
     font-size: 14pt;
 }
 
-nav img{
+nav>*{
+    margin: 1px;
+}
+
+nav>img{
     width: 50px;
 }
 
@@ -22,14 +26,31 @@ ul.menu{
     list-style: none;
 }
 
-
-
-ul.menu .active{
-    border-bottom: 1px solid green;
+ul.menu li{
+    align-self: center;
+    display: grid;
+    align-items: center;
+    padding: 0px 0px 1px !important;
+    transition: 1s;
 }
 
+ul.menu li:hover{
+    background: linear-gradient(to left, #7a01ff, #e967ff, #69ecf3);
+    /* transition: 1s; */
+}
+
+
+a{
+    background-color: #0d1223;
+}
+
+
 nav .link-dashboard a{
-    border: 2px solid;
-    padding: 9px 18px;
+    padding: 8px 20px;
     border-radius: 25px;
+    background-color: #0d1223;
+}
+
+.link-dashboard img{
+    width: 100%;
 }

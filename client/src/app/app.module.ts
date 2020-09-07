@@ -14,6 +14,11 @@ import { NavbarComponent } from './main/navbar/navbar.component';
 import { MonitorsComponent } from './main/monitors/monitors.component';
 import { SuccessesComponent } from './main/successes/successes.component';
 import { SocialComponent } from './main/social/social.component';
+import { LoginComponent } from './login/login.component';
+import { PasswordPageComponent } from './password-page/password-page.component';
+import { WindowImagesComponent } from './window-images/window-images.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ActivateKeyComponent } from './activate-key/activate-key.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +29,11 @@ import { SocialComponent } from './main/social/social.component';
     MonitorsComponent,
     SuccessesComponent,
     SocialComponent,
+    LoginComponent,
+    PasswordPageComponent,
+    WindowImagesComponent,
+    DashboardComponent,
+    ActivateKeyComponent,
   ],
   imports: [
     BrowserModule,

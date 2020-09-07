@@ -1,8 +1,9 @@
 .monitors{
     display: grid;
     grid-row-gap: 70px;
-    margin-top: 10px;
-    position: relative;
+    padding-top: 10px;
+    background-color: #fff;
+    padding-bottom: 4px;
 }
 
 .descript-block{
@@ -28,13 +29,23 @@ p{
     grid-template-columns: auto 1fr auto;
 }
 
+.gradient-circle{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+
+    background: linear-gradient(to left, #7a01ff, #e967ff, #69ecf3);
+    padding: 4px;
+
+    border-radius: 50%;
+}
+
 .details .circle{
     background-color: #000000;
-    border-radius: 100%;
-    width: 130px;
-    height: 130px;
-    padding: 30px;
-    border: 4px solid white;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    padding: 40px;
     display: grid;
     justify-items: center;
     align-items: center;
@@ -49,19 +60,4 @@ p{
     display: grid;
     justify-items: center;
     align-items: center;
-}
-
-.transition{
-    background-image: url("/assets/img/background/transition-main.png");
-    background-size: cover;
-    transform: scale(1, -1);
-    background-repeat: no-repeat;
-    background-position: center center;
-    position: absolute;
-    /* bottom: -1px;
-    
-    left: 0; */
-    height: 370px;
-    pointer-events: none;
-    width: 100%
 }

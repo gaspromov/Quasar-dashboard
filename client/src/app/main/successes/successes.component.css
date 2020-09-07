@@ -2,11 +2,12 @@
     display: grid;
     grid-row-gap: 40px;
     background-image: url("/assets/img/background/successes.png");
-    padding-top: 200px;
+    padding-top: 150px;
     color: white;
     padding-right: 100px;
     padding-left: 100px;
     padding-bottom: 50px;
+    /* z-index: -1; */
 }
 
 .nameOfDescript{
@@ -42,8 +43,34 @@
     width: 100%;
 }
 
-.smth{
-    background-color: black;
-    border: 4px solid white;
+
+.gradient{
+    padding: 5px;
     border-radius: 10px;
+    justify-items: stretch;
+    align-items: stretch;
+    justify-self: stretch;
+    align-self: stretch;
+}
+
+.photo-success{
+    background-color: #000000;
+    border-radius: inherit;
+}
+
+.transition{
+    background-image: url("/assets/img/background/transition-main.png");
+    background-size: cover;
+    transform: scale(1, -1);
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    top: -1px;
+    /* bottom: -1px;
+    
+    left: 0; */
+    height: 370px;
+    pointer-events: none;
+    width: 100%;
+    z-index: 10;
 }

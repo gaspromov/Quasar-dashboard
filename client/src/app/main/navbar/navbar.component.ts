@@ -23,16 +23,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async auth(){
-    await this.http.getUrl()
-    .then( (w: any = {}) => {
-      window.location.href = w.url;
-    })
-    .catch(e =>{
-      console.log(e);
-
-    })
-  }
 
   async getUserData(code){
     console.log(code)
