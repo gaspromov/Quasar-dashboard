@@ -29,11 +29,9 @@ export class NavbarComponent implements OnInit {
     await this.http.getUserData(code)
     .then(w =>{
       console.log(w, 'w');
-      console.log('w');
     })
     .catch(e =>{
       console.log(e, 'e');
-      console.log('e');
     })
   }
 

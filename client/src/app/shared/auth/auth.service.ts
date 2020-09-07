@@ -19,7 +19,6 @@ export class AuthService {
   }
 
   async getUserData(code: string){
-    console.log(code)
     return await this.http.post(`${this.url}/auth/discord`, {code: code}, {headers: this.headers}).toPromise();
   }
 
