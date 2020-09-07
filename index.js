@@ -4,6 +4,7 @@ require('dotenv').config()
 // Dependencies
 const compression = require('compression')
 const mongoose = require('mongoose')
+const passport = require('passport')
 const express = require('express')
 const morgan = require('morgan')
 const helmet = require('helmet')
@@ -20,6 +21,8 @@ app.use(express.json())
 app.use(compression())
 app.use(morgan('dev'))
 app.use(helmet())
+const discord = require('./middleware/discord.middleware')
+app.use(passport.initialize())
 
 // Routes
 app.use('/api/v1/auth', require('./routes/auth'))
