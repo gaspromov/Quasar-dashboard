@@ -8,6 +8,7 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser(async (id, done) => {
+  console.log('2')
 	const candidate = await DiscordUser.findById(id)
 	if (candidate) done(null, candidate)
 })
