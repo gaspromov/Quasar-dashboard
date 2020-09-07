@@ -9,8 +9,17 @@ const schema = new Schema(
 		username: {
 			type: String,
 			required: true,
-		},
-		avatar: String,
+    },
+    discriminator: {
+      type: String,
+      required: true
+    },
+    avatar: String,
+    licence: {
+      type: String,
+      unique: true
+    },
+    licenceExp: Date
 	},
 	{ versionKey: false },
 )

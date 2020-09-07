@@ -16,7 +16,8 @@ passport.use(
 			scope: ['identify'],
 		},
 		async (accessToken, refreshToken, profile, done) => {
-			try {
+      try {
+        console.log(profile)
 				const user = await DiscordUser.findOne({ discordId: profile.id })
 				if (user) {
 					done(null, user)
@@ -24,6 +25,7 @@ passport.use(
 					const newUser = new DiscordUser({
 						discordId: profile.id,
 						username: profile.username,
+						discriminator: profile.discriminator,
 						avatar: profile.avatar,
 					})
 					await newUser.save()

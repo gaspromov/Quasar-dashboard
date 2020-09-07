@@ -47,6 +47,7 @@ app.use(helmet())
 
 // Routes
 app.use('/api/v1/auth', require('./routes/auth'))
+app.use('/api/v1/access', require('./routes/access'))
 
 // Docs
 app.get('/api/v1/docs', (req, res) => {
