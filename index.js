@@ -1,9 +1,13 @@
 // Dotenv
 require('dotenv').config()
 
+// Strategies
+require('./strategies/discord')
+
 // Dependencies
 const compression = require('compression')
-// const session = require('express-session')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
 const mongoose = require('mongoose')
 const passport = require('passport')
 const express = require('express')
@@ -14,17 +18,30 @@ const path = require('path')
 // Variables
 const PORT = process.env.PORT
 const app = express()
-const discord = require('./middleware/discord.middleware')
 
 // Middleware
 app.use(express.static(path.resolve(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(
+	session({
+		secret: 'some secret',
+		cookie: {
+			maxAge: 60 * 1000 * 60 * 24,
+		},
+		saveUninitialized: true,
+		resave: false,
+		name: 'discord.oauth2',
+		store: new MongoStore({ mongooseConnection: mongoose.connection }),
+	}),
+)
+
+app.use(passport.initialize())
+app.use(passport.session())
+
 app.use(compression())
 app.use(morgan('dev'))
 app.use(helmet())
-app.use(passport.initialize())
-app.use(passport.session())
 
 // Routes
 app.use('/api/v1/auth', require('./routes/auth'))
