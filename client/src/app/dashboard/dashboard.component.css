@@ -1,19 +1,54 @@
 .db-window{
     display: grid;
-    grid-row-gap: 20px;
+    grid-row-gap: 5%;
+    padding: 1% 5% !important;
+    grid-template-rows: auto 1fr auto;
 }
 
 .discord-info{
     width: 100%;
 }
 
+.info{
+    display: grid;
+    grid-template-columns: 1fr minmax(150px, auto);
+    justify-self: stretch;
+    align-self: stretch;
+    border-top: 2px solid white;
+}
+
+
+.info>div{
+    padding: 15px 35px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    /* height: 240px; */
+}
+
+.info>div:first-child{
+    border-right: 1px solid white;
+}
+
+.info>div:last-child{
+    border-left: 1px solid white;
+}
+
+
 .buttons{
-    margin-top: 35px;
 
     display: grid;
     grid-template-columns: auto auto;
     align-items: center;
-    justify-items: center;
+    justify-self: stretch;
+    /* justify-items: center; */
+    grid-column-gap: 5%;
+}
 
-    grid-column-gap: 20px;
+.buttons>button:first-child{
+    justify-self: end;
+}
+
+.buttons>button:last-child{
+    justify-self: start;
 }

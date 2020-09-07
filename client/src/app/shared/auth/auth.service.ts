@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   async getUserData(code: string){
-    return await this.http.post(`${this.url}/auth/discord`, {code: code}, {headers: this.headers}).toPromise();
+    return await this.http.post(`${this.url}/api/v1/auth/discord/login?code=${code}`, {headers: this.headers}).toPromise();
   }
 
 }

@@ -111,6 +111,9 @@ a{
 .medium-style{
     font-weight: 500;
 }
+.semibold-style{
+    font-weight: 600;
+}
 .pointer{
     cursor: pointer;
 }
@@ -148,10 +151,9 @@ a{
 
     position: relative;
 
-    padding: 45px 95px;
-    max-width: 750px;
-    min-width: 550px;
-    min-height: 400px;
+    padding: 3% 5%;
+    width: 55%;
+    height: 70%;
     box-sizing: border-box;
 
     background-color: #0F1D38;
@@ -162,8 +164,9 @@ a{
 
 .discord-login-btn{
     display: grid;
-    justify-items: center;
-    align-items: center;
+    place-items: center;
+    justify-self: center;
+    align-self: center;
     grid-template-columns: auto 1fr;
     grid-column-gap: 9px;
 
@@ -186,15 +189,23 @@ a{
 
 .discord-info{
     display: grid;
-    grid-row-gap: 5px;
+    row-gap: 3%;
     grid-template-rows: 1fr auto;
     justify-items: center;
+    align-items: center;
 }
 
 .discord-avatar{
-    border-radius: 50%;
-    width: 165px;
-    height: 165px;
+    /* border-radius: 50%; */
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    min-height: 100px;
+}
+
+.discord-avatar img{
+    height: 100%;
 }
 
 .discord-nickname{
@@ -202,9 +213,10 @@ a{
 }
 
 .window .simple-input{
-    width: 555px;
     border-radius: 20px;
-    height: 45px;
+    width: 100%;
+    max-height: 40px;
+    padding: 20px;
     background-color: #21355B;
     border: 2px solid #E5E5E5;
     box-sizing: border-box;
