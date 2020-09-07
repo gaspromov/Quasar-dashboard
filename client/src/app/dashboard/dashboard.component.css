@@ -1,0 +1,19 @@
+.db-window{
+    display: grid;
+    grid-row-gap: 20px;
+}
+
+.discord-info{
+    width: 100%;
+}
+
+.buttons{
+    margin-top: 35px;
+
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-items: center;
+
+    grid-column-gap: 20px;
+}

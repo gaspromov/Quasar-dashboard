@@ -3,23 +3,18 @@ header{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    /* background-attachment: fixed; */
     height: 700px;
-    width: 100%;
     position: relative;
-}
-
-header>div.standart-padding{
     display: grid;
-    grid-template-columns: 1fr auto;
-    grid-column-gap: 80px;
 }
 
 .about{
     justify-self: start;
-    align-self: center;
+    align-self: end;
+    justify-items: start;
     display: grid;
     grid-row-gap: 20px;
+    margin-bottom: 330px;
 }
 
 .about .name{
@@ -34,13 +29,16 @@ header>div.standart-padding{
     margin: 0px;
 }
 
+
 .about .buy a{
+    display: block;
     padding: 9px 18px;
-    border: 2px solid white;
     border-radius: 25px;
     color: white;
     background-color: #000000;
+    justify-self: start;
 }
+
 
 
 header .phone-success{
@@ -48,9 +46,12 @@ header .phone-success{
     /* background-size: 100%;
     background-repeat: no-repeat; */
     /* background-position: center center; */
-    position: relative;
+    position: absolute;
+    padding-right: inherit;
     width: 300px;
-    justify-self: end;
+    bottom: 0px;
+    right: 0px;
+    box-sizing: content-box;
 }
 
 header .phone-success img{
@@ -73,7 +74,6 @@ header .phone-success img{
     color: white;
     text-align: center;
 }
-
 
 ::-webkit-scrollbar{
     width:5px;
@@ -107,6 +107,7 @@ header .transition{
     left: 0;
     height: 370px;
     pointer-events: none;
-    width: 100%
+    width: 100%;
+    z-index: 10;
 }
 

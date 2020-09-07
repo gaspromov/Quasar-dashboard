@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main/main.component';
+import { LoginComponent } from './login/login.component';
+import { PasswordPageComponent } from './password-page/password-page.component';
+import { ActivateKeyComponent } from './activate-key/activate-key.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
 
-  { path: 'login', component: MainComponent },
-  // { path: '**', redirectTo: '/login' }
+  { path: 'main', component: MainComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'password', component: PasswordPageComponent },
+  { path: 'activate-key', component: ActivateKeyComponent },
+  { path: '**', redirectTo: '/main' }
 
 ];
 
