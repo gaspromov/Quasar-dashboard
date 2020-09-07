@@ -8,7 +8,7 @@ router.get('/discord', passport.authenticate('discord'))
 
 router.get(
 	'/discord/login',
-	passport.authenticate('discord', { failureRedirect: '/forbidden' }),
+	passport.authenticate('discord'),
 	async (req, res) => {
 		try {
 			const { _id, discordId } = req.user
@@ -18,9 +18,8 @@ router.get(
 				{
 					expiresIn: '1d',
 				},
-			)
-			// res.status(200)
-			res.redirect('/')
+      )
+			res.status(200).json(accessToken)
 		} catch (e) {
 			return res.status(500).json({
 				message: 'Что-то пошло не так, попробуйте позже',
