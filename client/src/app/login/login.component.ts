@@ -28,8 +28,12 @@ export class LoginComponent implements OnInit {
     await this.http.getUserData(code)
     .then(w =>{
       console.log(w);
-      this.router.navigate(['/login']);
+      localStorage.setItem('accessToken', JSON.stringify(w));
+      this.router.navigate(['/password']);
     })
-    .catch(e => console.log('это ошибка -', e))
+    .catch(e => {
+      console.log('это ошибка -', e)
+      this.router.navigate(['/password']);
+    })
   }
 }
