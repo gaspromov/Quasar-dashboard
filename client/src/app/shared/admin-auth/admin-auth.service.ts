@@ -21,7 +21,7 @@ export class AdminAuthService {
 
   async changePassword(password: string){
     this.setHeader();
-    return await this.http.post(`${this.url}/password`, password, { headers: this.headers }).toPromise()
+    return await this.http.post(`${this.url}/password`, {password: password}, { headers: this.headers }).toPromise()
   }
 
   setHeader(){

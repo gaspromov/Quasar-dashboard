@@ -22,6 +22,7 @@ export class AdminPanelComponent implements OnInit {
     await this.http.changePassword(this.password)
     .then( (w: any = {}) =>{
       this.message = w.message;
+      console.log(w, w.message)
     })
     .catch(e =>{
       this.error = e.error;
