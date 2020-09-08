@@ -2,9 +2,9 @@ const { Router } = require('express')
 
 const DiscordUser = require('../models/DiscordUser')
 const router = Router()
-const auth = require('../middleware/auth.discord.middleware')
+// const auth = require('../middleware/auth.discord.middleware')
 
-router.get('/license', auth, async (req, res) => {
+router.get('/license', async (req, res) => {
 	try {
 		const user = await DiscordUser.findById(req.user.id).select(
 			'-_id -licenseExp -license',
@@ -36,7 +36,7 @@ router.get('/license', auth, async (req, res) => {
 	}
 })
 
-router.post('/license', auth, async (req, res) => {
+router.post('/license', async (req, res) => {
 	try {
 		const { key } = req.body
 		if (key) {

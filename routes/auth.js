@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs')
 const router = Router()
 
 const auth = require('../middleware/auth.admin.middleware')
+const Admin = require('../models/Admin')
 
 router.get('/discord', passport.authenticate('discord'))
 
@@ -36,46 +37,16 @@ router.get('/discord/logout', (req, res) => {
 router.post('/login', async (req, res) => {
 	try {
 		const { login, password } = req.body
-
-		const candidate = await User.findOne({ login }).select('password')
-		if (candidate) {
-			if (await bcrypt.compare(password, candidate.password)) {
-				const accessToken = jwt.sign(
-					{ userId: candidate._id, type: candidate.type },
-					process.env.JWT_SECRET,
-					{
-						expiresIn: '1d',
-					},
-				)
-				return res.status(200).json(accessToken)
-			}
-		} else {
-			return res.status(400).json({ message: 'Данные неверны' })
-		}
-	} catch (e) {
-		return res.status(500).json({
-			message: 'Что-то пошло не так, попробуйте позже',
-			error: e.message,
-		})
-	}
-})
-
-router.post('/login', async (req, res) => {
-	try {
-		const { login, password } = req.body
-
-		const candidate = await User.findOne({ login }).select('password')
-		if (candidate) {
-			if (await bcrypt.compare(password, candidate.password)) {
-				const accessToken = jwt.sign(
-					{ userId: candidate._id },
-					process.env.JWT_SECRET,
-					{
-						expiresIn: '1d',
-					},
-				)
-				return res.status(200).json(accessToken)
-			}
+		const candidate = await Admin.findOne({ login }).select('password')
+		if (candidate && await bcrypt.compare(password, candidate.password)) {
+			const accessToken = jwt.sign(
+				{ userId: candidate._id },
+				process.env.JWT_SECRET,
+				{
+					expiresIn: '1d',
+				},
+			)
+			return res.status(200).json({ accessToken })
 		} else {
 			return res.status(400).json({ message: 'Данные неверны' })
 		}
@@ -90,7 +61,7 @@ router.post('/login', async (req, res) => {
 router.post('/password', auth, async (req, res) => {
 	try {
 		const { password } = req.body
-		const candidate = await User.findById(req.user.userId)
+		const candidate = await Admin.findById(req.user.userId)
 		candidate.password = await bcrypt.hash(password, parseInt(process.env.SALT))
 		await candidate.save()
 		return res.status(200).json({ message: 'Пароль изменен' })
