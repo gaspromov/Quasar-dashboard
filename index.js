@@ -29,10 +29,12 @@ app.use(
 		cookie: {
 			maxAge: 60 * 1000 * 60 * 24,
 		},
-		saveUninitialized: true,
+		saveUninitialized: false,
 		resave: false,
 		name: 'discord.oauth2',
-		store: new MongoStore({ mongooseConnection: mongoose.connection }),
+		store: new MongoStore({
+			mongooseConnection: mongoose.connection,
+		}),
 	}),
 )
 
@@ -45,6 +47,7 @@ app.use(helmet())
 
 // Routes
 app.use('/api/v1/auth', require('./routes/auth'))
+app.use('/api/v1/access', require('./routes/access'))
 
 // Docs
 app.get('/api/v1/docs', (req, res) => {
