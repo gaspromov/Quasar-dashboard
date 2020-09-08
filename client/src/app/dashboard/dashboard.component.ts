@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../shared/auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  avatar: string;
+  username: string;
+  discriminator: string;
 
-  constructor() { }
+  constructor(
+    private http: AuthService
+  ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this.http.getUserData()
+    .then((w: any ={}) =>{
+      this.avatar = w.avatar;
+      this.username = w.username;
+      this.discriminator = w.discriminator
+    })
   }
 
 }

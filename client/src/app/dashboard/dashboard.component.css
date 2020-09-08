@@ -1,12 +1,13 @@
 .db-window{
     display: grid;
-    grid-row-gap: 5%;
+    grid-row-gap: 3%;
     padding: 1% 5% !important;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 0.7fr 1fr auto;
 }
 
 .discord-info{
     width: 100%;
+    align-self: stretch;
 }
 
 .info{
@@ -32,6 +33,40 @@
 
 .info>div:last-child{
     border-left: 1px solid white;
+}
+
+
+.subscribe-info{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    column-gap: 5%;
+}
+
+.subscribe-info>*{
+    width: 100%; 
+    height: 100%;
+
+    display: grid;
+
+    row-gap: 5%;
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.subscribe-info>*:first-child{
+    background-color: rgb(142, 30, 207);
+}
+
+.subscribe-info>*:last-child{
+    background-color: rgb(30, 207, 192);
+}
+
+
+.subscribe-info .payment{
+    grid-row: 3/5;
+}
+
+.other{
+    display: grid;
 }
 
 

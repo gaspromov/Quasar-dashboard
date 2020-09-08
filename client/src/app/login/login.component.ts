@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   
   async auth(code: string){
-    await this.http.getUserData(code)
+    await this.http.getUserData()
     .then(w =>{
       console.log(w);
       localStorage.setItem('accessToken', JSON.stringify(w));
