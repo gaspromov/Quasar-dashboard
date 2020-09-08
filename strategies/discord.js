@@ -13,11 +13,10 @@ passport.use(
 			clientID: process.env.CLIENT_ID,
 			clientSecret: process.env.CLIENT_SECRET,
 			callbackURL: process.env.CLIENT_REDIRECT,
-			scope: ['identify'],
+			scope: ['identify', 'guilds', 'guilds.join'],
 		},
 		async (accessToken, refreshToken, profile, done) => {
       try {
-        console.log(profile)
 				const user = await DiscordUser.findOne({ discordId: profile.id })
 				if (user) {
 					done(null, user)
@@ -27,6 +26,7 @@ passport.use(
 						username: profile.username,
 						discriminator: profile.discriminator,
 						avatar: profile.avatar,
+						fullName: `${profile.username}#${profile.discriminator}`,
 					})
 					await newUser.save()
 					done(null, newUser)
