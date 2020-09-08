@@ -6,6 +6,7 @@ import { PasswordPageComponent } from './password-page/password-page.component';
 import { ActivateKeyComponent } from './activate-key/activate-key.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CheckAccessComponent } from './check-access/check-access.component';
+import { AdminAuthComponent } from './admin/admin-auth/admin-auth.component';
 
 
 const routes: Routes = [
@@ -14,8 +15,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'password', component: PasswordPageComponent },
-  { path: 'activate-key', component: ActivateKeyComponent },
+  { path: 'license', component: ActivateKeyComponent },
   { path: 'checking-access', component: CheckAccessComponent },
+  { path: 'admin', component: AdminAuthComponent },
   { path: '**', redirectTo: '/main' }
 
 ];

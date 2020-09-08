@@ -22,6 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ActivateKeyComponent } from './activate-key/activate-key.component';
 import { CheckAccessComponent } from './check-access/check-access.component';
+import { AdminAuthComponent } from './admin/admin-auth/admin-auth.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { CheckAccessComponent } from './check-access/check-access.component';
     DashboardComponent,
     ActivateKeyComponent,
     CheckAccessComponent,
+    AdminAuthComponent,
+    AdminPanelComponent,
   ],
   imports: [
     BrowserModule,

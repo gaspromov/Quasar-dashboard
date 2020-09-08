@@ -6,16 +6,16 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class AuthService {
   headers: HttpHeaders;
-  url = "";
+  url = "/api/v1";
 
   constructor(
     private http: HttpClient
   ) {
-    this.headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    this.headers = new HttpHeaders();
   }
 
   async getUserData(){
-    return await this.http.get(`${this.url}/api/v1/access/licence`, {headers: this.headers}).toPromise();
+    return await this.http.get(`${this.url}/access/licence`, {headers: this.headers}).toPromise();
   }
 
 }

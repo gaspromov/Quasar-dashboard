@@ -1,0 +1,11 @@
+<div class="content">
+
+    <div class="window login-window">
+
+            <input type="text" class="admin-input" placeholder="password" [ngModel]="password">
+            <button class="admin-input" (click)="changePassword()">Change password</button>
+            <span *ngIf="message" class="danger-message">{{error}}</span>
+            <span *ngIf="error" class="success-message">{{message}}</span>
+    </div>
+
+</div>

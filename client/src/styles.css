@@ -124,6 +124,12 @@ a{
     position: absolute;
 }
 
+.danger-message{
+    color: red;
+}
+.success-message{
+    color: green;
+}
 
 .font-24{
     font-size: 24px;
