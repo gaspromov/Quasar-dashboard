@@ -10,7 +10,7 @@ router.get(
 	'/discord/login',
 	passport.authenticate('discord', {
 		failureRedirect: '/login',
-		successRedirect: '/password',
+		successRedirect: '/activate-key',
 	}),
 )
 
