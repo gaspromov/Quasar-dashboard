@@ -1,16 +1,18 @@
+.login-window{
+    width: 30%;
+    height: 50%;
+    
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-row-gap: 20%;
+}
+
+
 img.logo{
-    height: 165px;
-    transition: 0.1s;
+    height: 100%;
+    transition: 0.2s;
 }
 
 img.logo:hover{
-    height: 185px;
-}
-
-
-.login-window>div{
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    grid-row-gap: 75px;
+    height: 110%;
 }

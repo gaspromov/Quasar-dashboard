@@ -14,12 +14,8 @@ export class AuthService {
     this.headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
   }
 
-  async getUrl() {
-    return await this.http.get(`${this.url}/login/discord`, {headers: this.headers}).toPromise();
-  }
-
-  async getUserData(code: string){
-    return await this.http.get(`${this.url}/api/v1/auth/discord/login?code=${code}`, {headers: this.headers}).toPromise();
+  async getUserData(){
+    return await this.http.get(`${this.url}/api/v1/access/licence`, {headers: this.headers}).toPromise();
   }
 
 }

@@ -3,7 +3,7 @@
     row-gap: 10%;
     align-items: stretch;
     justify-items: stretch;
-    grid-template-rows: 1fr 1fr auto;
+    grid-template-rows: 1fr 0.7fr auto;
 }
 
 .key-input{
@@ -23,6 +23,6 @@
 
 .discord-info{
     width: 100%;
-    /* padding-bottom: 20px;
-    border-bottom: 2px solid white; */
+    padding-bottom: 2%;
+    border-bottom: 2px solid white;
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../shared/auth/auth.service';
 
 @Component({
   selector: 'app-activate-key',
@@ -6,10 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./activate-key.component.css']
 })
 export class ActivateKeyComponent implements OnInit {
+  avatar: string;
+  username: string;
+  discriminator: string;
 
-  constructor() { }
+  constructor(
+    private http: AuthService
+  ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this.http.getUserData()
+    .then((w: any ={}) =>{
+      console.log(w)
+      this.avatar = w.avatar;
+      // https://cdn.discordapp.com/
+      this.username = w.username;
+      this.discriminator = w.discriminator
+    })
+    .catch(e =>{
+      console.log(e)
+    })
   }
 
 }
