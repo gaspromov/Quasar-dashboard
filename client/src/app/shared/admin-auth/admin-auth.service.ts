@@ -26,7 +26,7 @@ export class AdminAuthService {
 
   setHeader(){
     let token = localStorage.getItem('accessToken')
-    this.headers.append('Authorization', `Bearer ${token}`)
+    this.headers = this.headers.append('Authorization', `Bearer ${token}`)
   }
 
 }
