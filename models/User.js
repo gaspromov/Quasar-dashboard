@@ -12,7 +12,6 @@ const schema = new Schema(
 		avatar: String,
 		license: {
 			type: Types.ObjectId,
-			unique: true,
 		},
 		accessToken: {
 			type: String,
