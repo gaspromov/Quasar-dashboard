@@ -2,8 +2,18 @@
     <div class="links">
         <button class="admin-button">Members</button>
         <button class="admin-button">Drops</button>
-        <button class="admin-button">Last payments</button>
-        <button class="admin-button">New key</button>
+        <button class="admin-button" (click)="generatePassword()">Last payments</button>
+        <button class="admin-button" (click)="onNewKey()">New key</button>
+        <div class="" *ngIf="newKey">
+            <form [formGroup]="newKeyForm" (ngSubmit)="onAddKey()">
+                <select formControlName="status">
+                    <option value="lifetime">Lifetime</option>
+                    <option value="renewval">Renewval</option>
+                </select>
+                Дата окончания: <input type="text" formControlName="date">
+                <input type="submit">
+            </form>
+        </div>
     </div>
     
     <div class="action">
