@@ -1,11 +1,13 @@
-<div class="content">
+<div class="content admin-content">
 
-    <div class="window login-window">
+    <div class="window admin-window">
 
-            <input type="password" class="admin-input" placeholder="password" [(ngModel)]="password">
-            <button class="admin-input" (click)="changePassword()">Change password</button>
-            <span *ngIf="error" class="danger-message">{{error}}</span>
-            <span *ngIf="message" class="success-message">{{message}}</span>
+        <div class="discord-avatar">
+            <img routerLink="home" src="/assets/img/logo/quasar.svg" class="pointer"> 
+        </div>
+        
+        <router-outlet></router-outlet>
+
     </div>
 
 </div>

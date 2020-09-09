@@ -21,6 +21,19 @@ header{
     font-size: 56pt;
     color: white;
     margin: 0px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 15px;
+}
+
+.about .name>hr{
+    display: inline-block;
+    border: 1px solid white;
+    align-self: center;
+    background-color: white;
+    width: 40px;
+    margin: 0px;
+    padding: 0px;
 }
 
 .about .descript{
@@ -61,13 +74,13 @@ header .phone-success img{
 
 .phone-success .content-success{
     position: absolute;
-    top: 35px;
+    top: 70px;
     word-wrap: break-word;
     width: 265px;
     display: block;
     left: 20px;
     overflow: auto;
-    height: 580px;
+    height: 530px;
 }
 
 .content-success h3{

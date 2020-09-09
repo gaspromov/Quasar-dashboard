@@ -33,7 +33,7 @@ export class AdminAuthComponent implements OnInit {
       this.router.navigate(['/admin-panel'])
     })
     .catch(e => {
-      this.message = e.error;
+      this.message = e.error.message;
     })
   }
 

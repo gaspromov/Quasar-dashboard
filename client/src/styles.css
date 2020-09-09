@@ -46,6 +46,12 @@ html, body{
     position: relative;
 }
 
+.admin-content{
+    background-image: none;
+    background-color: #21355B;
+}
+
+
 *{
     outline: none;
     font-family: 'Montserrat', sans-serif;
@@ -166,6 +172,20 @@ a{
     border-radius: 30px;
 
     color: white;
+}
+
+.admin-window{
+    width: 80%;
+    min-height: 80%;
+}
+
+@media(max-width: 700px){
+    .admin-window{
+        width: 100%;
+        height: 100%;
+        border-radius: 0%;
+        
+    }
 }
 
 .discord-login-btn{

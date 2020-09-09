@@ -1,14 +1,22 @@
+.window{
+    grid-template-rows: 0.8fr 1fr;
+    justify-items: stretch;
+    align-items: stretch;
+    grid-row-gap: 50px;
+    box-sizing: border-box;
+}
 
-.admin-input{
-    padding: 5px 15px;
+router-outlet{
+    position: absolute;
+}
 
-    background-color: #21355B;
-    border: 2px solid #E5E5E5;
-    border-radius: 30px;
-    color: white;
-    justify-self: center;
-    align-self: center;
-    text-align: center;
 
+.discord-avatar img{
+    border-radius: 0%;
     transition: 0.2s;
+    max-width: 70%;
+}
+
+.discord-avatar img:hover{
+    height: 110%;
 }

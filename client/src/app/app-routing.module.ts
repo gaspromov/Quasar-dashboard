@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CheckAccessComponent } from './check-access/check-access.component';
 import { AdminAuthComponent } from './admin/admin-auth/admin-auth.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { HomeComponent } from './admin/home/home.component';
 
 
 const routes: Routes = [
@@ -18,8 +19,15 @@ const routes: Routes = [
   { path: 'password', component: PasswordPageComponent },
   { path: 'license', component: ActivateKeyComponent },
   { path: 'checking-access', component: CheckAccessComponent },
+  
   { path: 'admin', component: AdminAuthComponent },
-  { path: 'admin-panel', component: AdminPanelComponent },
+  { path: 'admin-panel', component: AdminPanelComponent, children:
+    [
+      { path: 'home', component: HomeComponent },
+      { path: '**', redirectTo: '/admin-panel/home' }
+    ] 
+  },
+
   { path: '**', redirectTo: '/main' }
 
 ];

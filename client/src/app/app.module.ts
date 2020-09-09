@@ -24,6 +24,7 @@ import { ActivateKeyComponent } from './activate-key/activate-key.component';
 import { CheckAccessComponent } from './check-access/check-access.component';
 import { AdminAuthComponent } from './admin/admin-auth/admin-auth.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { HomeComponent } from './admin/home/home.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
     CheckAccessComponent,
     AdminAuthComponent,
     AdminPanelComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
