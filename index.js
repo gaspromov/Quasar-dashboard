@@ -14,6 +14,7 @@ const helmet = require('helmet')
 const path = require('path')
 
 const session = require('express-session')
+const User = require('./models/User')
 const MongoStore = require('connect-mongo')(session)
 
 // Variables
@@ -51,8 +52,8 @@ app.use(passport.session())
 // Routes
 app.use('/api/v1/auth', require('./routes/auth'))
 app.use('/api/v1/users', require('./routes/users'))
+app.use('/api/v1/admin', require('./routes/admin'))
 // app.use('/api/v1/access', require('./routes/access'))
-// app.use('/api/v1/admin', require('./routes/admin'))
 
 // Docs
 app.get('/api/v1/docs', (req, res) => {
@@ -64,6 +65,19 @@ app.get('*', (req, res) => {
 	res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 })
 
+const updateAccessToken = () => {
+  try {
+		setInterval(async () => {
+			const users = await User.find()
+			const promises = users.map(user => {
+				user.refresh()
+			})
+      await Promise.all(promises)
+		}, process.env.UPDATE_INTERVAL)
+	} catch (e) {
+		console.log(e.message)
+	}
+}
 const start = async () => {
 	try {
 		// Connect to mongoDB
@@ -77,7 +91,9 @@ const start = async () => {
 		// Start server
 		app.listen(PORT, () =>
 			console.log(`Server has been started on PORT ${PORT}`),
-		)
+    )
+    
+    updateAccessToken()
 	} catch (e) {
 		// Error processing
 		console.log('Неизвестная ошибка', e.message)

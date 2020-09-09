@@ -9,6 +9,9 @@ const router = Router()
 const auth = require('../middleware/auth.admin.middleware')
 const Admin = require('../models/Admin')
 
+
+// User
+
 // Переход на авторизацию
 router.get('/discord', passport.authenticate('discord'))
 
@@ -35,13 +38,14 @@ router.get('/logout', (req, res) => {
 	res.redirect('/login')
 })
 
+// Admin
 router.post('/login', async (req, res) => {
-	try {
+  try {
 		const { login, password } = req.body
 		const candidate = await Admin.findOne({ login }).select('password')
 		if (candidate && (await bcrypt.compare(password, candidate.password))) {
 			const accessToken = jwt.sign(
-				{ userId: candidate._id },
+				{ userId: candidate.id },
 				process.env.JWT_SECRET,
 				{
 					expiresIn: '1d',
@@ -49,7 +53,7 @@ router.post('/login', async (req, res) => {
 			)
 			return res.status(200).json({ accessToken })
 		} else {
-			return res.status(400).json({ message: 'Данные неверны' })
+			return res.status(400).json({ message: 'Неверные данные' })
 		}
 	} catch (e) {
 		return res.status(500).json({
