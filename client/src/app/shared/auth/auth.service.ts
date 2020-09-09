@@ -15,7 +15,7 @@ export class AuthService {
   }
 
   async getUserData(){
-    return await this.http.get(`${this.url}/access/licence`, {headers: this.headers}).toPromise();
+    return await this.http.get(`${this.url}/users`, {headers: this.headers}).toPromise();
   }
 
 }
