@@ -20,7 +20,7 @@ router.get('/license', authAdmin, async (req, res) => {
 
 router.post('/license', authAdmin, async (req, res) => {
 	try {
-		const { key, status, expiresIn } = req.body
+		let { key, status, expiresIn } = req.body
 		if (status === 'lifetime') {
 			expiresIn = null
 		}
