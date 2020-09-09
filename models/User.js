@@ -29,7 +29,6 @@ schema.methods.refresh = async function () {
 			'discord',
 			this.refreshToken,
 			async (err, accessToken, refreshToken) => {
-				console.log(accessToken, refreshToken)
 				this.accessToken = accessToken
 				this.refreshToken = refreshToken
 				await this.save()

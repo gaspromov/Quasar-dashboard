@@ -2,15 +2,25 @@ const { Router } = require('express')
 
 const router = Router()
 
-const auth = require('../middleware/auth.admin.middleware')
-const DiscordUser = require('../models/DiscordUser')
+const authAdmin = require('../middleware/auth.admin.middleware')
+const User = require('../models/User')
 const License = require('../models/License')
 
-router.get('/users', auth, async (req, res) => {})
-
-router.post('/license', auth, async (req, res) => {
+router.get('/license', authAdmin, async (req, res) => {
 	try {
-		let { key, status, expiresIn } = req.body
+		const licenses = await License.find()
+		return res.status(200).json(licenses)
+	} catch (e) {
+		return res.status(500).json({
+			message: 'Что-то пошло не так, попробуйте позже',
+			error: e.message,
+		})
+	}
+})
+
+router.post('/license', authAdmin, async (req, res) => {
+	try {
+		const { key, status, expiresIn } = req.body
 		if (status === 'lifetime') {
 			expiresIn = null
 		}
@@ -28,4 +38,5 @@ router.post('/license', auth, async (req, res) => {
 		})
 	}
 })
+
 module.exports = router
