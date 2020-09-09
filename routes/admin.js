@@ -10,10 +10,10 @@ router.get('/users', auth, async (req, res) => {})
 
 router.post('/license', auth, async (req, res) => {
 	try {
-		let { key, status, expiresIn } = req.body
+		const  { key, status, expiresIn } = req.body
 		if (status === 'lifetime') {
 			expiresIn = null
-		}
+    }
 		const license = new License({
 			key,
 			status,
@@ -28,4 +28,5 @@ router.post('/license', auth, async (req, res) => {
 		})
 	}
 })
+
 module.exports = router
