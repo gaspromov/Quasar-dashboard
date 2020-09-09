@@ -31,7 +31,8 @@ schema.methods.refresh = async function () {
 			async (err, accessToken, refreshToken) => {
 				this.accessToken = accessToken
 				this.refreshToken = refreshToken
-				await this.save()
+        await this.save()
+        await this.updateInfo()
 			},
 		)
 	} catch (e) {
