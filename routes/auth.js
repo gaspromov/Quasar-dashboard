@@ -2,19 +2,20 @@ const { Router } = require('express')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const refresh = require('passport-oauth2-refresh')
 
 const router = Router()
 
 const auth = require('../middleware/auth.admin.middleware')
 const Admin = require('../models/Admin')
 
+// Переход на авторизацию
 router.get('/discord', passport.authenticate('discord'))
 
+// Callback после авторизации
 router.get(
-	'/discord/login',
-	passport.authenticate('discord', {
-		failureRedirect: '/login',
-	}),
+	'/discord/redirect',
+	passport.authenticate('discord'),
 	(req, res) => {
 		const lastDate = new Date()
 		lastDate.setDate(lastDate.getDate() + 3)
@@ -27,7 +28,7 @@ router.get(
 	},
 )
 
-router.get('/discord/logout', (req, res) => {
+router.get('/logout', (req, res) => {
 	if (req.user) {
 		req.logout()
 	}
@@ -38,7 +39,7 @@ router.post('/login', async (req, res) => {
 	try {
 		const { login, password } = req.body
 		const candidate = await Admin.findOne({ login }).select('password')
-		if (candidate && await bcrypt.compare(password, candidate.password)) {
+		if (candidate && (await bcrypt.compare(password, candidate.password))) {
 			const accessToken = jwt.sign(
 				{ userId: candidate._id },
 				process.env.JWT_SECRET,
@@ -66,6 +67,7 @@ router.post('/password', auth, async (req, res) => {
 		await candidate.save()
 		return res.status(200).json({ message: 'Пароль изменен' })
 	} catch (e) {
+		console.log(e)
 		return res.status(500).json({
 			message: 'Что-то пошло не так, попробуйте позже',
 			error: e.message,
