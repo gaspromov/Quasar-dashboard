@@ -34,10 +34,30 @@ types:
   /login:
     post:
       description: Вход для админа
-        body:
-          properties:
-            login: String
-            
+      body:
+        properties:
+          login: String
+          password: String
+      responses:
+        200:
+          body:
+            properties:
+              accessToken: String
+        400:
+          body:
+            properties:
+              message: String
+  /password:
+    post:
+      description: Смена пароля для админа
+      body:
+        properties:
+          password: String
+      responses:
+        200:
+          body:
+            properties:
+              message: String
 
 
 /auth/discord:
