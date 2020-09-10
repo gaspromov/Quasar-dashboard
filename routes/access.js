@@ -1,19 +1,25 @@
 const { Router } = require('express')
 
-const DiscordUser = require('../models/DiscordUser')
+const User = require('../models/User')
 const License = require('../models/License')
 const router = Router()
-// const auth = require('../middleware/auth.discord.middleware')
 
-router.post('/license', async (req, res) => {
+const authUser = require('../middleware/auth.user.middleware')
+
+router.post('/license', authUser, async (req, res) => {
 	try {
+		await License.clear()
 		const { key } = req.body
 		const license = await License.findOne({
 			key,
-			expiresIn: { $gt: new Date() },
+			status: ['lifetime', 'renewal'],
 		})
-		if (license) {
-			await DiscordUser.findByIdAndUpdate(req.user.id, { license })
+		const user = await User.findById(req.user.id)
+		if (license && user) {
+			user.license = license.id
+			license.user = user.id
+			await user.save()
+			await license.save()
 			return res.status(200).json({ message: 'Ключ успешно добавлен' })
 		} else {
 			return res.status(400).json({ message: 'Не удалось добавить ключ' })
