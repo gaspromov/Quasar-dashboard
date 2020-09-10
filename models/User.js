@@ -10,7 +10,10 @@ const schema = new Schema(
 		discriminator: String,
 		fullName: String,
 		avatar: String,
-		license: Types.ObjectId,
+		license: {
+			type: Types.ObjectId,
+      unique: false
+		},
 		accessToken: {
 			type: String,
 			required: true,
@@ -31,8 +34,8 @@ schema.methods.refresh = async function () {
 			async (err, accessToken, refreshToken) => {
 				this.accessToken = accessToken
 				this.refreshToken = refreshToken
-        await this.save()
-        await this.updateInfo()
+				await this.save()
+				await this.updateInfo()
 			},
 		)
 	} catch (e) {
