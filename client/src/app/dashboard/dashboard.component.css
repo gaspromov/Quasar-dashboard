@@ -3,11 +3,7 @@
     grid-row-gap: 3%;
     padding: 1% 5% !important;
     grid-template-rows: 0.7fr 1fr auto;
-}
-
-.discord-info{
-    width: 100%;
-    align-self: stretch;
+    place-items: stretch;
 }
 
 .info{

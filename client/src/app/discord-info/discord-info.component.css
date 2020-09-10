@@ -1,0 +1,34 @@
+.discord-info{
+    display: grid;
+    grid-template-rows: 1fr auto;
+    justify-items: center;
+    height: 100%;
+    align-items: center;
+    position: relative;
+}
+
+.border{
+    padding-bottom: 2%;
+    border-bottom: 2px solid white;
+
+}
+
+.discord-avatar{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    min-height: 100px;
+    padding-bottom: 1%;
+}
+
+.discord-avatar img{
+    height: 100%;
+    border-radius: 50%;
+    background-color: #21355B;
+}
+
+.discord-nickname{
+    font-size: 24px;
+}
+

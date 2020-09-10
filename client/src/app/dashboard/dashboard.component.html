@@ -1,13 +1,7 @@
 <div class="content">
     <div class="window db-window">
-        <img routerLink="/main" src="/assets/img/buttons/home.svg" class="absolute basic-buttons pointer">
-        <img src="/assets/img/buttons/logout.svg" class="absolute basic-buttons pointer">
-        <div class="discord-info">
-            <div class="discord-avatar"><img [src]="avatar" class=""></div>
-            <span class="discord-nickname medium-style">{{username}}#{{discriminator}}</span>
-            <img routerLink="/main" src="/assets/img/buttons/home.svg" class="home basic-buttons pointer">
-            <img src="/assets/img/buttons/logout.svg" class="logout basic-buttons pointer">
-        </div>
+        <app-discord-info [showSpinner]="false"></app-discord-info>
+
         <div class="info">
             <div class="subscribe-info">
                 <div class="first">

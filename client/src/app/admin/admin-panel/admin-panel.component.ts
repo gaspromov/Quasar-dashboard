@@ -18,18 +18,7 @@ export class AdminPanelComponent implements OnInit {
   ngOnInit(){
   }
 
-  async changePassword(){
-    console.log(this.password)
-    await this.http.changePassword(this.password)
-    .then( (w: any = {}) =>{
-      this.message = w.message;
-      console.log(w, w.message)
-    })
-    .catch(e =>{
-      this.error = e.error.message;
-      console.log(e, e.error.message)
-    })
-  }
+  logout(){}
 
 
   

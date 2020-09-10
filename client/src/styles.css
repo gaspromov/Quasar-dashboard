@@ -223,34 +223,6 @@ a{
     margin: 0px;
 }
 
-.discord-info{
-    display: grid;
-    row-gap: 3%;
-    grid-template-rows: 1fr auto;
-    justify-items: center;
-    align-items: center;
-    position: relative;
-}
-
-.discord-avatar{
-    /* border-radius: 50%; */
-    height: 100%;
-    width: 100%;
-    display: grid;
-    place-items: center;
-    min-height: 100px;
-}
-
-.discord-avatar img{
-    height: 100%;
-    border-radius: 50%;
-    background-color: #21355B;
-}
-
-.discord-nickname{
-    font-size: 24px;
-}
-
 .window .simple-input{
     border-radius: 20px;
     width: 100%;
@@ -297,32 +269,6 @@ a{
 }
 .simple-input button:hover img{
     margin-left: 10px;
-}
-
-
-
-.basic-buttons{
-    transition: 0.2s !important;
-    box-shadow: 1px 1px 10px black;
-    border-radius: 12px;
-    z-index: 10;
-    padding: 8px;
-    border: 1px solid #E5E5E5;
-    position: absolute;
-    top: 0px;
-    box-sizing: border-box;
-}
-
-.basic-buttons:active{
-    box-shadow: none;
-}
-
-.basic-buttons.home{
-    left: 0px
-}
-
-.basic-buttons.logout{
-    right: 0px;
 }
 
 
