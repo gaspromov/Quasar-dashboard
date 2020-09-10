@@ -9,6 +9,7 @@ const DiscordStrategy = require('passport-discord').Strategy
 const User = require('../models/User')
 
 passport.serializeUser(async (user, done) => {
+	await user.refresh()
 	done(null, user.id)
 })
 
