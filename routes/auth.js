@@ -9,7 +9,6 @@ const router = Router()
 const auth = require('../middleware/auth.admin.middleware')
 const Admin = require('../models/Admin')
 
-
 // User
 
 // Переход на авторизацию
@@ -21,8 +20,8 @@ router.get(
 	passport.authenticate('discord'),
 	(req, res) => {
 		const lastDate = new Date()
-    lastDate.setDate(lastDate.getDate() + 3)
-    
+		lastDate.setDate(lastDate.getDate() + 3)
+
 		if (req.user.license && req.user.licenseExp >= lastDate) {
 			return res.redirect('/dashboard')
 		} else {
@@ -34,13 +33,14 @@ router.get(
 router.get('discord/logout', (req, res) => {
 	if (req.user) {
 		req.logout()
+		res.status(200).json()
 	}
-	res.redirect('/login')
+	res.status(400).json()
 })
 
 // Admin
 router.post('/login', async (req, res) => {
-  try {
+	try {
 		const { login, password } = req.body
 		const candidate = await Admin.findOne({ login }).select('password')
 		if (candidate && (await bcrypt.compare(password, candidate.password))) {
