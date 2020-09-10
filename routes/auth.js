@@ -23,8 +23,12 @@ router.get(
 		const lastDate = new Date()
 		lastDate.setDate(lastDate.getDate() - 3)
 
-    const user = await User.findById(req.user.id).populate('license')
-		if (user.license && (user.license.expiresIn >= lastDate || user.license.status === 'lifetime')) {
+		const user = await User.findById(req.user.id).populate('license')
+		if (
+			user.license &&
+			(user.license.expiresIn >= lastDate || user.license.status === 'lifetime')
+		) {
+			res.cookie('userType', 'member', { httpOnly: false })
 			return res.redirect('/dashboard')
 		} else {
 			return res.redirect('/license')
