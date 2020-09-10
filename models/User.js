@@ -10,10 +10,6 @@ const schema = new Schema(
 		discriminator: String,
 		fullName: String,
 		avatar: String,
-		license: {
-			type: Types.ObjectId,
-      unique: false
-		},
 		accessToken: {
 			type: String,
 			required: true,
