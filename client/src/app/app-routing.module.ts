@@ -11,18 +11,33 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { HomeComponent } from './admin/home/home.component';
 import { MembersComponent } from './admin/members/members.component';
 
+import { IsLoginGuard } from './shared/guards/is-login.guard';
+import { LoginGuard } from './shared/guards/login.guard';
+import { AdminGuard } from './shared/guards/admin.guard';
+import { IsAdminGuard } from './shared/guards/is-admin.guard';
+
+
 
 const routes: Routes = [
 
+  // for all
   { path: 'main', component: MainComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'password', component: PasswordPageComponent },
-  { path: 'license', component: ActivateKeyComponent },
-  { path: 'checking-access', component: CheckAccessComponent },
+
+  // no login
+  { path: 'login', component: LoginComponent, canActivate: [IsLoginGuard] },
+
+  // login
+  { path: 'password', component: PasswordPageComponent, canActivate: [LoginGuard] },
+  { path: 'license', component: ActivateKeyComponent, canActivate: [LoginGuard] },
   
-  { path: 'admin', component: AdminAuthComponent },
-  { path: 'admin-panel', component: AdminPanelComponent, children:
+  // have license
+  { path: 'dashboard', component: DashboardComponent },
+
+  // no admin
+  { path: 'admin', component: AdminAuthComponent, canActivate: [IsAdminGuard] },
+
+  // admin
+  { path: 'admin-panel', component: AdminPanelComponent, canActivate: [AdminGuard], children:
     [
       { path: 'home', component: HomeComponent },
       { path: 'members', component: MembersComponent },

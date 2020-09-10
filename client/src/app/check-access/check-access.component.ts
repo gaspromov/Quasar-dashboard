@@ -30,12 +30,10 @@ export class CheckAccessComponent implements OnInit {
   async auth(code: string){
     await this.http.getUserData()
     .then(w =>{
-      console.log(w);
       localStorage.setItem('accessToken', JSON.stringify(w));
       this.router.navigate(['/password']);
     })
     .catch(e => {
-      console.log('это ошибка -', e)
       this.router.navigate(['/password']);
     })
   }
