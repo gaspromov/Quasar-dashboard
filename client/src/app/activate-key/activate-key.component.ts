@@ -34,4 +34,14 @@ export class ActivateKeyComponent implements OnInit {
     this.spinner.hide()
   }
 
+  async logout(){
+    await this.http.logout()
+    .then(w =>{
+      console.log(w);
+    })
+    .catch(e =>{
+      console.log(e)
+    })
+  }
+
 }
