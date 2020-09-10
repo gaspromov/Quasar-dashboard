@@ -31,7 +31,7 @@ router.get(
 	},
 )
 
-router.get('/logout', (req, res) => {
+router.get('discord/logout', (req, res) => {
 	if (req.user) {
 		req.logout()
 	}

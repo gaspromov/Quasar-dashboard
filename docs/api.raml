@@ -1,0 +1,60 @@
+#%RAML 1.0
+title: Quasar
+version: v1
+mediaType: application/json
+protocols: HTTPS
+baseUri: https://localhost:5000/api/{version}
+
+types:
+  Token:
+    type: object
+    properties:
+      token_type: string
+      access_token: string
+  User:
+    type: object
+    properties:
+      name: string
+      avatar: string
+      user_group: string
+      locale: string
+      iat: integer
+
+/auth:
+  description: Запросы для работы с авторизацией
+  /discord:
+    get:
+      description: После запроса идет перенаправление на сайт discord, где идет запрос на доступ к данным
+    /redirect:
+      get:
+        description: После действия на сайте discord идет редирект на этот путь. Там я решаю куда пойдет редирект на дашборд или на активацию
+    /logout:
+      get:
+        description: Очистка куки
+  /login:
+    post:
+      description: Вход для админа
+      body:
+        properties:
+          login: String
+          password: String
+      responses:
+        200:
+          body:
+            properties:
+              accessToken: String
+        400:
+          body:
+            properties:
+              message: String
+  /password:
+    post:
+      description: Смена пароля для админа
+      body:
+        properties:
+          password: String
+      responses:
+        200:
+          body:
+            properties:
+              message: String
