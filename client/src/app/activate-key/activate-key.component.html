@@ -3,13 +3,25 @@
         <div class="discord-info">
             <div class="discord-avatar"><img [src]="avatar" class=""></div>
             <span class="discord-nickname medium-style">{{username}}#{{discriminator}}</span>
+            <ngx-spinner
+            type="ball-clip-rotate"
+            bdColor=""
+            size="large"
+            color="#fff"
+            [fullScreen]="false"
+            >
+            </ngx-spinner>
+            <img routerLink="/main" src="/assets/img/buttons/home.svg" class="home basic-buttons pointer">
+            <img src="/assets/img/buttons/logout.svg" class="logout basic-buttons pointer">
         </div>
         <div class="key-input">
             <label for="key" class="meidum-style font-24">Activate the key</label>
-            <input type="text" class="simple-input" placeholder="Licens key" id="key">
+            <div class="input-button simple-input">
+                <input type="text" class="" placeholder="Licens key" id="key" mask="AAAA-AAAA-AAAA-AAAA" >
+                <button><img src="/assets/img/buttons/arrow.svg"></button>
+            </div>
 
         </div>
-        <button class="discord-login-btn light-style"><img src="/assets/img/icons/discord-icon.svg">Log out</button>
 
     </div>
 </div>

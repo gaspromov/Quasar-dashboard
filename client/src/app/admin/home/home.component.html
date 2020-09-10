@@ -3,7 +3,6 @@
         <button class="admin-button" routerLink="/admin-panel/members">Members</button>
         <button class="admin-button">Drops</button>
         <button class="admin-button" (click)="generatePassword()">Last payments</button>
-        <button class="admin-button" (click)="onNewKey()">New key</button>
         <div class="" *ngIf="newKey">
             <form [formGroup]="newKeyForm" (ngSubmit)="onAddKey()">
                 <select formControlName="status">
@@ -19,6 +18,7 @@
     <div class="action">
         <button class="admin-button new-drop">New drop <span>+</span></button>
         <button class="admin-button new-success">New success <span>+</span></button>
+        <button class="admin-button" (click)="onNewKey()">New key<span>+</span></button>
         
     </div>
 

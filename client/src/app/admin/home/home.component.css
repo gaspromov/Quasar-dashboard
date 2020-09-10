@@ -6,15 +6,12 @@
 
 .home>div{
     display: grid;
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     justify-items: center;
     align-items: center;
     grid-row-gap: 25px;
 }
 
-.new-success{
-    grid-row: 4/5;
-}
 
 .admin-button{
     position: relative;

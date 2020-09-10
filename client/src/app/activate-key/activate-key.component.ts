@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth/auth.service';
+import { Spinner } from 'ngx-spinner/lib/ngx-spinner.enum';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-activate-key',
@@ -12,10 +14,12 @@ export class ActivateKeyComponent implements OnInit {
   discriminator: string;
 
   constructor(
-    private http: AuthService
+    private http: AuthService,
+    private spinner: NgxSpinnerService,
   ) { }
 
   async ngOnInit() {
+    this.spinner.show()
     await this.http.getUserData()
     .then((w: any ={}) =>{
       console.log(w)
@@ -27,6 +31,7 @@ export class ActivateKeyComponent implements OnInit {
     .catch(e =>{
       console.log(e)
     })
+    this.spinner.hide()
   }
 
 }
