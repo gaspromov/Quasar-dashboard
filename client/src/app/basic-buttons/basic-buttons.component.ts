@@ -21,12 +21,10 @@ export class BasicButtonsComponent implements OnInit {
     
     this.auth.logout()
     .then(w =>{
-      document.cookie = "discord.oauth2=''; expires=Thu, 01 Jan 1970 00:00:00 GMT;"
-      this.router.navigate(['/login']);
+      this.auth.logoutCookie()
     })
     .catch(e =>{
-      document.cookie = "discord.oauth2=''; expires=Thu, 01 Jan 1970 00:00:00 GMT;"
-      this.router.navigate(['/login']);
+      this.auth.logoutCookie()
     }
     )
   }

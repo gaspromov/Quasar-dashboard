@@ -3,10 +3,10 @@
         <app-discord-info [border]="true"></app-discord-info>
         <div class="key-input">
             <label for="key" class="meidum-style font-24">Activate the key</label>
-            <div class="input-button simple-input">
-                <input type="text" class="" placeholder="Licens key" id="key" mask="AAAA-AAAA-AAAA-AAAA" >
-                <button (click)="click()"><img src="/assets/img/buttons/arrow.svg"></button>
-            </div>
+            <form class="input-button simple-input" [ngClass]="{'error': error}" (ngSubmit)="bind()">
+                <input type="text" placeholder="Licens key" mask="AAAA-AAAA-AAAA-AAAA" [(ngModel)]="key" [ngModelOptions]="{standalone: true}">
+                <button type="submit" [ngClass]="{'error': error}"><img src="/assets/img/buttons/arrow.svg"></button>
+            </form>
 
         </div>
 
