@@ -30,10 +30,11 @@ export class HomeComponent implements OnInit {
   }
 
   async onAddKey(){
+    let time = new Date(this.newKeyForm.value.date);
     if (this.newKeyForm.value.status == 'lifetime')
       await this.http.newKey({key: this.generatePassword(), status: 'lifetime'}).then(w => console.log(w)).catch(e=> console.log(e))
     else 
-      this.http.newKey({key: this.generatePassword(), status: 'renewal', expiresIn: this.newKeyForm.value.date}).then(w => console.log(w)).catch(e=> console.log(e))
+      this.http.newKey({key: this.generatePassword(), status: 'renewal', expiresIn: time}).then(w => console.log(w)).catch(e=> console.log(e))
 
   }
 
