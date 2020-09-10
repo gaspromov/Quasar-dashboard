@@ -13,8 +13,9 @@ router.post('/license', authUser, async (req, res) => {
 		const license = await License.findOne({
 			key,
 			status: ['lifetime', 'renewal'],
+			user: null,
 		})
-		const user = await User.findById(req.user.id)
+    const user = await User.findOne({ _id: req.user.id, license: null })
 		if (license && user) {
 			user.license = license.id
 			license.user = user.id
