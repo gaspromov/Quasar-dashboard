@@ -65,19 +65,6 @@ app.get('*', (req, res) => {
 	res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 })
 
-const updateAccessToken = () => {
-  try {
-		setInterval(async () => {
-			const users = await User.find()
-			const promises = users.map(user => {
-				user.refresh()
-			})
-      await Promise.all(promises)
-		}, process.env.UPDATE_INTERVAL)
-	} catch (e) {
-		console.log(e.message)
-	}
-}
 const start = async () => {
 	try {
 		// Connect to mongoDB
@@ -91,9 +78,7 @@ const start = async () => {
 		// Start server
 		app.listen(PORT, () =>
 			console.log(`Server has been started on PORT ${PORT}`),
-    )
-    
-    updateAccessToken()
+		)
 	} catch (e) {
 		// Error processing
 		console.log('Неизвестная ошибка', e.message)
