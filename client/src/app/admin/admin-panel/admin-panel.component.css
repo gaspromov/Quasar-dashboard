@@ -6,15 +6,28 @@
     box-sizing: border-box;
 }
 
+@media(max-width: 800px){
+    .window{
+        grid-template-rows: 0.4fr 1fr;;
+    }
+
+}
+
+
 router-outlet{
     position: absolute;
 }
 
+.discord-avatar{
+    max-height: 200px;
+    align-self: start;
+}
 
 .discord-avatar img{
     border-radius: 0%;
     transition: 0.2s;
     max-width: 70%;
+    background: none;
 }
 
 .discord-avatar img:hover{

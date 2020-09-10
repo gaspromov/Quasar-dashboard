@@ -1,6 +1,6 @@
 <div class="home">
     <div class="links">
-        <button class="admin-button">Members</button>
+        <button class="admin-button" routerLink="/admin-panel/members">Members</button>
         <button class="admin-button">Drops</button>
         <button class="admin-button" (click)="generatePassword()">Last payments</button>
         <button class="admin-button" (click)="onNewKey()">New key</button>
@@ -8,7 +8,7 @@
             <form [formGroup]="newKeyForm" (ngSubmit)="onAddKey()">
                 <select formControlName="status">
                     <option value="lifetime">Lifetime</option>
-                    <option value="renewval">Renewval</option>
+                    <option value="renewal">Renewal</option>
                 </select>
                 Дата окончания: <input type="text" formControlName="date">
                 <input type="submit">
