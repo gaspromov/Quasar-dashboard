@@ -8,6 +8,7 @@ const router = Router()
 
 const auth = require('../middleware/auth.admin.middleware')
 const Admin = require('../models/Admin')
+const User = require('../models/User')
 
 // User
 
@@ -18,11 +19,12 @@ router.get('/discord', passport.authenticate('discord'))
 router.get(
 	'/discord/redirect',
 	passport.authenticate('discord'),
-	(req, res) => {
+	async (req, res) => {
 		const lastDate = new Date()
-		lastDate.setDate(lastDate.getDate() + 3)
+		lastDate.setDate(lastDate.getDate() - 3)
 
-		if (req.user.license && req.user.licenseExp >= lastDate) {
+    const user = await User.findById(req.user.id).populate('license')
+		if (user.license && (user.license.expiresIn >= lastDate || user.license.status === 'lifetime')) {
 			return res.redirect('/dashboard')
 		} else {
 			return res.redirect('/license')

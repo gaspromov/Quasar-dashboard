@@ -9,8 +9,11 @@ const schema = new Schema(
 		username: String,
 		discriminator: String,
 		fullName: String,
-    avatar: String,
-    license: Types.ObjectId,
+		avatar: String,
+		license: {
+			type: Types.ObjectId,
+			ref: 'License',
+		},
 		accessToken: {
 			type: String,
 			required: true,
