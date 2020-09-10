@@ -26,3 +26,17 @@
     padding-bottom: 2%;
     border-bottom: 2px solid white;
 }
+
+.basic-buttons{
+    position: absolute;
+}
+
+.basic-buttons:first-child{
+    top: 9%;
+    left: 9%;
+}
+.basic-buttons:nth-child(2){
+    top: 9%;
+    right: 9%;
+}
+
