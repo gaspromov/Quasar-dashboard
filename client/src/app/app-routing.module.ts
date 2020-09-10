@@ -15,6 +15,8 @@ import { IsLoginGuard } from './shared/guards/is-login.guard';
 import { LoginGuard } from './shared/guards/login.guard';
 import { AdminGuard } from './shared/guards/admin.guard';
 import { IsAdminGuard } from './shared/guards/is-admin.guard';
+import { IsMemberGuard } from './shared/guards/member/is-member.guard';
+import { MemberGuard } from './shared/guards/member/member.guard';
 
 
 
@@ -27,11 +29,11 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [IsLoginGuard] },
 
   // login
-  { path: 'password', component: PasswordPageComponent, canActivate: [LoginGuard] },
-  { path: 'license', component: ActivateKeyComponent, canActivate: [LoginGuard] },
+  { path: 'password', component: PasswordPageComponent, canActivate: [LoginGuard, IsMemberGuard] },
+  { path: 'license', component: ActivateKeyComponent, canActivate: [LoginGuard, IsMemberGuard] },
   
   // have license
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [MemberGuard] },
 
   // no admin
   { path: 'admin', component: AdminAuthComponent, canActivate: [IsAdminGuard] },

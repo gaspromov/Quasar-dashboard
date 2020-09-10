@@ -29,7 +29,9 @@ export class DiscordInfoComponent implements OnInit {
       this.discriminator = w.discriminator
     })
     .catch(e =>{
-      console.log(e)
+      if (e.status == 401)
+        this.http.logoutCookie();
+      else console.log(e)
     })
     this.spinner.hide()
   }

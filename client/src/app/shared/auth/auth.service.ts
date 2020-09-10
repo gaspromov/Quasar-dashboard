@@ -26,6 +26,7 @@ export class AuthService {
 
   logoutCookie(){
     document.cookie = "discord.oauth2=''; expires=Thu, 01 Jan 1970 00:00:00 GMT;"
+    localStorage.removeItem('member');
     this.router.navigate(['/login']);
   }
 

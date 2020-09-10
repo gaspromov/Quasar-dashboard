@@ -29,7 +29,10 @@ export class ActivateKeyComponent implements OnInit {
     }
     this.error = false;
     await this.http.bind(this.makeValidKey(this.key))
-    .then(()=> this.router.navigate(['/dashboard']))
+    .then(()=> {
+      localStorage.setItem('member', 'true');
+      this.router.navigate(['/dashboard']);
+    })
     .catch(e => {
       if (e.status == 401)
         this.auth.logoutCookie();

@@ -17,9 +17,9 @@ export class BasicButtonsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logout(){
+  async logout(){
     
-    this.auth.logout()
+    await this.auth.logout()
     .then(w =>{
       this.auth.logoutCookie()
     })

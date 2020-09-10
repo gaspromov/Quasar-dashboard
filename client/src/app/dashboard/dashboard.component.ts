@@ -15,6 +15,18 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    if (this.get_cookie('userType')){
+      localStorage.setItem('member', 'true');
+      document.cookie = "userType=''; expires=Thu, 01 Jan 1970 00:00:00 GMT;"
+    }
+    
   }
 
+  get_cookie ( cookie_name ){
+    var results = document.cookie.match ( '(^|;) ?' + cookie_name + '=([^;]*)(;|$)' );
+    if ( results )
+      return ( unescape ( results[2] ) );
+    else
+      return false;
+  }
 }
