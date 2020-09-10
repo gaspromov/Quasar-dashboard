@@ -1,10 +1,11 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model, Types } = require('mongoose')
 
 const schema = new Schema(
 	{
 		key: {
 			type: String,
 			required: true,
+			unique: true,
 		},
 		createdAt: {
 			type: Date,
@@ -15,9 +16,30 @@ const schema = new Schema(
 			required: true,
 			enum: ['lifetime', 'renewal', 'expired'],
 		},
-		expiresIn: Date,
+		expiresIn: {
+			type: Date,
+			required: function () {
+				return this.status === 'renewal' || this.status === 'expired'
+			},
+		},
+		user: Types.ObjectId,
 	},
 	{ versionKey: false },
 )
+
+schema.statics.clear = async function () {
+	try {
+		const licenses = await this.find()
+		const promises = licenses.map(license => {
+			if (license.expiresIn <= new Date()) {
+				license.status = 'expired'
+				license.save()
+			}
+		})
+		await Promise.all(promises)
+	} catch (e) {
+		console.log('Не удалось обновить статусы ключей:', e.message)
+	}
+}
 
 module.exports = model('License', schema)

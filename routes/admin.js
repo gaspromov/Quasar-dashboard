@@ -19,18 +19,23 @@ router.get('/license', authAdmin, async (req, res) => {
 })
 
 router.post('/license', authAdmin, async (req, res) => {
-	try {
-		let { key, status, expiresIn } = req.body
-		if (status === 'lifetime') {
-			expiresIn = null
+  try {
+    let { key, status, expiresIn } = req.body
+    expiresIn = new Date(expiresIn) 
+    expiresIn = status === 'lifetime' ? undefined : expiresIn
+		if (expiresIn >= new Date() || status === 'lifetime') {
+			const license = new License({
+				key,
+				status,
+				expiresIn,
+			})
+			await license.save()
+			return res.status(201).json({ message: `Ключ ${key} успешно создан` })
+		} else {
+			return res
+				.status(400)
+				.json({ message: 'Дата окончания не может быть в прошлом' })
 		}
-		const license = new License({
-			key,
-			status,
-			expiresIn,
-		})
-		await license.save()
-		return res.status(201).json({ message: `Ключ ${key} успешно создан` })
 	} catch (e) {
 		return res.status(500).json({
 			message: 'Что-то пошло не так, попробуйте позже',
