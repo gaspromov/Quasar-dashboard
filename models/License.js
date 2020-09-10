@@ -5,7 +5,6 @@ const schema = new Schema(
 		key: {
 			type: String,
 			required: true,
-			unique: true,
 		},
 		createdAt: {
 			type: Date,
