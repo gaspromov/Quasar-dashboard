@@ -15,7 +15,7 @@ passport.serializeUser(async (user, done) => {
 passport.deserializeUser(async (id, done) => {
 	const user = await User.findById(id)
 	if (user) {
-    await user.refresh()
+		await user.refresh()
 		done(null, user)
 	}
 })
@@ -33,7 +33,8 @@ const strategy = new DiscordStrategy(
 			if (currentUser) {
 				done(null, currentUser)
 			} else {
-				const newUser = await new User({ accessToken, refreshToken }).save()
+				const newUser = new User({ accessToken, refreshToken })
+				await newUser.save()
 				done(null, newUser)
 			}
 		} catch (e) {

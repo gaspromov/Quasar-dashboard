@@ -30,12 +30,13 @@ router.get(
 	},
 )
 
-router.get('discord/logout', (req, res) => {
+router.get('/discord/logout', (req, res) => {
 	if (req.user) {
 		req.logout()
 		res.status(200).json()
+	} else {
+		res.status(400).json()
 	}
-	res.status(400).json()
 })
 
 // Admin
