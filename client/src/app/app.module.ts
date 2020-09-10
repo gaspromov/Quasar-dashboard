@@ -26,6 +26,9 @@ import { CheckAccessComponent } from './check-access/check-access.component';
 import { AdminAuthComponent } from './admin/admin-auth/admin-auth.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { HomeComponent } from './admin/home/home.component';
+import { MembersComponent } from './admin/members/members.component';
+import { NewSuccessComponent } from './admin/new-success/new-success.component';
+import { NewDropComponent } from './admin/new-drop/new-drop.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,9 @@ import { HomeComponent } from './admin/home/home.component';
     AdminAuthComponent,
     AdminPanelComponent,
     HomeComponent,
+    MembersComponent,
+    NewSuccessComponent,
+    NewDropComponent,
   ],
   imports: [
     BrowserModule,

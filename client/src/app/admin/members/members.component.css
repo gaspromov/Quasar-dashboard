@@ -1,0 +1,50 @@
+.members{
+    display: grid;
+}
+
+.member-table{
+    display: grid;
+    background-color: #A472B7;
+    align-items: start;
+    font-size: 18px;
+}
+
+.tr{
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.7fr 0.5fr 0.5fr;
+    color: black;
+}
+
+.tr .td{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    align-self: stretch;
+    padding-top: 20px;
+}
+
+.nameOfTd{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+.nameOfTd .td{
+    border: 2px solid black;
+    padding: 15px 0px;
+    border-top: 4px solid black !important;
+    border-bottom: 4px solid black !important;
+}
+
+.td{
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.firstTd{
+    border-left: 4px solid black !important;
+}
+
+.lastTd{
+    border-right: 4px solid black !important;
+}

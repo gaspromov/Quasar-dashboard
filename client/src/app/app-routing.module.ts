@@ -9,6 +9,7 @@ import { CheckAccessComponent } from './check-access/check-access.component';
 import { AdminAuthComponent } from './admin/admin-auth/admin-auth.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { HomeComponent } from './admin/home/home.component';
+import { MembersComponent } from './admin/members/members.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'admin-panel', component: AdminPanelComponent, children:
     [
       { path: 'home', component: HomeComponent },
+      { path: 'members', component: MembersComponent },
       { path: '**', redirectTo: '/admin-panel/home' }
     ] 
   },
