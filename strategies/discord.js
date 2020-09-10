@@ -8,13 +8,16 @@ const DiscordStrategy = require('passport-discord').Strategy
 // Model
 const User = require('../models/User')
 
-passport.serializeUser((user, done) => {
+passport.serializeUser(async (user, done) => {
 	done(null, user.id)
 })
 
 passport.deserializeUser(async (id, done) => {
 	const user = await User.findById(id)
-	if (user) done(null, user)
+	if (user) {
+    await user.refresh()
+		done(null, user)
+	}
 })
 
 const strategy = new DiscordStrategy(
@@ -27,19 +30,10 @@ const strategy = new DiscordStrategy(
 	async (accessToken, refreshToken, profile, done) => {
 		try {
 			const currentUser = await User.findOne({ discordId: profile.id })
-      if (currentUser) {
-        currentUser.accessToken = accessToken
-        currentUser.refreshToken = refreshToken
-        await currentUser.save()
-				await currentUser.updateInfo()
+			if (currentUser) {
 				done(null, currentUser)
 			} else {
-				const newUser = new User({
-					accessToken,
-					refreshToken,
-				})
-				await newUser.save()
-				await newUser.updateInfo()
+				const newUser = await new User({ accessToken, refreshToken }).save()
 				done(null, newUser)
 			}
 		} catch (e) {

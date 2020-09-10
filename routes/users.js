@@ -7,10 +7,8 @@ const User = require('../models/User')
 
 router.get('/', authUser, async (req, res) => {
 	try {
-		const user = await User.findById(req.user.id)
-		if (user) {
-      await user.updateInfo()
-			return res.status(200).json(user)
+		if (req.user) {
+			return res.status(200).json(req.user)
 		} else {
 			return res.status(404).json({ message: 'Пользователь не найден' })
 		}

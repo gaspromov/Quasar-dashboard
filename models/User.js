@@ -17,12 +17,13 @@ const schema = new Schema(
 		refreshToken: {
 			type: String,
 			required: true,
-		},
+		}
 	},
 	{ versionKey: false },
 )
 
-schema.methods.refresh = async function () {
+schema.methods.refresh = function () {
+  console.log('refresh')
 	try {
 		refresh.requestNewAccessToken(
 			'discord',
@@ -31,11 +32,10 @@ schema.methods.refresh = async function () {
 				this.accessToken = accessToken
 				this.refreshToken = refreshToken
 				await this.save()
-				await this.updateInfo()
 			},
 		)
 	} catch (e) {
-		console.log('Не удалось обновить accessToken', e.message)
+		console.log('Не удалось обновить accessToken и refreshToken:', e.message)
 	}
 }
 
@@ -60,10 +60,13 @@ schema.methods.updateInfo = async function () {
 				data.discriminator % 5
 			}.png`
 		}
-		await this.save()
 	} catch (e) {
 		console.log('Не удалось обновить информацию о пользователе', e.message)
 	}
 }
+
+schema.post('refresh', function () {
+	this.updateInfo()
+})
 
 module.exports = model('User', schema)
