@@ -33,3 +33,8 @@ router-outlet{
 .discord-avatar img:hover{
     height: 110%;
 }
+
+.basic-buttons{
+    right: 0px;
+    top: 0px;
+}

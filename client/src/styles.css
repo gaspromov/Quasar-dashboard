@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap');
 
+/* ngx-spinner{
+    position: absolute;
+} */
+.none-pointer{
+    pointer-events: none;
+}
+
+
 
 ::-webkit-scrollbar{
     width:12px;
@@ -221,6 +229,7 @@ a{
     grid-template-rows: 1fr auto;
     justify-items: center;
     align-items: center;
+    position: relative;
 }
 
 .discord-avatar{
@@ -245,12 +254,78 @@ a{
 .window .simple-input{
     border-radius: 20px;
     width: 100%;
-    max-height: 40px;
-    padding: 20px;
+    position: relative;
+    height: 42px;
     background-color: #21355B;
     border: 2px solid #E5E5E5;
     box-sizing: border-box;
+    display: grid;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.simple-input input[type="text"]{
+    box-sizing: border-box;
+    padding: 20px 0px;
     text-align: center;
-    color: white;
+    background: none;
+    border: none;
+    max-height: 40px;
     font-size: 18px;
+    color: white;
+}
+
+.simple-input button{
+    box-sizing: border-box;
+    display: grid;
+    border: 2px solid #E5E5E5;
+    place-items: center;
+    background: #21355B;
+    /* max-height: 40px; */
+    position: absolute;
+    font-size: 18px;
+    color: white;
+    width: 52px;
+    height: 42px;
+    border-radius: 20px;
+    top: -2px;
+    right: -2px;
+}
+
+.simple-input button img{
+    transition: 0.2s;
+}
+.simple-input button:hover img{
+    margin-left: 10px;
+}
+
+
+
+.basic-buttons{
+    transition: 0.2s !important;
+    box-shadow: 1px 1px 10px black;
+    border-radius: 12px;
+    z-index: 10;
+    padding: 8px;
+    border: 1px solid #E5E5E5;
+    position: absolute;
+    top: 0px;
+    box-sizing: border-box;
+}
+
+.basic-buttons:active{
+    box-shadow: none;
+}
+
+.basic-buttons.home{
+    left: 0px
+}
+
+.basic-buttons.logout{
+    right: 0px;
+}
+
+
+ngx-spinner{
+    z-index: 1;
 }

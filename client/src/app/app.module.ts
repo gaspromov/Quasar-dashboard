@@ -5,6 +5,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {  HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from "ngx-spinner";
+import {NgxMaskModule} from "ngx-mask";
 // import { PasswordGenerator } from "ngx-spinner";
 
 import { AppRoutingModule } from './app-routing.module';
@@ -60,6 +61,7 @@ import { NewDropComponent } from './admin/new-drop/new-drop.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    NgxMaskModule.forRoot(/*options*/),
     // PasswordGenerator,
   ],
   providers: [],

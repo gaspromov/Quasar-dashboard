@@ -10,30 +10,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(
-    private http: AuthService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
   ) { 
-    this.activatedRoute.queryParams.subscribe(params =>{
-      if (params['code'])
-        this.auth(params['code']);
-    })
   }
 
   ngOnInit(): void {
   }
 
-  
-  async auth(code: string){
-    await this.http.getUserData()
-    .then(w =>{
-      console.log(w);
-      localStorage.setItem('accessToken', JSON.stringify(w));
-      this.router.navigate(['/password']);
-    })
-    .catch(e => {
-      console.log('это ошибка -', e)
-      this.router.navigate(['/password']);
-    })
+  login(){
+    window.location.href = "/api/v1/auth/discord"
   }
 }

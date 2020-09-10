@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth/auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-password-page',
@@ -12,10 +13,13 @@ export class PasswordPageComponent implements OnInit {
   discriminator: string;
 
   constructor(
-    private http: AuthService
+    private http: AuthService,
+    private spinner: NgxSpinnerService,
   ) { }
 
   async ngOnInit() {
+    this.spinner.show()
+    console.log(document.cookie.split(";"))
     await this.http.getUserData()
     .then((w: any ={}) =>{
       console.log(w)
@@ -26,5 +30,6 @@ export class PasswordPageComponent implements OnInit {
     .catch(e =>{
       console.log(e)
     })
+    this.spinner.hide()
   }
 }

@@ -1,10 +1,12 @@
 <div class="content">
     <div class="window db-window">
-        <img src="/assets/img/buttons/home.svg" class="absolute basic-buttons">
-        <img src="/assets/img/buttons/logout.svg" class="absolute basic-buttons">
+        <img routerLink="/main" src="/assets/img/buttons/home.svg" class="absolute basic-buttons pointer">
+        <img src="/assets/img/buttons/logout.svg" class="absolute basic-buttons pointer">
         <div class="discord-info">
-            <div class="discord-avatar"><img src="/assets/img/logo/quasar.svg" class=""></div>
-            <span class="discord-nickname medium-style">Nickname#0000</span>
+            <div class="discord-avatar"><img [src]="avatar" class=""></div>
+            <span class="discord-nickname medium-style">{{username}}#{{discriminator}}</span>
+            <img routerLink="/main" src="/assets/img/buttons/home.svg" class="home basic-buttons pointer">
+            <img src="/assets/img/buttons/logout.svg" class="logout basic-buttons pointer">
         </div>
         <div class="info">
             <div class="subscribe-info">
@@ -27,11 +29,16 @@
             </div>
 
         </div>
-
-        <div class="buttons">
-            <button class="discord-login-btn light-style"><img src="/assets/img/icons/discord-icon.svg">Log out</button>
-            <button class="discord-login-btn light-style"><img src="/assets/img/icons/discord-icon.svg">Log out</button>
-        </div>
+        <ngx-spinner
+        type="ball-clip-rotate"
+        bdColor="#21355B"
+        size="large"
+        color="#fff"
+        [fullScreen]="false"
+        >
+        <p style="font-size: 20px; margin-top: 50px; color: white">Loading...</p>
+        </ngx-spinner>
+        
 
     </div>
 </div>
