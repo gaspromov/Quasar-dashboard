@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { KeysService } from '../shared/keys/keys.service';
+import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth/auth.service';
-import { Spinner } from 'ngx-spinner/lib/ngx-spinner.enum';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -9,15 +10,48 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./activate-key.component.css']
 })
 export class ActivateKeyComponent implements OnInit {
+  key: string;
+  error: boolean = false;
 
   constructor(
+    private http: KeysService,
+    private router: Router,
+    private auth: AuthService,
   ) { }
 
   async ngOnInit() {
   }
 
-  click(){
-    console.log('www')
+  async bind(){
+    if (this.key.length < 16){
+      this.error = true;
+      return;
+    }
+    this.error = false;
+    await this.http.bind(this.makeValidKey(this.key))
+    .then(()=> this.router.navigate(['/dashboard']))
+    .catch(e => {
+      if (e.status == 401)
+        this.auth.logoutCookie();
+      else 
+        this.error = true;
+    })
+    
+  }
+
+  makeValidKey(key: string){
+    let validKey: string = '';
+    
+    for (var i = 0; i < 16; i++) {
+      if (i == 4 || i == 8 || i == 12){
+        validKey += '-';
+        validKey += key[i]
+      }
+      else{
+        validKey += key[i]
+      }
+    }
+    return validKey;
   }
 
 }
