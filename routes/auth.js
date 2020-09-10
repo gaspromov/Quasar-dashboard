@@ -21,8 +21,8 @@ router.get(
 	passport.authenticate('discord'),
 	(req, res) => {
 		const lastDate = new Date()
-		lastDate.setDate(lastDate.getDate() + 3)
-
+    lastDate.setDate(lastDate.getDate() + 3)
+    
 		if (req.user.license && req.user.licenseExp >= lastDate) {
 			return res.redirect('/dashboard')
 		} else {
