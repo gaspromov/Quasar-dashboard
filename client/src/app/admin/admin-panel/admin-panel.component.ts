@@ -18,7 +18,9 @@ export class AdminPanelComponent implements OnInit {
   ngOnInit(){
   }
 
-  logout(){}
+  logout(){
+    this.http.logout();
+  }
 
 
   

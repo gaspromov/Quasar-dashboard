@@ -24,7 +24,6 @@ export class DiscordInfoComponent implements OnInit {
     this.spinner.show()
     await this.http.getUserData()
     .then((w: any ={}) =>{
-      console.log(w)
       this.avatar = w.avatar;
       this.username = w.username;
       this.discriminator = w.discriminator

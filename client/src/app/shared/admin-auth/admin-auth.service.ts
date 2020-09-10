@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class AdminAuthService {
 
   constructor(
     private http: HttpClient,
+    private router: Router,
   ) { 
     this.headers = new HttpHeaders();
   }
@@ -22,6 +24,11 @@ export class AdminAuthService {
   async changePassword(password: string){
     this.setHeader();
     return await this.http.post(`${this.url}/password`, {password: password}, { headers: this.headers }).toPromise()
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['/admin']);
   }
 
   setHeader(){
