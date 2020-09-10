@@ -17,13 +17,12 @@ const schema = new Schema(
 		refreshToken: {
 			type: String,
 			required: true,
-		}
+		},
 	},
 	{ versionKey: false },
 )
 
-schema.methods.refresh = function () {
-  console.log('refresh')
+schema.methods.refresh = async function () {
 	try {
 		refresh.requestNewAccessToken(
 			'discord',
