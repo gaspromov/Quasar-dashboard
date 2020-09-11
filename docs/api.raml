@@ -173,5 +173,18 @@ types:
           body:
             properties:
               message: String
+    delete:
+      description: Отвязка ключа
+      headers:
+        Cookies: discord.oauth2
+      responses:
+        200:
+          body:
+            properties:
+              message: String
+        400:
+          body:
+            properties:
+              message: String
     
           
