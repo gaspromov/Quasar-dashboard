@@ -17,10 +17,14 @@ export class UsersService {
   }
 
   async bind(key: string){
-    return await this.http.post(`${this.url}/users/license`, {key: key}).toPromise()
+    return await this.http.post(`${this.url}/users/license`, {key: key}).toPromise();
   }
   
   async getSuccesses(){
-    return await this.http.get(`${this.url}/successes`).toPromise()
+    return await this.http.get(`${this.url}/successes`).toPromise();
+  }
+
+  async unbind(){
+    return await this.http.delete(`${this.url}/users/license`).toPromise();
   }
 }

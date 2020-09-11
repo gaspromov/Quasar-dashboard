@@ -1,21 +1,39 @@
 <div class="content">
-    <div class="window db-window">
+    <div class="window db-window" id="filter">
         <app-discord-info [showSpinner]="false" (onSendData)="onSendData($event)"></app-discord-info>
 
         <div class="info">
             <div class="subscribe-info">
                 <div class="first">
-                    <div class="key">
-                        <label for=""></label>
+                    <div class="key row-2">
+                        <label> <img src="/assets/img/dashboard-icons/key.svg">Key</label>
                         {{userData.key}}
                     </div>
-                    <div class="joing"></div>
-                    <div class="prolongation">{{userData.createdAt}}</div>
-                    <div class="subscribe"></div>
+                    <div class="joing row-2">
+                        <label> <img src="/assets/img/dashboard-icons/joing.svg">Joing</label>
+                        {{userData.createdAt}}
+                    </div>
+                    <div class="subscribe row-2">
+                        <label> <img src="/assets/img/dashboard-icons/subscribe.svg">Subscription</label>
+                        <input type="checkbox" name="" id="">
+
+                    </div>
+                    <div class="unbind"><button (click)="confirm('unbind')">Unbind</button></div>
+
                 </div>
-                <div class="second">
-                    <div class="type-subscribe">{{userData.status}}</div>
-                    <div class="payment"></div>
+                <div class="second row-2">
+                    <div class="type-subscribe">
+                        <label> <img src="/assets/img/dashboard-icons/type-subscribe.svg">Type</label>
+                        {{userData.status}}
+                    </div>
+                    <div class="renewal row-2">
+                        <label> <img src="/assets/img/dashboard-icons/renewal.svg">Renew</label>
+                        {{userData.expiresIn}}
+                    </div>
+                    <div class="payment">
+                        <label> <img src="/assets/img/dashboard-icons/payment.svg">Payment</label>
+                        <div class="div"></div>
+                    </div>
                 </div>
             </div>
             <div class="other">
@@ -36,4 +54,7 @@
         
 
     </div>
+    <app-pop-up *ngIf="showPopup" [header]="headerPopup" [message]="messagePopup" (onConfirm)="onConfirm($event)"></app-pop-up>
+
 </div>
+

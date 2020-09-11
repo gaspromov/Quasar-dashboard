@@ -33,6 +33,7 @@ import { NewDropComponent } from './admin/new-drop/new-drop.component';
 import { BasicButtonsComponent } from './basic-buttons/basic-buttons.component';
 import { DiscordInfoComponent } from './discord-info/discord-info.component';
 import { NewKeyComponent } from './admin/new-key/new-key.component';
+import { PopUpComponent } from './pop-up/pop-up.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { NewKeyComponent } from './admin/new-key/new-key.component';
     BasicButtonsComponent,
     DiscordInfoComponent,
     NewKeyComponent,
+    PopUpComponent,
   ],
   imports: [
     BrowserModule,

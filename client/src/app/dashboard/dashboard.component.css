@@ -1,3 +1,17 @@
+.basic-buttons:first-child{
+    top: 3%;
+    left: 9%;
+}
+.basic-buttons:nth-child(2){
+    top: 3%;
+    right: 9%;
+}
+
+.row-2{
+    grid-template-rows: auto 1fr;
+}
+
+
 .db-window{
     display: grid;
     grid-row-gap: 3%;
@@ -13,6 +27,7 @@
     align-self: stretch;
     border-top: 2px solid white;
 }
+
 
 
 .info>div{
@@ -36,6 +51,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     column-gap: 5%;
+    font-size: 14px;
 }
 
 .subscribe-info>*{
@@ -47,48 +63,54 @@
     row-gap: 5%;
     grid-template-rows: repeat(4, 1fr);
 }
-
+/* 
 .subscribe-info>*:first-child{
     background-color: rgb(142, 30, 207);
 }
 
 .subscribe-info>*:last-child{
     background-color: rgb(30, 207, 192);
-}
+} */
 
 
 .subscribe-info .payment{
     grid-row: 3/5;
+    grid-template-rows: auto 1fr;
 }
+
+
+.subscribe-info label{
+    font-size: 16px;
+    align-self: end;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 5px;
+    align-items: center;
+    
+}
+
+.subscribe-info>div>div{
+    display: grid;
+    grid-row-gap: 4px;
+}
+
+.subscribe-info .unbind{
+    align-items: center;
+    justify-items: start;
+    padding: 10px 0px;
+    
+}
+.subscribe-info .unbind button{
+    border-radius: 12px;
+    background-color: rgba(174, 41, 41, 0.5);
+    border: 1px solid #E5E5E5;
+    color: white;
+    padding: 0px 30px;
+    height: 30px;
+    /* min-height: 20px; */
+}
+
 
 .other{
     display: grid;
-}
-
-
-.basic-buttons:first-child{
-    top: 3%;
-    left: 9%;
-}
-.basic-buttons:nth-child(2){
-    top: 3%;
-    right: 9%;
-}
-
-.buttons{
-
-    display: grid;
-    grid-template-columns: auto auto;
-    align-items: center;
-    justify-self: stretch;
-    /* justify-items: center; */
-    grid-column-gap: 5%;
-}
-
-.buttons>button:first-child{
-    justify-self: end;
-}
-
-.buttons>button:last-child{
-    justify-self: start;
 }

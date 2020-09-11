@@ -265,13 +265,19 @@ a{
 .simple-input button img{
     transition: 0.2s;
 }
-.simple-input button:hover img{
+.simple-input button:hover img, .simple-input button:active img{
     margin-left: 10px;
 }
 
 
 ngx-spinner{
     z-index: 1;
+}
+
+app-pop-up{
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 
