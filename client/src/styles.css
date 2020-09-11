@@ -59,10 +59,14 @@ html, body{
     background-color: #21355B;
 }
 
+.blur{
+    filter: blur(2px);
+}
 
-*{
+
+*, select, input{
     outline: none;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif !important;
 }
 
 
@@ -138,12 +142,6 @@ a{
     position: absolute;
 }
 
-.danger-message{
-    color: red;
-}
-.success-message{
-    color: green;
-}
 
 .font-24{
     font-size: 24px;
@@ -274,4 +272,117 @@ a{
 
 ngx-spinner{
     z-index: 1;
+}
+
+
+.admin-input{
+    padding: 5px 15px;
+
+    background-color: #21355B;
+    border: 2px solid #E5E5E5;
+    border-radius: 30px;
+    color: white;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+
+    transition: 0.2s;
+}
+
+button.admin-input{
+    padding: 2px 20px;
+}
+
+button.admin-input:hover{
+    padding: 2px 25px;
+}
+
+
+
+
+.admin-modal{
+    display: grid;
+    grid-row-gap: 15px;
+    padding: 10px 30px;
+    justify-self: center;
+    background-color: #21355B;
+    border: 2px solid #E5E5E5;
+    border-radius: 30px;
+    width: 260px;
+}
+
+.admin-modal h3{
+    margin: 0px;
+    font-size: 14px;
+    justify-self: center;
+}
+
+.admin-modal form{
+    display: grid;
+    row-gap: 25px;
+}
+
+.admin-modal .inputs{
+    display: grid;
+    row-gap: 10px;
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.admin-modal .label{
+    display: grid;
+    grid-template-columns: 0.6fr auto;
+    column-gap: 5px;
+    font-size: 12px !important;
+    align-items: stretch;
+}
+
+.admin-modal .label label{
+    align-self: center;
+}
+
+.admin-modal select,.admin-modal input, .admin-modal textarea, .admin-modal .input{
+    font-size: 12px;
+    background: none;
+    border-radius: 30px;
+    border: 2px solid #E5E5E5;
+    color: white;
+    text-align: center;
+    text-align-last:center;
+    width: 130px;
+    height: 22px;
+    justify-self: end;
+    box-sizing: border-box;
+}
+
+.admin-modal textarea{
+    height: 100%;
+    border-radius: 10px;
+    text-align: start;
+}
+
+.admin-modal select option{
+    color: black;
+}
+
+.admin-modal input[type="date"]::-webkit-calendar-picker-indicator{
+    display: none;
+}
+
+.admin-modal button{
+    font-size: 10px;
+}
+
+.admin-modal .message{
+    font-size: 12px;
+    justify-self: center;
+    text-align: center;
+}
+
+
+
+.danger-message{
+    color: red;
+}
+.success-message{
+    color: green;
 }

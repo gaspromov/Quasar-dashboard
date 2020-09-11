@@ -15,7 +15,6 @@ export class MemberGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if (!this.getLocalStorage() && !this.get_cookie('userType')){
-        console.log('member')
         this.router.navigate(['/license'])
       }
       

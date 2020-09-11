@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
 import { AdminService } from 'src/app/shared/admin/admin.service';
 
 @Component({
@@ -8,8 +7,7 @@ import { AdminService } from 'src/app/shared/admin/admin.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  newKey = false;
-  newKeyForm: FormGroup;
+  modal = 0;
 
 
   constructor(
@@ -18,39 +16,18 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let disabled = false;
-    this.newKeyForm = new FormGroup({
-      status: new FormControl({value: '', disabled: disabled}),
-      date: new FormControl({value: '', disabled: disabled})
-    })
   }
 
-  onNewKey(){
-    this.newKey = !this.newKey
+  showModal(modal: number){
+    this.modal = modal;
+    document.querySelectorAll('#filter')[0].classList.add('blur')
+    document.querySelectorAll('#filter')[1].classList.add('blur')
   }
 
-  async onAddKey(){
-    let time = new Date(this.newKeyForm.value.date);
-    if (this.newKeyForm.value.status == 'lifetime')
-      await this.http.newKey({key: this.generatePassword(), status: 'lifetime'}).then(w => console.log(w)).catch(e=> console.log(e))
-    else 
-      this.http.newKey({key: this.generatePassword(), status: 'renewal', expiresIn: time}).then(w => console.log(w)).catch(e=> console.log(e))
-
-  }
-
-  generatePassword() {
-    let library = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPWRSTUVWXYZ0123456789"
-    let newPassword = "";
-    for (var i = 0; i < 16; i++) {
-      if (i == 4 || i == 8 || i == 12){
-        newPassword += '-';
-        newPassword += library[Math.floor(Math.random()*library.length)];
-      }
-      else{
-        newPassword += library[Math.floor(Math.random()*library.length)];
-      }
-    }
-    return newPassword;
+  hideModal(){
+    this.modal = 0;
+    document.querySelectorAll('#filter')[0].classList.remove('blur')
+    document.querySelectorAll('#filter')[1].classList.remove('blur')
   }
 
 }

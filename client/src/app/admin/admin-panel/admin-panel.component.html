@@ -2,9 +2,9 @@
 
     <div class="window admin-window">
 
-            <div class="discord-avatar">
+            <div class="discord-avatar" id="filter">
                 <img routerLink="home" src="/assets/img/logo/quasar.svg" class="pointer logo" > 
-                <img src="/assets/img/buttons/logout.svg" class="logout basic-buttons pointer" (click)="logout()">
+                <app-basic-buttons [isAdmin]="true"></app-basic-buttons>
             </div>
 
         <router-outlet></router-outlet>

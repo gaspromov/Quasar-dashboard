@@ -18,6 +18,11 @@ export class AdminService {
     this.setHeader()
     return await this.http.post(`${this.url}/license`, data, {headers: this.headers}).toPromise()
   }
+
+  async postSuccess(formData){
+    this.setHeader();
+    return await this.http.post(`/api/v1/successes`, formData, {headers: this.headers}).toPromise()
+  }
   
   setHeader(){
     let token = localStorage.getItem('accessToken')

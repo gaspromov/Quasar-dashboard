@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth/auth.service';
-import { Router } from '@angular/router';
+import { AdminAuthService } from '../shared/admin-auth/admin-auth.service';
 
 @Component({
   selector: 'app-basic-buttons',
@@ -8,25 +8,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./basic-buttons.component.css']
 })
 export class BasicButtonsComponent implements OnInit {
+  @Input() isAdmin: boolean = false;
 
   constructor(
     private auth: AuthService,
-    private router: Router,
+    private adminAuth: AdminAuthService,
   ) { }
 
   ngOnInit(): void {
   }
 
   async logout(){
-    
-    await this.auth.logout()
-    .then(w =>{
-      this.auth.logoutCookie()
-    })
-    .catch(e =>{
-      this.auth.logoutCookie()
+    if (this.isAdmin)
+      this.adminAuth.logout();
+    else{
+      await this.auth.logout()
+      .then(w =>{
+        this.auth.logoutCookie();
+      })
+      .catch(e =>{
+        this.auth.logoutCookie();
+      })
     }
-    )
   }
 
 }

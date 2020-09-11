@@ -27,7 +27,7 @@ export class AdminAuthService {
   }
 
   logout(){
-    localStorage.removeItem('acessToken');
+    localStorage.removeItem('accessToken');
     localStorage.removeItem('userType');
     this.router.navigate(['/admin']);
   }
