@@ -14,8 +14,10 @@ const router = Router()
 // GET /api/v1/users/@me
 router.get('/@me', authUser, async (req, res) => {
 	try {
-    await License.clear()
-    const user = await User.findById(req.user.id).select('-_id -accessToken -refreshToken').populate('license', '-_id')
+		await License.clear()
+		const user = await User.findById(req.user.id)
+			.select('-_id -accessToken -refreshToken')
+			.populate('license', '-_id')
 		if (user) {
 			return res.status(200).json(user)
 		} else {

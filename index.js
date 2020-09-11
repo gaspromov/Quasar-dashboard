@@ -75,7 +75,7 @@ app.get('/api/v1/docs', (req, res) => {
 
 // Single Page
 app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+	res.sendFile(path.resolve(__dirname, 'public', 'src', 'index.html'))
 })
 
 const start = async () => {
@@ -94,7 +94,7 @@ const start = async () => {
 		)
 	} catch (e) {
 		// Error processing
-    console.log('Неизвестная ошибка', e.message)
+		console.log('Неизвестная ошибка', e.message)
 		process.exit(1)
 	}
 }
