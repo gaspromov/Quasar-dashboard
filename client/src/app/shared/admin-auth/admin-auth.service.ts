@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class AdminAuthService {
   headers: HttpHeaders;
-  url = "/api/v1/auth";
+  url = "/api/v1/auth/admin";
 
   constructor(
     private http: HttpClient,

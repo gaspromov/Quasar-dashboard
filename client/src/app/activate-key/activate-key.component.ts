@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { KeysService } from '../shared/keys/keys.service';
+import { UsersService } from '../shared/users/users.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -14,7 +14,7 @@ export class ActivateKeyComponent implements OnInit {
   error: boolean = false;
 
   constructor(
-    private http: KeysService,
+    private http: UsersService,
     private router: Router,
     private auth: AuthService,
   ) { }
