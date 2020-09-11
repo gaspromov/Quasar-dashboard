@@ -28,7 +28,7 @@ router.post('/', authAdmin, async (req, res) => {
 			const success = new Success({
 				date,
 				description,
-				image: `/${name}`,
+				image: name,
 			})
 			await success.save()
 			await image.mv(path.resolve(__dirname, '..', 'public', name))
