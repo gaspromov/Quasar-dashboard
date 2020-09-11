@@ -10,7 +10,7 @@ import { AdminService } from 'src/app/shared/admin/admin.service';
 })
 export class NewSuccessComponent implements OnInit {
   successForm: FormGroup;
-  message: string;
+  message: string = '';
   error: string;
   imgSuccess: File;
   formData: FormData = new FormData();
@@ -30,14 +30,18 @@ export class NewSuccessComponent implements OnInit {
   }
 
   async onAddSuccess(){
-    this.formData.set('month', this.successForm.value.month);
+    this.error = '';
+    this.message = '';
+    this.formData.set('date', this.successForm.value.month);
     this.formData.set('description', this.successForm.value.description);
-    this.formData.set('image', this.imgSuccess, this.imgSuccess.name);
+    if (this.imgSuccess)
+      this.formData.set('image', this.imgSuccess, this.imgSuccess.name);
     
     await this.http.postSuccess(this.formData)
-    .then(w => {
-      this.message = "Добавлен";
-      this.formData = null;
+    .then((w: any = {}) => {
+      this.message = 'Добавлен.';
+      this.formData = new FormData();
+      this.imgSuccess = null;
       this.successForm.reset();
       document.getElementById(`file-upload`).innerHTML = 'Загрузить';
       document.getElementById(`file-upload`).classList.remove('danger-message');
@@ -47,7 +51,7 @@ export class NewSuccessComponent implements OnInit {
       if (e.status == 401)
         this.auth.logout()
       else
-        this.error = e.error;
+        this.error = e.error.message;
     })
   }
 
@@ -58,14 +62,12 @@ export class NewSuccessComponent implements OnInit {
     let confirm = document.getElementById(`file-upload`);
     let target = event.target || event.srcElement;
     let file = target.files[0];
-    console.log(file);
 
     this.setMessage(file, confirm)
     
   }
 
   setMessage(file, confirm: Element){
-    console.log(file, confirm)
     if (file){
       this.imgSuccess = file; 
       confirm.innerHTML = 'Загружен';

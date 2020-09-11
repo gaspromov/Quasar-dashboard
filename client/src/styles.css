@@ -374,6 +374,8 @@ button.admin-input:hover{
 
 .admin-modal .message{
     font-size: 12px;
+    justify-self: center;
+    text-align: center;
 }
 
 

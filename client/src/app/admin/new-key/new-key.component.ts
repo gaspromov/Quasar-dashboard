@@ -42,7 +42,7 @@ export class NewKeyComponent implements OnInit {
       if (e.status == 401)
         this.auth.logout();
       else 
-        this.error = 'Что-то пошло не так, попробуйте снова.'
+        this.error = e.error.message;
     })
 
   }
