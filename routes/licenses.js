@@ -73,4 +73,36 @@ router.delete('/', authAdmin, async (req, res) => {
 	}
 })
 
+// PATCH /api/v1/licenses
+router.patch('/', authAdmin, async (req, res) => {
+	try {
+		await License.clear()
+		const { id, status, expiresIn } = req.body
+		const correctDate = new Date(expiresIn)
+		if (!['lifetime', 'renewal', 'expired'].includes(status)) {
+			return res.status(400).json({ message: 'Неверный статус' })
+		}
+		License.findByIdAndUpdate(
+			id,
+			{
+				status,
+				expiresIn: correctDate,
+			},
+			async (err, license) => {
+				if (license && !err) {
+					await License.clear()
+					return res.status(200).json({ message: 'Ключ изменен' })
+				} else {
+					return res.status(400).json({ message: 'Ключ не найден' })
+				}
+			},
+		)
+	} catch (e) {
+		return res.status(500).json({
+			message: 'Что-то пошло не так, попробуйте позже',
+			error: e.message,
+		})
+	}
+})
+
 module.exports = router
