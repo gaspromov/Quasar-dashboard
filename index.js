@@ -15,7 +15,6 @@ const helmet = require('helmet')
 const path = require('path')
 
 const session = require('express-session')
-const User = require('./models/User')
 const MongoStore = require('connect-mongo')(session)
 
 // Variables
@@ -70,8 +69,8 @@ app.use('/api/v1/successes', require('./routes/successes'))
 app.use('/api/v1/licenses', require('./routes/licenses'))
 
 // Docs
-app.get('/api/v1/docs/', (req, res) => {
-	res.sendFile(path.resolve(__dirname, 'docs', 'index.html'))
+app.get('/api/v1/docs', (req, res) => {
+	return res.sendFile(path.resolve(__dirname, 'docs', 'index.html'))
 })
 
 // Single Page

@@ -22,7 +22,7 @@ router.post('/', authAdmin, async (req, res) => {
 		const { image } = req.files
 		const extname = path.extname(image.name).toLowerCase()
 		const name = path.join(
-			'images',
+			'images/',
 			`image-${new Date().getMonth() + 1}-${new Date().getFullYear()}-${
 				shortid.generate() + extname
 			}`,
