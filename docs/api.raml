@@ -128,6 +128,40 @@ types:
             user:
               properties:
                 fullName: String
+  delete:
+    description: Удаление ключа
+    headers:
+      Authorization: Bearer
+    body:
+      properties:
+        id: String
+    responses:
+      200:
+        body:
+          properties:
+            message: String
+      400:
+        body:
+          properties:
+            message: String
+  patch:
+    description: Изменение ключа
+    headers:
+      Authorization: Bearer
+    body:
+      properties:
+        id: String
+        status: String
+        expiresIn: Date
+    responses:
+      200:
+        body:
+          properties:
+            message: String
+      400:
+        body:
+          properties:
+            message: String
 
 /users:
   description: Запросы для работы с пользователями
