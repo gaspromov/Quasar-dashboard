@@ -21,12 +21,9 @@ router.post('/', authAdmin, async (req, res) => {
 		const { date, description } = req.body
 		const { image } = req.files
 		const extname = path.extname(image.name).toLowerCase()
-		const name = path.join(
-			'images/',
-			`image-${new Date().getMonth() + 1}-${new Date().getFullYear()}-${
-				shortid.generate() + extname
-			}`,
-		)
+		const name = `images/image-${
+			new Date().getMonth() + 1
+		}-${new Date().getFullYear()}-${shortid.generate() + extname}`
 		if (isAvailableFormat(image)) {
 			const success = new Success({
 				date,
