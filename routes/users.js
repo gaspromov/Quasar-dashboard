@@ -56,4 +56,26 @@ router.post('/license', authUser, async (req, res) => {
 	}
 })
 
+// DELETE /api/v1/users/license
+router.delete('/license', authUser, async (req, res) => {
+	try {
+		const user = await User.findById(req.user.id)
+		const license = await License.findById(req.user.license)
+		if (user.license && license.user) {
+			user.license = undefined
+			license.user = undefined
+			await user.save()
+			await license.save()
+			return res.status(200).json({ message: 'Ключ удален' })
+		} else {
+			return res.status(200).json({ message: 'Ключ не найден' })
+		}
+	} catch (e) {
+		return res.status(500).json({
+			message: 'Что-то пошло не так, попробуйте позже',
+			error: e.message,
+		})
+	}
+})
+
 module.exports = router

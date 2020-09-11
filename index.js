@@ -94,7 +94,7 @@ const start = async () => {
 		)
 	} catch (e) {
 		// Error processing
-		console.log('Неизвестная ошибка', e.message)
+    console.log('Неизвестная ошибка', e.message)
 		process.exit(1)
 	}
 }

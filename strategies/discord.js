@@ -9,17 +9,17 @@ const DiscordStrategy = require('passport-discord').Strategy
 // Model
 const User = require('../models/User')
 
-passport.serializeUser(async (user, done) => {
-	await user.refresh()
+passport.serializeUser((user, done) => {
 	done(null, user.id)
 })
 
-passport.deserializeUser(async (id, done) => {
-	const user = await User.findById(id).populate('license', '-user')
-	if (user) {
-		await user.refresh()
-		done(null, user)
-	}
+passport.deserializeUser((id, done) => {
+	User.findById(id, async (err, user) => {
+		if (!err) {
+			await user.updateInfo()
+			done(null, user)
+		}
+	})
 })
 
 const strategy = new DiscordStrategy(
@@ -33,10 +33,26 @@ const strategy = new DiscordStrategy(
 		try {
 			const currentUser = await User.findOne({ discordId: profile.id })
 			if (currentUser) {
+				await currentUser.updateInfo()
 				done(null, currentUser)
 			} else {
-				const newUser = new User({ accessToken, refreshToken })
+				let avatar = `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`
+				if (!profile.avatar) {
+					avatar = `https://cdn.discordapp.com/embed/avatars/${
+						profile.discriminator % 5
+					}.png`
+				}
+				const newUser = new User({
+					accessToken,
+					refreshToken,
+					discordId: profile.id,
+					username: profile.username,
+					discriminator: profile.discriminator,
+					fullName: `${profile.username}#${profile.discriminator}`,
+					avatar,
+				})
 				await newUser.save()
+				await newUser.updateInfo()
 				done(null, newUser)
 			}
 		} catch (e) {

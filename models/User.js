@@ -46,6 +46,7 @@ schema.methods.refresh = async function () {
 
 schema.methods.updateInfo = async function () {
 	try {
+		await this.refresh()
 		const config = {
 			method: 'get',
 			url: 'https://discord.com/api/v6/users/@me',
@@ -69,9 +70,5 @@ schema.methods.updateInfo = async function () {
 		console.log('Не удалось обновить информацию о пользователе', e.message)
 	}
 }
-
-schema.post('refresh', function () {
-	this.updateInfo()
-})
 
 module.exports = model('User', schema)
