@@ -5,6 +5,7 @@ require('dotenv').config()
 require('./strategies/discord')
 
 // Dependencies
+const fileUpload = require('express-fileupload')
 const compression = require('compression')
 const mongoose = require('mongoose')
 const passport = require('passport')
@@ -22,6 +23,18 @@ const PORT = process.env.PORT
 const app = express()
 
 // Middleware
+app.use(
+	fileUpload({
+		createParentPath: true,
+		abortOnLimit: true,
+		responseOnLimit: JSON.stringify({
+			message: 'Размер файла слишком большой',
+		}),
+		limits: {
+			fileSize: 10 * 1024 * 1024,
+		},
+	}),
+)
 app.use(express.static(path.resolve(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -55,6 +68,7 @@ app.use('/api/v1/auth', require('./routes/auth'))
 app.use('/api/v1/users', require('./routes/users'))
 app.use('/api/v1/admin', require('./routes/admin'))
 app.use('/api/v1/access', require('./routes/access'))
+app.use('/api/v1/successes', require('./routes/successes'))
 
 // Docs
 app.get('/api/v1/docs', (req, res) => {

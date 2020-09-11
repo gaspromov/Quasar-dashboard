@@ -3,7 +3,6 @@ const { Router } = require('express')
 const router = Router()
 
 const authAdmin = require('../middleware/auth.admin.middleware')
-const User = require('../models/User')
 const License = require('../models/License')
 
 router.get('/license', authAdmin, async (req, res) => {
@@ -43,5 +42,7 @@ router.post('/license', authAdmin, async (req, res) => {
 		})
 	}
 })
+
+
 
 module.exports = router

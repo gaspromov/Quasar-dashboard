@@ -58,3 +58,35 @@ types:
           body:
             properties:
               message: String
+
+/successes:
+  description: Запросы для работы с successes
+  post:
+    description: Добавление success
+    headers:
+      Authorization: Bearer
+    body:
+      multipart/form-data:
+        properties:
+          date: String
+          description: String
+          image: File
+    responses:
+      201:
+        body:
+          properties:
+            message: String
+      400:
+        body:
+          properties:
+            message: String
+  get:
+    description: Получение successes
+    responses:
+      200:
+        body:
+          properties:
+            date: String
+            description: String
+            image: String
+          
