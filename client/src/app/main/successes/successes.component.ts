@@ -19,7 +19,8 @@ export class SuccessesComponent implements OnInit {
     await this.http.getSuccesses()
     .then(w => {
       console.log(w)
-      this.image = 'http://localhost:5000' + w[5].image;
+      this.image = w[0].image;
+      console.log(this.image)
     })
     .catch(e => console.log(e))
   }
