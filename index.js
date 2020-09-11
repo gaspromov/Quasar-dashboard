@@ -70,7 +70,7 @@ app.use('/api/v1/successes', require('./routes/successes'))
 app.use('/api/v1/licenses', require('./routes/licenses'))
 
 // Docs
-app.get('/api/v1/docs', (req, res) => {
+app.get('/api/v1/docs/', (req, res) => {
 	res.sendFile(path.resolve(__dirname, 'docs', 'index.html'))
 })
 
