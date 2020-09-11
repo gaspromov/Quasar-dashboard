@@ -68,6 +68,7 @@ app.use('/api/v1/auth', require('./routes/auth'))
 app.use('/api/v1/users', require('./routes/users'))
 app.use('/api/v1/admin', require('./routes/admin'))
 app.use('/api/v1/access', require('./routes/access'))
+app.use('/api/v1/successes', require('./routes/successes'))
 
 // Docs
 app.get('/api/v1/docs', (req, res) => {
