@@ -42,3 +42,23 @@
     border-radius: 50%;
     box-sizing: content-box;
 }
+
+.artboard{
+    position: absolute;
+    width: 100% ;
+    height: 100% ;
+    top: 0px;
+    left: 0px;
+}
+
+.modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+}
+
+.close-modal{
+    justify-self: end;
+}

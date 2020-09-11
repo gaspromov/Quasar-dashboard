@@ -1,0 +1,24 @@
+.label:nth-child(2){
+    grid-row: 2/4;
+}
+
+.label:nth-child(2) label{
+    align-self: start;
+}
+.label:nth-child(2) textarea{
+    align-self: stretch;
+    text-align: start;
+    text-align-last: auto;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+
+.danger-message{
+    color: rgb(255, 89, 89);
+}
+.success-message{
+    color: rgb(65, 245, 65);
+}

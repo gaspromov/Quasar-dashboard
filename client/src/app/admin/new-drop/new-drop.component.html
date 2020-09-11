@@ -1,1 +1,34 @@
-<p>new-drop works!</p>
+<div class="newKey medium-style admin-modal">
+    <h3 class="medium-style">New drop</h3>
+    <form [formGroup]="dropForm" (ngSubmit)="onAddDrop()">
+    
+        <div class="inputs">
+            <div class="label">
+                <label for="password">Password</label>
+                <input type="text" id="password" formControlName="password">
+                
+            </div>
+        
+            <div class="label">
+                <label for="date">Date</label>
+                <input type="date" id="date" formControlName="date">
+            </div>
+
+            <div class="label">
+                <label for="time">Time</label>
+                <input type="time" id="time" formControlName="time">
+            </div>
+
+            <div class="label">
+                <label for="quantity">Quantity</label>
+                <input type="text" id="quantity" formControlName="quantity" mask="000">
+            </div>
+
+        </div>
+    
+        <button class="admin-input medium-style">Save</button>
+        <div class="message" *ngIf="message"><b>{{message}}</b> создан.</div>
+        <div class="danger-message message" *ngIf="error">{{error}}</div>
+        
+    </form>
+</div>

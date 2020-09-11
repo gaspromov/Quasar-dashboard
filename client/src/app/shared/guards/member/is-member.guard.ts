@@ -15,7 +15,6 @@ export class IsMemberGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if (this.get_cookie('userType')=='member' || this.getLocalStorage()){
-        console.log('is-member')
         this.router.navigate(['/dashboard']);
       }
     return true;

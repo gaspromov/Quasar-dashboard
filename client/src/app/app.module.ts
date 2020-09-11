@@ -32,6 +32,7 @@ import { NewSuccessComponent } from './admin/new-success/new-success.component';
 import { NewDropComponent } from './admin/new-drop/new-drop.component';
 import { BasicButtonsComponent } from './basic-buttons/basic-buttons.component';
 import { DiscordInfoComponent } from './discord-info/discord-info.component';
+import { NewKeyComponent } from './admin/new-key/new-key.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { DiscordInfoComponent } from './discord-info/discord-info.component';
     NewDropComponent,
     BasicButtonsComponent,
     DiscordInfoComponent,
+    NewKeyComponent,
   ],
   imports: [
     BrowserModule,
