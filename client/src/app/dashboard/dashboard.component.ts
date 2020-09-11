@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../shared/auth/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from '../shared/auth/auth.service';
+import { UsersService } from '../shared/users/users.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,25 +9,29 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  userData: any = {};
 
   constructor(
-    private http: AuthService,
+    private http: UsersService,
+    private auth: AuthService,
     private spinner: NgxSpinnerService,
   ) { }
 
-  async ngOnInit() {
-    if (this.get_cookie('userType')){
-      localStorage.setItem('member', 'true');
-      document.cookie = "userType=''; expires=Thu, 01 Jan 1970 00:00:00 GMT;"
-    }
-    
+  ngOnInit() {
   }
 
-  get_cookie ( cookie_name ){
-    var results = document.cookie.match ( '(^|;) ?' + cookie_name + '=([^;]*)(;|$)' );
-    if ( results )
-      return ( unescape ( results[2] ) );
-    else
-      return false;
+  onSendData(userData: any = {}){
+    userData.createdAt = this.makeDate(userData.createdAt)
+    this.userData = userData;
   }
+
+  makeDate(date: string){
+    return date.slice(8, 10) + '.' + date.slice(5,7) + '.' + date.slice(0,4);
+  
+  }
+
+
+  
+
+
 }

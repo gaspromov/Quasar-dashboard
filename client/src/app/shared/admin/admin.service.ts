@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AdminService {
-  url = "/api/v1/admin"
+  url = "/api/v1"
   headers: HttpHeaders;
 
   constructor(
@@ -16,12 +16,12 @@ export class AdminService {
 
   async newKey(data: any = {}){
     this.setHeader()
-    return await this.http.post(`${this.url}/license`, data, {headers: this.headers}).toPromise()
+    return await this.http.post(`${this.url}/licenses`, data, {headers: this.headers}).toPromise()
   }
 
   async postSuccess(formData){
     this.setHeader();
-    return await this.http.post(`/api/v1/successes`, formData, {headers: this.headers}).toPromise()
+    return await this.http.post(`${this.url}/successes`, formData, {headers: this.headers}).toPromise()
   }
   
   setHeader(){

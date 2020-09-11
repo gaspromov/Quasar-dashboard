@@ -1,19 +1,20 @@
 <div class="content">
     <div class="window db-window">
-        <app-discord-info [showSpinner]="false"></app-discord-info>
+        <app-discord-info [showSpinner]="false" (onSendData)="onSendData($event)"></app-discord-info>
 
         <div class="info">
             <div class="subscribe-info">
                 <div class="first">
                     <div class="key">
                         <label for=""></label>
+                        {{userData.key}}
                     </div>
                     <div class="joing"></div>
-                    <div class="prolongation"></div>
+                    <div class="prolongation">{{userData.createdAt}}</div>
                     <div class="subscribe"></div>
                 </div>
                 <div class="second">
-                    <div class="type-subscribe"></div>
+                    <div class="type-subscribe">{{userData.status}}</div>
                     <div class="payment"></div>
                 </div>
             </div>
