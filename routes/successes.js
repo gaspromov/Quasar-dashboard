@@ -49,6 +49,7 @@ router.post('/', authAdmin, async (req, res) => {
 	}
 })
 
+// GET /api/v1/successes
 router.get('/', async (req, res) => {
 	try {
 		const successes = await Success.find().select('-_id')

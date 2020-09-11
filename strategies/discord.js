@@ -1,6 +1,7 @@
 // Dependencies
 const passport = require('passport')
 const refresh = require('passport-oauth2-refresh')
+const License = require('../models/License')
 
 // Strategy
 const DiscordStrategy = require('passport-discord').Strategy
@@ -14,7 +15,7 @@ passport.serializeUser(async (user, done) => {
 })
 
 passport.deserializeUser(async (id, done) => {
-  const user = await User.findById(id)
+	const user = await User.findById(id).populate('license', '-user')
 	if (user) {
 		await user.refresh()
 		done(null, user)

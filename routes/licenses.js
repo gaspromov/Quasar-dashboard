@@ -1,13 +1,22 @@
+// Dependencies
 const { Router } = require('express')
 
-const router = Router()
-
-const authAdmin = require('../middleware/auth.admin.middleware')
+// Models
 const License = require('../models/License')
 
-router.get('/license', authAdmin, async (req, res) => {
+// Middleware
+const authAdmin = require('../middleware/auth.admin.middleware')
+
+// Variables
+const router = Router()
+
+// GET /api/v1/licenses
+router.get('/', authAdmin, async (req, res) => {
 	try {
-		const licenses = await License.find()
+		await License.clear()
+		const licenses = await License.find({
+			status: ['renewal', 'lifetime'],
+		}).select('-_id').populate('user', '-_id fullName')
 		return res.status(200).json(licenses)
 	} catch (e) {
 		return res.status(500).json({
@@ -17,7 +26,8 @@ router.get('/license', authAdmin, async (req, res) => {
 	}
 })
 
-router.post('/license', authAdmin, async (req, res) => {
+// POST /api/v1/licenses
+router.post('/', authAdmin, async (req, res) => {
 	try {
 		let { key, status, expiresIn } = req.body
 		expiresIn = new Date(expiresIn)
@@ -42,7 +52,5 @@ router.post('/license', authAdmin, async (req, res) => {
 		})
 	}
 })
-
-
 
 module.exports = router

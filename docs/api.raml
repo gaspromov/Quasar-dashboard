@@ -31,33 +31,36 @@ types:
     /logout:
       get:
         description: Очистка куки
-  /login:
-    post:
-      description: Вход для админа
-      body:
-        properties:
-          login: String
-          password: String
-      responses:
-        200:
-          body:
-            properties:
-              accessToken: String
-        400:
-          body:
-            properties:
-              message: String
-  /password:
-    post:
-      description: Смена пароля для админа
-      body:
-        properties:
-          password: String
-      responses:
-        200:
-          body:
-            properties:
-              message: String
+  /admin:
+    /login:
+      post:
+        description: Вход для админа
+        body:
+          properties:
+            login: String
+            password: String
+        responses:
+          200:
+            body:
+              properties:
+                accessToken: String
+          400:
+            body:
+              properties:
+                message: String
+    /password:
+      post:
+        description: Смена пароля для админа
+        headers:
+          Authorization: Bearer
+        body:
+          properties:
+            password: String
+        responses:
+          200:
+            body:
+              properties:
+                message: String
 
 /successes:
   description: Запросы для работы с successes
@@ -89,4 +92,86 @@ types:
             date: String
             description: String
             image: String
+
+/licenses:
+  description: Запросы для работы с лицензионными ключами
+  post:
+    description: Добавление лицензионного ключа
+    headers:
+      Authorization: Bearer
+    body:
+      properties:
+        key: String
+        status: String
+        expiresIn: Date
+    responses:
+      201:
+        body:
+          properties:
+            message: String
+      400:
+        body:
+          properties:
+            message: String
+  get:
+    description: Получение ключей
+    headers:
+      Authorization: Bearer
+    responses:
+      201:
+        body:
+          properties:
+            key: String
+            status: String
+            expiresIn: Date
+            createdAt: Date
+            user:
+              properties:
+                fullName: String
+
+/users:
+  description: Запросы для работы с пользователями
+  /@me:
+    get:
+      description: Получение информации о пользователе
+      headers:
+        Cookies: discord.oauth2
+      responses:
+        200:
+          body:
+            properties:
+              _id: String
+              accessToken: String
+              refreshToken: String
+              avatar: String
+              discordId: String
+              discriminator: String
+              fullName: String
+              username: String
+              license:
+                properties:
+                  _id: String
+                  key: String
+                  status: String
+                  expiresIn: Date
+                  createdAt: Date
+
+  /license:
+    post:
+      description: Добавление ключа
+      headers:
+        Cookies: discord.oauth2
+      body:
+        properties:
+          key: String
+      responses:
+        200:
+          body:
+            properties:
+              message: String
+        400:
+          body:
+            properties:
+              message: String
+    
           

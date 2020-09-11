@@ -1,21 +1,25 @@
+// Dependencies
 const { Router } = require('express')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const refresh = require('passport-oauth2-refresh')
 
+// Variables
 const router = Router()
 
-const auth = require('../middleware/auth.admin.middleware')
+// Middleware
+const authAdmin = require('../middleware/auth.admin.middleware')
+
+// Models
 const Admin = require('../models/Admin')
 const User = require('../models/User')
 
-// User
+// ============ USER ============
 
-// Переход на авторизацию
+// GET /api/v1/auth/discord
 router.get('/discord', passport.authenticate('discord'))
 
-// Callback после авторизации
+// GET /api/v1/auth/discord/redirect
 router.get(
 	'/discord/redirect',
 	passport.authenticate('discord'),
@@ -23,7 +27,7 @@ router.get(
 		const lastDate = new Date()
 		lastDate.setDate(lastDate.getDate() - 3)
 
-		const user = await User.findById(req.user.id).populate('license')
+    const user = await User.findById(req.user.id).populate('license')
 		if (
 			user.license &&
 			(user.license.expiresIn >= lastDate || user.license.status === 'lifetime')
@@ -36,17 +40,20 @@ router.get(
 	},
 )
 
+// GET /api/v1/auth/discord/logout
 router.get('/discord/logout', (req, res) => {
 	if (req.user) {
 		req.logout()
-		res.status(200).json()
+		return res.status(200).json()
 	} else {
-		res.status(400).json()
+		return res.status(400).json()
 	}
 })
 
-// Admin
-router.post('/login', async (req, res) => {
+// ============ ADMIN ============
+
+// POST /api/v1/auth/admin/login
+router.post('/admin/login', async (req, res) => {
 	try {
 		const { login, password } = req.body
 		const candidate = await Admin.findOne({ login }).select('password')
@@ -70,7 +77,8 @@ router.post('/login', async (req, res) => {
 	}
 })
 
-router.post('/password', auth, async (req, res) => {
+// POST /api/v1/auth/admin/password
+router.post('/admin/password', authAdmin, async (req, res) => {
 	try {
 		const { password } = req.body
 		const candidate = await Admin.findById(req.user.userId)

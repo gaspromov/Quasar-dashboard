@@ -22,7 +22,10 @@ const schema = new Schema(
 				return this.status === 'renewal' || this.status === 'expired'
 			},
 		},
-		user: Types.ObjectId,
+		user: {
+      type: Types.ObjectId,
+      ref: 'User'
+		},
 	},
 	{ versionKey: false },
 )
