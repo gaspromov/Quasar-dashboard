@@ -31,7 +31,7 @@ schema.methods.refresh = async function () {
 		refresh.requestNewAccessToken(
 			'discord',
 			this.refreshToken,
-			async (err, accessToken, refreshToken) => {
+      async (err, accessToken, refreshToken) => {
 				if (accessToken && refreshToken) {
 					this.accessToken = accessToken
 					this.refreshToken = refreshToken

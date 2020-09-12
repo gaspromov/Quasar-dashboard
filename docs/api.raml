@@ -217,4 +217,24 @@ types:
             properties:
               message: String
     
+/drops:
+  description: Запросы для работы с дропами
+  post:
+    description: Добавление дропа
+    headers:
+      Authorization: Bearer
+    body:
+      properties:
+        password: String
+        date: Date
+        quantity: Number
+    responses:
+      201:
+        body:
+          properties:
+            message: String
+      400:
+        body:
+          properties:
+            message: String
           
