@@ -34,6 +34,11 @@ import { BasicButtonsComponent } from './basic-buttons/basic-buttons.component';
 import { DiscordInfoComponent } from './discord-info/discord-info.component';
 import { NewKeyComponent } from './admin/new-key/new-key.component';
 import { PopUpComponent } from './pop-up/pop-up.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { SearchPipe } from './shared/pipes/search/search.pipe';
+import { FilterMembersPipe } from './shared/pipes/filterMembers/filter-members.pipe';
+import { SortPipe } from './shared/pipes/sort/sort.pipe';
+import { FilterSortComponent } from './admin/filter-sort/filter-sort.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +65,11 @@ import { PopUpComponent } from './pop-up/pop-up.component';
     DiscordInfoComponent,
     NewKeyComponent,
     PopUpComponent,
+    PaginationComponent,
+    SearchPipe,
+    FilterMembersPipe,
+    SortPipe,
+    FilterSortComponent,
   ],
   imports: [
     BrowserModule,

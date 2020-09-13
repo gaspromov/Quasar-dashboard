@@ -33,9 +33,12 @@ export class DiscordInfoComponent implements OnInit {
       this.sendData(w.license);
     })
     .catch(e =>{
-      if (e.status == 401)
+      if (e.status == 401){
+        
+        console.log(e)
+        console.log(e.status)
         this.auth.logoutCookie();
-      else console.log(e)
+      }
     })
     this.spinner.hide()
   }

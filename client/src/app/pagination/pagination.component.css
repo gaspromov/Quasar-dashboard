@@ -1,0 +1,20 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pages{
+    margin: 0px 7px;
+}
+
+.page{
+    display: inline-block;
+    min-width: 24px;
+    text-align: center;
+    border-bottom: 2px solid #A472B7;
+}
+
+.active{
+    border-color: white;
+}

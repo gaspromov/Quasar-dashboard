@@ -1,0 +1,24 @@
+<div class="filt-sort">
+    <select [(ngModel)]="sort" (ngModelChange)="onChange()">
+        <option value="" selected>Sorting</option>
+        <option value="createdAt1">Created down</option>
+        <option value="createdAt2">Created up</option>
+        <option value="expiresIn1">Renewal down</option>
+        <option value="expiresIn2">Renewal up</option>
+    </select>
+    
+    <div class="status">
+        <div class="">
+            <input type="checkbox" [(ngModel)]="lifetime" (ngModelChange)="onChange()" id="lifetime">
+            <label for="lifetime">Lifetime</label>   
+        </div>
+        <div>
+            <input type="checkbox" [(ngModel)]="renewal" (ngModelChange)="onChange()" id="renewal">
+            <label for="renewal" >Renewal</label> 
+        </div>
+    </div>
+    
+    <input type="text" [(ngModel)]="search" (ngModelChange)="onChange()" placeholder="Search">
+    
+
+</div>

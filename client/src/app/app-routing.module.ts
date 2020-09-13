@@ -23,7 +23,7 @@ import { MemberGuard } from './shared/guards/member/member.guard';
 const routes: Routes = [
 
   // for all
-  { path: 'main', component: MainComponent },
+  { path: '', component: MainComponent },
 
   // no login
   { path: 'login', component: LoginComponent, canActivate: [IsLoginGuard] },
@@ -47,7 +47,7 @@ const routes: Routes = [
     ] 
   },
 
-  { path: '**', redirectTo: '/main' }
+  { path: '**', redirectTo: '' }
 
 ];
 

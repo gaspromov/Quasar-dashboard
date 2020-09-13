@@ -13,7 +13,7 @@
     padding: 30px 60px 20px;
 
     background-color: #0F1D38;
-    border: 2px solid white;
+    /* border: 2px solid white; */
     border-radius: 30px;
     
     position: absolute;
@@ -55,4 +55,8 @@ button{
 
     width: 40px;
     height: 30px;
+}
+
+button:hover{
+    background-color: #21355B;
 }

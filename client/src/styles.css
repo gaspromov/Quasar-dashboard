@@ -59,10 +59,6 @@ html, body{
     background-color: #21355B;
 }
 
-.blur{
-    filter: blur(2px);
-}
-
 
 *, select, input{
     outline: none;
@@ -278,6 +274,9 @@ app-pop-up{
     position: absolute;
     width: 100%;
     height: 100%;
+    background-color: rgba(0, 0, 0, 0.548);
+    backdrop-filter: blur(2px) ;
+    z-index: 20;
 }
 
 

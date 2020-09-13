@@ -55,6 +55,7 @@ export class DashboardComponent implements OnInit {
   }
 
   async unbind(){
+    this.onConfirm(false);
     this.spinner.show();
     await this.http.unbind()
     .then(async w =>{
@@ -79,8 +80,11 @@ export class DashboardComponent implements OnInit {
   onConfirm(answere: boolean){
     if (answere)
       this.unbind();
-    else 
+    else{
       this.showPopup = false;
+      this.headerPopup = ""
+      this.messagePopup = ""
+    }
   }
 
 }

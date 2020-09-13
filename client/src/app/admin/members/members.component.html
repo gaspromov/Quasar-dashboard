@@ -1,18 +1,68 @@
 <div class="members">
-    <div class="member-table">
-        <div class="tr nameOfTd">
-            <div class="td nickname firstTd">Nickname</div>
-            <div class="td key">Key</div>
-            <div class="td status">Status</div>
-            <div class="td purshase">Purshase</div>
-            <div class="td renewal lastTd">Renewal</div>
-        </div>
-        <div class="tr">
-            <div class="td nickname firstTd">Nickname</div>
-            <div class="td key">Key</div>
-            <div class="td status">Status</div>
-            <div class="td purshase">Purshase</div>
-            <div class="td renewal lastTd">Renewal</div>
-        </div>
-    </div>
+    <app-filter-sort (onChangeParams)="onChangeParams($event)"></app-filter-sort>
+    <table class="members-table" *ngIf="outputKeys[0] != null">
+        <tr class="headers">
+            <th>Nickname</th>
+            <th>Key</th>
+            <th>Status</th>
+            <th>Purshase</th>
+            <th>Renewal</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let key of outputKeys" class="medium-style">
+            <td *ngIf="key.display != 'none'">{{key.user}}</td>
+            <td *ngIf="key.display != 'none'">{{key.key}}</td>
+            <td *ngIf="key.display != 'none' && editKeyId != key._id">{{key.status}}</td>
+            <td *ngIf="key.display != 'none' && editKeyId == key._id">
+                <select type="text" [(ngModel)]="editStatus">
+                    <option value="lifetime">LT</option>
+                    <option value="renewal">RN</option>
+                </select>
+            </td>
+            <td *ngIf="key.display != 'none'">{{key.createdAt}}</td>
+            <td *ngIf="key.display != 'none' && editKeyId != key._id">{{key.expiresIn}}</td>
+            <td *ngIf="key.display != 'none' && editKeyId == key._id">
+                <input type="date" [(ngModel)]="editExpiresIn" id="editExpiresIn">
+            </td>
+            <td *ngIf="key.display != 'none'">
+                <div class="action" *ngIf="editKeyId != key._id">
+                    <img src="/assets/img/members-buttons/pencil.svg" alt="edit" class="pointer" (click)="onEditKey(key._id)"> 
+                    <img src="/assets/img/members-buttons/trash.svg" alt="delete" class="pointer" (click)="onDeleteKey(key._id)">
+                </div>
+                <div class="action" *ngIf="editKeyId == key._id">
+                    <img src="/assets/img/members-buttons/okey.svg" alt="edit" class="pointer" (click)="confirmEdit()"> 
+                    <img src="/assets/img/members-buttons/not.svg" alt="delete" class="pointer" (click)="cancelEdit()">
+                </div>
+            </td>
+            <td *ngIf="key.display == 'none'"><span class="hidden">-</span></td>
+            <td *ngIf="key.display == 'none'"><span class="hidden">-</span></td>
+            <td *ngIf="key.display == 'none'"><span class="hidden">-</span></td>
+            <td *ngIf="key.display == 'none'"><span class="hidden">-</span></td>
+            <td *ngIf="key.display == 'none'"><span class="hidden">-</span></td>
+            <td *ngIf="key.display == 'none'"><span class="hidden">-</span></td>
+        </tr>
+    </table>
+    <app-pagination *ngIf="keys[0] != null" 
+        [items]="keys" 
+        onPage="15" 
+        [lifetime]="lifetime"
+        [renewal]="renewal"
+        [sort]="sort"
+        [search]="search"
+        (onOutputItems)="changeOutputservers($event)"
+    >
+    </app-pagination>
+
+    
+    <ngx-spinner
+    type="ball-clip-rotate"
+    bdColor=""
+    size="large"
+    color="#fff"
+    [fullScreen]="false"
+    >
+    <p style="font-size: 20px; margin-top: 130px; color: white">Loading...</p>
+    </ngx-spinner>
+    <app-pop-up *ngIf="showPopup" [header]="headerPopup" [message]="messagePopup" (onConfirm)="onConfirm($event)"></app-pop-up>
 </div>
+

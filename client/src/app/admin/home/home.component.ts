@@ -20,14 +20,10 @@ export class HomeComponent implements OnInit {
 
   showModal(modal: number){
     this.modal = modal;
-    document.querySelectorAll('#filter')[0].classList.add('blur')
-    document.querySelectorAll('#filter')[1].classList.add('blur')
   }
 
   hideModal(){
     this.modal = 0;
-    document.querySelectorAll('#filter')[0].classList.remove('blur')
-    document.querySelectorAll('#filter')[1].classList.remove('blur')
   }
 
 }

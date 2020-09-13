@@ -13,27 +13,10 @@ export class PopUpComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.setBlur();
   }
 
   confirm(answere: boolean){
-    this.unsetBlur();
     this.onConfirm.emit(answere);
   }
-
-  setBlur(){
-    let elements = document.querySelectorAll('#filter');
-    for (let i = 0; i < elements.length; i++){
-      elements[i].classList.add('blur')
-    }
-  }
-
-  unsetBlur(){
-    let elements = document.querySelectorAll('#filter');
-    for (let i = 0; i < elements.length; i++){
-      elements[i].classList.remove('blur')
-    }
-  }
-  
 
 }
