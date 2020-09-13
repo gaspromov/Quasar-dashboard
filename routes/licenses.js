@@ -4,6 +4,7 @@ const { validationResult } = require('express-validator')
 
 // Models
 const License = require('../models/License')
+const User = require('../models/User')
 
 // Middleware
 const authAdmin = require('../middleware/auth.admin.middleware')
@@ -60,8 +61,13 @@ router.delete('/', authAdmin, async (req, res) => {
 	try {
 		await License.clear()
 		const { id } = req.body
-		License.findByIdAndDelete(id, (err, license) => {
+		License.findByIdAndDelete(id, async (err, license) => {
 			if (license && !err) {
+				const user = await User.findOne({ license: license._id })
+				if (user) {
+					user.license = undefined
+					await user.save()
+				}
 				return res.status(200).json({ message: 'Ключ удален' })
 			} else {
 				return res.status(400).json({ message: 'Ключ не найден' })
