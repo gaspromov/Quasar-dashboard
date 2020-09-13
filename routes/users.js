@@ -18,7 +18,13 @@ router.get('/@me', authUser, async (req, res) => {
 		await License.clear()
 		const user = await User.findById(req.user.id)
 			.select('-_id -accessToken -refreshToken')
-			.populate('license', '-_id')
+			.populate({
+				path: 'license',
+				select: '-_id',
+				match: {
+					status: ['lifetime', 'renewal'],
+				},
+      })
 		if (user) {
 			return res.status(200).json(user)
 		} else {
