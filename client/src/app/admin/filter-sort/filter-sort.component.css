@@ -46,3 +46,7 @@ input[type=checkbox]:checked{
     background: none;
     
 }
+
+label, select, option, input[type=checkbox]{
+    cursor: pointer;
+}

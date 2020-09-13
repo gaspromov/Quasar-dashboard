@@ -39,6 +39,7 @@ import { SearchPipe } from './shared/pipes/search/search.pipe';
 import { FilterMembersPipe } from './shared/pipes/filterMembers/filter-members.pipe';
 import { SortPipe } from './shared/pipes/sort/sort.pipe';
 import { FilterSortComponent } from './admin/filter-sort/filter-sort.component';
+import { NotificationsComponent } from './admin/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { FilterSortComponent } from './admin/filter-sort/filter-sort.component';
     FilterMembersPipe,
     SortPipe,
     FilterSortComponent,
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,

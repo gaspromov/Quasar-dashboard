@@ -43,6 +43,14 @@
     box-sizing: content-box;
 }
 
+.action button:first-child{
+    align-self: start;
+}
+
+.action button:last-child{
+    align-self: end;
+}
+
 .artboard{
     position: absolute;
     width: 100% ;
