@@ -39,15 +39,19 @@ export class DashboardComponent implements OnInit {
 
   
 
-  onSendData(userData: any = {}){
-    console.log(userData)
-    userData.createdAt = this.makeDate(userData.createdAt);
-    if (userData.expiresIn)
-      userData.expiresIn = this.makeDate(userData.expiresIn)
-    this.type = userData.status;
-    userData.status = userData.status.slice(0,1).toUpperCase() + userData.status.slice(1)
-    this.userData = userData;
-    console.log(userData)
+  async onSendData(userData: any = {}){
+    if (userData == null){
+      await this.auth.logout()
+        .then(() => this.auth.logoutCookie())
+        .catch(() => this.auth.logoutCookie())
+    }else{
+      userData.createdAt = this.makeDate(userData.createdAt);
+      if (userData.expiresIn)
+        userData.expiresIn = this.makeDate(userData.expiresIn)
+      this.type = userData.status;
+      userData.status = userData.status.slice(0,1).toUpperCase() + userData.status.slice(1)
+      this.userData = userData;
+    }
   }
 
   makeDate(date: string){

@@ -159,7 +159,7 @@ export class MembersComponent implements OnInit {
 
   async editKey(){
     this.spinner.show();
-    let body = {id: this.editKeyId, status: this.editStatus, expiresIn: this.editExpiresIn};
+    let body = {id: this.editKeyId, status: this.editStatus, expiresIn: new Date(this.editExpiresIn)};
     await this.http.editKey(body)
     .then(async () => {
       this.cancelEdit();

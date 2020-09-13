@@ -5,30 +5,30 @@
         <div class="inputs">
             <div class="label">
                 <label for="password">Password</label>
-                <input type="text" id="password" formControlName="password">
+                <input type="text" id="password" formControlName="password" autocomplete="off">
                 
             </div>
         
             <div class="label">
                 <label for="date">Date</label>
-                <input type="date" id="date" formControlName="date">
+                <input type="date" id="date" [(ngModel)]="date" [ngModelOptions]="{standalone: true}">
             </div>
 
             <div class="label">
                 <label for="time">Time</label>
-                <input type="time" id="time" formControlName="time">
+                <input type="time" id="time" [(ngModel)]="time" [ngModelOptions]="{standalone: true}">
             </div>
 
             <div class="label">
                 <label for="quantity">Quantity</label>
-                <input type="text" id="quantity" formControlName="quantity" mask="000">
+                <input type="text" id="quantity" formControlName="quantity" mask="000" autocomplete="off">
             </div>
 
         </div>
     
-        <button class="admin-input medium-style">Save</button>
+        <button class="admin-input medium-style" type="submit">Save</button>
         
     </form>
-    <div class="message" *ngIf="message"><b>{{message}}</b> создан.</div>
+    <div class="message" *ngIf="message"><b>{{message}}</b></div>
     <div class="danger-message message" *ngIf="error">{{error}}</div>
 </div>
