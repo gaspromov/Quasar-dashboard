@@ -7,6 +7,7 @@ const authUser = require('../middleware/auth.user.middleware')
 // Models
 const User = require('../models/User')
 const License = require('../models/License')
+const Drop = require('../models/Drop')
 
 // Variables
 const router = Router()
@@ -72,6 +73,38 @@ router.delete('/license', authUser, async (req, res) => {
 			return res.status(200).json({ message: 'Ключ удален' })
 		} else {
 			return res.status(200).json({ message: 'Ключ не найден' })
+		}
+	} catch (e) {
+		return res.status(500).json({
+			message: 'Что-то пошло не так, попробуйте позже',
+			error: e.message,
+		})
+	}
+})
+
+router.post('/drop', authUser, async (req, res) => {
+	try {
+		const { password } = req.body
+		const drop = await Drop.findOne({ password })
+
+		if (drop) {
+			if (!drop.participants.includes(req.user.id)) {
+				if (drop.date < new Date()) {
+					if (drop.participants.length < drop.quantity) {
+						drop.participants.push(req.user.id)
+						await drop.save()
+						return res.status(200).json({ message: 'Вы добавлены к drop' })
+					} else {
+						return res.status(200).json({ message: 'Нет мест' })
+					}
+				} else {
+					return res.status(200).json({ message: 'Еще рано' })
+				}
+			} else {
+				return res.status(200).json({ message: 'Вы уже в drop' })
+			}
+		} else {
+			return res.status(200).json({ message: 'Неверный пароль' })
 		}
 	} catch (e) {
 		return res.status(500).json({

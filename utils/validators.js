@@ -13,3 +13,8 @@ module.exports.dropsValidators = [
 	body('date', 'Некорректная дата').isAfter(),
 	body('quantity', 'Некорректное количество участников').isInt({ min: 1 }),
 ]
+
+module.exports.licenseEditValidators = [
+	body('id', 'Некорректный id').isMongoId(),
+	body('status', 'Некорректный статус').isIn(['lifetime', 'renewal', 'expired']),
+]

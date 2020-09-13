@@ -1,11 +1,13 @@
 // Dependencies
 const { Router } = require('express')
+const { validationResult } = require('express-validator')
 
 // Models
 const License = require('../models/License')
 
 // Middleware
 const authAdmin = require('../middleware/auth.admin.middleware')
+const { licenseEditValidators } = require('../utils/validators')
 
 // Variables
 const router = Router()
@@ -74,29 +76,29 @@ router.delete('/', authAdmin, async (req, res) => {
 })
 
 // PATCH /api/v1/licenses
-router.patch('/', authAdmin, async (req, res) => {
+router.patch('/', authAdmin, licenseEditValidators, async (req, res) => {
 	try {
+		const errors = validationResult(req)
+		if (!errors.isEmpty())
+			return res.status(400).json({ message: errors.array()[0].msg })
 		await License.clear()
 		const { id, status, expiresIn } = req.body
 		const correctDate = new Date(expiresIn)
-		if (!['lifetime', 'renewal', 'expired'].includes(status)) {
-			return res.status(400).json({ message: 'Неверный статус' })
+		const license = await License.findById(id)
+		if (license) {
+			if (status === 'lifetime') {
+				license.status = status
+				license.expiresIn = undefined
+			} else {
+				license.status = status
+				license.expiresIn = correctDate
+			}
+			await license.save()
+			await License.clear()
+			return res.status(200).json({ message: 'Ключ изменен' })
+		} else {
+			return res.status(400).json({ message: 'Ключ не найден' })
 		}
-		License.findByIdAndUpdate(
-			id,
-			{
-				status,
-				expiresIn: correctDate,
-			},
-			async (err, license) => {
-				if (license && !err) {
-					await License.clear()
-					return res.status(200).json({ message: 'Ключ изменен' })
-				} else {
-					return res.status(400).json({ message: 'Ключ не найден' })
-				}
-			},
-		)
 	} catch (e) {
 		return res.status(500).json({
 			message: 'Что-то пошло не так, попробуйте позже',
