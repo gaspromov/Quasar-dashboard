@@ -68,6 +68,7 @@ app.use('/api/v1/users', require('./routes/users'))
 app.use('/api/v1/successes', require('./routes/successes'))
 app.use('/api/v1/licenses', require('./routes/licenses'))
 app.use('/api/v1/drops', require('./routes/drops'))
+app.use('/api/v1/notifications', require('./routes/notification'))
 
 // Docs
 app.get('/api/v1/docs', (req, res) => {

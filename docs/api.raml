@@ -237,4 +237,36 @@ types:
         body:
           properties:
             message: String
+
+/notification:
+  description: Запросы для работы с уведомлениями
+  get:
+    description: Получение уведомлений
+    headers:
+      Authorization: Bearer
+    responses:
+      200:
+        body:
+          properties:
+            _id: String
+            user: String
+            license: String
+            type: String
+            date: Date
+  delete:
+    description: Удаление уведомления
+    headers:
+      Authorization: Bearer
+    body:
+      properties:
+        id: String
+    responses:
+      200:
+        body:
+          properties:
+            message: String
+      400:
+        body:
+          properties:
+            message: String
           

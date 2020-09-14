@@ -8,6 +8,7 @@ const authUser = require('../middleware/auth.user.middleware')
 const User = require('../models/User')
 const License = require('../models/License')
 const Drop = require('../models/Drop')
+const Notification = require('../models/Notification')
 
 // Variables
 const router = Router()
@@ -24,7 +25,7 @@ router.get('/@me', authUser, async (req, res) => {
 				match: {
 					status: ['lifetime', 'renewal'],
 				},
-      })
+			})
 		if (user) {
 			return res.status(200).json(user)
 		} else {
@@ -50,10 +51,16 @@ router.post('/license', authUser, async (req, res) => {
 		})
 		const user = await User.findOne({ _id: req.user.id, license: null })
 		if (license && user) {
+			const notification = new Notification({
+				user: user.fullName,
+				license: license.key,
+				type: 'Bind',
+			})
 			user.license = license.id
 			license.user = user.id
 			await user.save()
 			await license.save()
+			await notification.save()
 			return res.status(200).json({ message: 'Ключ успешно добавлен' })
 		} else {
 			return res.status(400).json({ message: 'Не удалось добавить ключ' })
@@ -72,10 +79,17 @@ router.delete('/license', authUser, async (req, res) => {
 		const user = await User.findById(req.user.id)
 		const license = await License.findById(req.user.license)
 		if (user.license && license.user) {
+			const notification = new Notification({
+				user: user.fullName,
+				license: license.key,
+				type: 'Unbind',
+			})
+
 			user.license = undefined
 			license.user = undefined
 			await user.save()
 			await license.save()
+			await notification.save()
 			return res.status(200).json({ message: 'Ключ удален' })
 		} else {
 			return res.status(200).json({ message: 'Ключ не найден' })

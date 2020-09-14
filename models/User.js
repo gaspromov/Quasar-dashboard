@@ -2,6 +2,8 @@ const refresh = require('passport-oauth2-refresh')
 const axios = require('axios')
 
 const { Schema, model, Types } = require('mongoose')
+const License = require('./License')
+const Notification = require('./Notification')
 
 const schema = new Schema(
 	{
@@ -31,7 +33,7 @@ schema.methods.refresh = async function () {
 		refresh.requestNewAccessToken(
 			'discord',
 			this.refreshToken,
-      async (err, accessToken, refreshToken) => {
+			async (err, accessToken, refreshToken) => {
 				if (accessToken && refreshToken) {
 					this.accessToken = accessToken
 					this.refreshToken = refreshToken
@@ -68,6 +70,19 @@ schema.methods.updateInfo = async function () {
 		}
 	} catch (e) {
 		console.log('Не удалось обновить информацию о пользователе', e.message)
+	}
+}
+
+schema.methods.checkLicense = async function () {
+	const license = await License.findById(this.license)
+	if (license && license.status === 'expired') {
+		this.license = undefined
+		const notification = new Notification({
+			user: this.fullName,
+			license: license.key,
+			type: 'Expired',
+		})
+		await notification.save()
 	}
 }
 

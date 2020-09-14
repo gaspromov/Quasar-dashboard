@@ -15,7 +15,8 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
 	User.findById(id, async (err, user) => {
-		if (!err) {
+    if (!err) {
+      await user.checkLicense()
 			await user.updateInfo()
 			done(null, user)
 		}
