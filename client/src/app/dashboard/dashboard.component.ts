@@ -39,8 +39,8 @@ export class DashboardComponent implements OnInit {
 
   
 
-  async onSendData(userData: any = {}){
-    if (userData == null){
+  async onSendData(userData){
+    if (userData == undefined || userData == null){
       await this.auth.logout()
         .then(() => this.auth.logoutCookie())
         .catch(() => this.auth.logoutCookie())
