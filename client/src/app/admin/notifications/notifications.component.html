@@ -1,1 +1,17 @@
-<p>notifications works!</p>
+<div class="notifications">
+
+    <div class="notification" *ngFor="let notification of notifications">
+        <div class="key">{{notification.license}}</div>
+        <div class="date">{{notification.date}}</div>
+        <div class="time">{{notification.time}}</div>
+        <div class="action">{{notification.type}}</div>
+        <div class="ddName">{{notification.user}}</div>
+    </div>
+
+</div>
+
+<!-- date: "2020-09-14T19:15:44.837Z"
+license: "jCR9-xguS-gtIg-nw7v"
+type: "Expired"
+user: "Maximus"
+_id: "5f5fc160a8693f167a8cb2a3" -->

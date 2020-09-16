@@ -68,7 +68,10 @@ export class DashboardComponent implements OnInit {
       .catch(() => this.auth.logoutCookie())
     })
     .catch(e =>{
-      console.log(e);
+      if (e.status == 401)
+        this.auth.logoutCookie();
+      else
+        console.log(e);
     })
     this.spinner.hide();
   }

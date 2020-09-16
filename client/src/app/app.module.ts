@@ -40,6 +40,7 @@ import { FilterMembersPipe } from './shared/pipes/filterMembers/filter-members.p
 import { SortPipe } from './shared/pipes/sort/sort.pipe';
 import { FilterSortComponent } from './admin/filter-sort/filter-sort.component';
 import { NotificationsComponent } from './admin/notifications/notifications.component';
+import { NotifFilterComponent } from './admin/notif-filter/notif-filter.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { NotificationsComponent } from './admin/notifications/notifications.comp
     SortPipe,
     FilterSortComponent,
     NotificationsComponent,
+    NotifFilterComponent,
   ],
   imports: [
     BrowserModule,

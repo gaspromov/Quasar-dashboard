@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/shared/users/users.service';
 
 @Component({
   selector: 'app-main',
@@ -7,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   anchors;
+  successes;
 
-  constructor() { }
+  constructor(
+    private http: UsersService,
+  ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.scroll();
+    await this.getSuccesses();
+  }
+
+    scroll(){
     this.anchors = document.querySelectorAll('a[href*="#"]')
     for (let anchor of this.anchors) {
       anchor.addEventListener('click', function (e) {
@@ -23,8 +32,19 @@ export class MainComponent implements OnInit {
           block: 'start'
         })
       })
+      }
     }
+
+  async getSuccesses(){
+    await this.http.getSuccesses()
+    .then(w => {
+      console.log(w)
+      this.successes = w;
+      console.log(this.successes)
+    })
+    .catch(e => console.log(e))
   }
+  
 
 
 }

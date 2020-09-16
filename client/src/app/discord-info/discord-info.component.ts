@@ -34,9 +34,6 @@ export class DiscordInfoComponent implements OnInit {
     })
     .catch(e =>{
       if (e.status == 401){
-        
-        console.log(e)
-        console.log(e.status)
         this.auth.logoutCookie();
       }
     })

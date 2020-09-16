@@ -42,7 +42,6 @@ export class MembersComponent implements OnInit {
     await this.http.getKeys()
     .then(w =>{
       this.keys = this.makeValidData(w);
-      console.log(this.keys)
       this.spinner.hide();
       
     })
@@ -121,14 +120,12 @@ export class MembersComponent implements OnInit {
     
     let ell = this.keys.filter(
       ell => ell._id.toLowerCase().indexOf(id.toLowerCase()) === 0);
-    console.log(ell)
     
     this.editStatus = ell[0].status;
     this.editExpiresIn = this.makeValidDate(ell[0].expiresIn)
   }
 
   makeValidDate(date: string){
-    console.log(date)
     if (date != '-' && date != null && date != undefined && date != '')
       return (date.slice(6, 10) + '-' + date.slice(3,5) + '-' + date.slice(0,2));
     else 
@@ -142,7 +139,6 @@ export class MembersComponent implements OnInit {
   }
 
   async confirmEdit(){
-    console.log('редактирован', this.editExpiresIn);
     document.getElementById('editExpiresIn').classList.remove('invalid');
     if (this.editStatus == 'lifetime'){
       this.editExpiresIn = '';

@@ -124,3 +124,30 @@ header .transition{
     z-index: 10;
 }
 
+.phone-success .message{
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: 27px auto;
+    column-gap: 8px;
+    row-gap: 5px;
+    font-size: 14px;
+    color: white;
+}
+
+.phone-success .message .avatar{
+    grid-column: 1/2;
+    width: 27px;
+    border-radius: 50%;
+    
+}
+
+.phone-success .message .collage{
+    width: 100%;
+    grid-column: 2/3;
+}
+
+.phone-success .message .text{
+    grid-column: 2/3;
+    align-self: end;
+    margin-bottom: 3px;
+}

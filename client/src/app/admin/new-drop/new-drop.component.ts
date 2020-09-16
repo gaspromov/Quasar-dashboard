@@ -48,7 +48,6 @@ export class NewDropComponent implements OnInit {
       else
         this.error = e.error.message
     })
-    console.log(this.dropForm.value)
   }
 
 }

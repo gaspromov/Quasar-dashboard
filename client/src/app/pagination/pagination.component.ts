@@ -100,7 +100,6 @@ export class PaginationComponent implements OnChanges, OnInit, OnDestroy {
     items = this.filtering.transform(this.items, this.lifetime, this.renewal);
     items = this.sorting.transform(items, this.sort);
     items = this.searching.transform(items, this.search);
-    console.log(this.items)
     start = (this.currentPage-1) * this.onPage;
       
     if (this.currentPage !== this.countPages)

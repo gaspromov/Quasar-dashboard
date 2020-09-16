@@ -1,0 +1,11 @@
+.notifications{
+    display: grid;
+}
+
+.notification{
+    padding: 10px 15px;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: minmax(200px 300px) repeat(auto-fill, minmax(100px, auto));
+    
+}

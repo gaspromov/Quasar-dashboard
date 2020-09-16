@@ -45,7 +45,18 @@ export class AdminService {
     this.setHeader()
     return await this.http.post(`${this.url}/drops`, data, {headers: this.headers}).toPromise();
   }
+
+  async getNotifications(){
+    this.setHeader()
+    return await this.http.get(`${this.url}/notifications`, {headers: this.headers}).toPromise();
+  }
   
+  async deleteNotifications(id){
+    this.setHeader();
+    let opt = {headers: this.headers, body: {id: id}};
+    return await this.http.delete(`${this.url}/notifications`, opt).toPromise();
+  }
+
   setHeader(){
     let token = localStorage.getItem('accessToken')
     this.headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
