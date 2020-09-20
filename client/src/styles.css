@@ -259,10 +259,10 @@ a{
 }
 
 .simple-input button img{
-    transition: 0.2s;
+    transition: 0.25s;
 }
 .simple-input button:hover img, .simple-input button:active img{
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 

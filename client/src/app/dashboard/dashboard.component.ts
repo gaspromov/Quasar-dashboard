@@ -11,9 +11,13 @@ import { UsersService } from '../shared/users/users.service';
 export class DashboardComponent implements OnInit {
   userData: any = {};
   type: string;
+
+  typePopup: string = '';
   showPopup: boolean = false;
   headerPopup: string = '';
   messagePopup: string = '';
+
+  subscribe: boolean = true;
 
   constructor(
     private http: UsersService,
@@ -78,20 +82,36 @@ export class DashboardComponent implements OnInit {
 
   confirm(type: string){
     if (type=="unbind"){
+      this.typePopup = "unbind";
       this.headerPopup = "Отвязать ключ?"
       this.messagePopup = "Обязательно запишите куда-нибудь ключ!"
+      this.showPopup = true;
+    }
+    if (type=="unsubscribe" && this.subscribe == false){
+      this.typePopup = "unsubscribe";
+      this.headerPopup = "Отписаться?"
+      this.messagePopup = "По истечению даты действия подписки ключ будет удален навсегда!"
       this.showPopup = true;
     }
   }
 
   onConfirm(answere: boolean){
-    if (answere)
+    if (answere && this.typePopup == "unbind")
       this.unbind();
+    else if (answere && this.typePopup == "unsubscribe")
+      this.unsubscribe();
     else{
       this.showPopup = false;
-      this.headerPopup = ""
-      this.messagePopup = ""
+      this.typePopup = '';
+      this.subscribe = true;
+      this.headerPopup = "";
+      this.messagePopup = "";
     }
+  }
+
+  unsubscribe(){
+    this.onConfirm(false);
+    this.subscribe = false;
   }
 
 }

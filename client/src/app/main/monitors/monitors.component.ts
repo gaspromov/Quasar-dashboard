@@ -12,4 +12,8 @@ export class MonitorsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  hover(action: string){
+    console.log(action)
+  }
+
 }

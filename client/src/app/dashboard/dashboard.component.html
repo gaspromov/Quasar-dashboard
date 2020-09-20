@@ -13,11 +13,20 @@
                         <label> <img src="/assets/img/dashboard-icons/joing.svg">Joing</label>
                         {{userData.createdAt}}
                     </div>
+
                     <div class="subscribe row-2">
                         <label> <img src="/assets/img/dashboard-icons/subscribe.svg">Subscription</label>
-                        <input type="checkbox" name="" id="">
 
+                        <div class="light-style checkbox">
+                            OFF
+                            <label class="switch" id="theme">
+                                <input type="checkbox" [(ngModel)]="subscribe" (ngModelChange)="confirm('unsubscribe')">
+                                <span class="slider round"></span>
+                            </label>
+                            ON
+                        </div>
                     </div>
+
                     <div class="unbind"><button (click)="confirm('unbind')">Unbind</button></div>
 
                 </div>
