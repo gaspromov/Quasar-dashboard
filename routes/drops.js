@@ -39,6 +39,7 @@ router.get('/:password', authUser, async (req, res) => {
 		const drop = await Drop.findOne({
 			password: req.params.password,
 			status: 'active',
+			date: { $lt: Date.now() },
 		})
 		if (drop) {
 			return res.status(200).json(drop)
