@@ -44,9 +44,13 @@ header{
 
 
 .about .buy a{
-    display: block;
+    display: grid;
     padding: 9px 18px;
     border-radius: 25px;
+    width: 101.75px;
+    justify-items: center;
+    align-items: center;
+
     color: white;
     background-color: #000000;
     justify-self: start;

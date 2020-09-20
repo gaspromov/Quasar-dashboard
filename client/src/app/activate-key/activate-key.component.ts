@@ -10,7 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./activate-key.component.css']
 })
 export class ActivateKeyComponent implements OnInit {
-  key: string;
+  key: string = '';
   error: boolean = false;
 
   constructor(

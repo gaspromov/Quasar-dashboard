@@ -27,4 +27,8 @@ export class UsersService {
   async unbind(){
     return await this.http.delete(`${this.url}/users/license`).toPromise();
   }
+
+  async checkPassword(password: string){
+    return await this.http.get(`${this.url}/drops/${password}`).toPromise();
+  }
 }

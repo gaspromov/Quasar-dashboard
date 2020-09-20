@@ -7,7 +7,8 @@
                 лимитированных вещей
             </p>
             <div class="buy gradient">
-                <a class="btn-buy light-style">Sold out</a>
+                <a class="btn-buy light-style" *ngIf="!drop">Sold out</a>
+                <a class="btn-buy light-style" *ngIf="drop">Buy</a>
             </div>
         </div>
 

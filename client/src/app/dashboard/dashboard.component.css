@@ -118,6 +118,27 @@
 
 .other{
     display: grid;
+    color: black;
+    font-size: 9px;
+}
+
+.other .img{
+    display: grid;
+    justify-items: center;
+    width: 80px;
+    height: 80px;
+    
+    border-radius: 50%;
+    background-color: #E5E5E5;
+}
+
+.other .img img{
+    align-self: end;
+}
+
+.other .img span{
+    align-self: start;
+    text-align: center;
 }
 
 
