@@ -94,6 +94,33 @@ const start = async () => {
 		app.listen(PORT, () =>
 			console.log(`Server has been started on PORT ${PORT}`),
 		)
+
+		// const yandexCheckout = require('yandex-checkout')(
+		// 	'747566',
+		// 	'test_gqF_HQEr_88bQgWFo3PZVSoyb-ezL8tM-SIFFU9E7Rc',
+		// )
+		// const idempotenceKey = '02347fc4-a1f0-49db-807e-f0d67c2ed5a5'
+
+		// yandexCheckout
+		// 	.createPayment({
+		// 		payment_token:
+		// 			'eyJ0eXBlIjoiY2hlY2tvdXRfanNfYmFua19jYXJkIiwiZW5jcnlwdGVkIjoiMFk3Q3dVVXFVSUE0bXVUWW5EVXhBRG9PUFFCRHByQ3F6Y0cvcGw5SDFZV0xKejROaS9wVkZ0amhmT3N1b1NzVGp2cFJzYkRxSTdLWStYNjZjdW45STczTC8zQXFPOGVwV0dtSFEyV1pXR1lHM3pNdUxyNHp1WmJzMW85bDh5czdjT0ZuMEc5T3hma0kyNitQcXBuSGU3NGZwYzRXU1l2TUh4MFpyYVdRNW5UdFlDVWQyZz09IiwiaW5pdFZlY3RvciI6Ik50d0lpZVFFaG9Cb3FJRzFxT29yREE9PSIsImtleUlkIjoiT2pOQUJrL21Uam5kTGtWZlR1U1F0dz09In0=',
+		// 		amount: {
+		// 			value: '2.00',
+		// 			currency: 'RUB',
+		// 		},
+		// 		confirmation: {
+		// 			type: 'redirect',
+		// 			return_url: 'https://www.merchant-website.com/return_url',
+		// 		},
+		// 		description: 'Заказ №72',
+		// 		capture: false,
+		// 		save_payment_method: true,
+		// 	})
+		// 	.then(result => {
+		// 		console.log({ payment: result })
+		// 	})
+		// 	.catch(err => console.log(err))
 	} catch (e) {
 		// Error processing
 		console.log('Неизвестная ошибка', e.message)

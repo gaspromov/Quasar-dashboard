@@ -4,6 +4,7 @@ const { validationResult } = require('express-validator')
 const router = Router()
 
 const authAdmin = require('../middleware/auth.admin.middleware')
+const authUser = require('../middleware/auth.user.middleware')
 const Drop = require('../models/Drop')
 
 const { dropsValidators } = require('../utils/validators')
@@ -18,6 +19,7 @@ router.post('/', authAdmin, dropsValidators, async (req, res) => {
 			password,
 			date,
 			quantity,
+			status: 'active',
 		})
 		await drop.save()
 		return res.status(201).json({ message: 'Drop создан' })
@@ -29,6 +31,26 @@ router.post('/', authAdmin, dropsValidators, async (req, res) => {
 	}
 })
 
-
+router.get('/:password', authUser, async (req, res) => {
+	try {
+		if (req.user.license) {
+			return res.status(400).json({ message: 'У вас уже есть подписка' })
+		}
+		const drop = await Drop.findOne({
+			password: req.params.password,
+			status: 'active',
+		})
+		if (drop) {
+			return res.status(200).json(drop)
+		} else {
+			return res.status(404).json({ message: 'Drop не найден' })
+		}
+	} catch (e) {
+		return res.status(500).json({
+			message: 'Что-то пошло не так, попробуйте позже',
+			error: e.message,
+		})
+	}
+})
 
 module.exports = router

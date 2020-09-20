@@ -28,10 +28,11 @@ const strategy = new DiscordStrategy(
 		clientID: process.env.CLIENT_ID,
 		clientSecret: process.env.CLIENT_SECRET,
 		callbackURL: process.env.CLIENT_REDIRECT,
-		scope: ['identify'],
+		scope: ['identify', 'guilds', 'guilds.join'],
 	},
 	async (accessToken, refreshToken, profile, done) => {
-		try {
+    try {
+      console.log(profile)
 			const currentUser = await User.findOne({ discordId: profile.id })
 			if (currentUser) {
 				await currentUser.updateInfo()

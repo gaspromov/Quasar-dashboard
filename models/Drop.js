@@ -14,12 +14,11 @@ const schema = new Schema(
 			type: Number,
 			required: true,
 		},
-		participants: [
-			{
-				type: Types.ObjectId,
-				ref: 'User',
-			},
-		],
+		status: {
+			type: String,
+			required: true,
+			enum: ['active', 'finished'],
+		},
 	},
 	{ versionKey: false },
 )

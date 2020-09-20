@@ -104,27 +104,21 @@ router.delete('/license', authUser, async (req, res) => {
 
 router.post('/drop', authUser, async (req, res) => {
 	try {
+		if (req.user.license) {
+			return res.status(400).json({ message: 'У вас уже есть подписка' })
+		}
 		const { password } = req.body
-		const drop = await Drop.findOne({ password })
+		const drop = await Drop.findOne({ password, status: 'active' })
 
 		if (drop) {
-			if (!drop.participants.includes(req.user.id)) {
-				if (drop.date < new Date()) {
-					if (drop.participants.length < drop.quantity) {
-						drop.participants.push(req.user.id)
-						await drop.save()
-						return res.status(200).json({ message: 'Вы добавлены к drop' })
-					} else {
-						return res.status(200).json({ message: 'Нет мест' })
-					}
-				} else {
-					return res.status(200).json({ message: 'Еще рано' })
-				}
+			if (drop.date < new Date()) {
+				await drop.save()
+				return res.status(200).json({ message: 'Вы добавлены к drop' })
 			} else {
-				return res.status(200).json({ message: 'Вы уже в drop' })
+				return res.status(400).json({ message: 'Еще рано' })
 			}
 		} else {
-			return res.status(200).json({ message: 'Неверный пароль' })
+			return res.status(400).json({ message: 'Неверный пароль' })
 		}
 	} catch (e) {
 		return res.status(500).json({
