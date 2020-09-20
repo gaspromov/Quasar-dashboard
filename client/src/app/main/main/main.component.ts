@@ -17,6 +17,7 @@ export class MainComponent implements OnInit {
   async ngOnInit() {
     this.scroll();
     await this.getSuccesses();
+    this.makeValidURL();
   }
 
     scroll(){
@@ -43,6 +44,15 @@ export class MainComponent implements OnInit {
       console.log(this.successes)
     })
     .catch(e => console.log(e))
+  }
+
+  makeValidURL(){
+    if (this.successes != undefined){
+      for (let i = 0; i < this.successes.length; i++){
+        this.successes[i].image = 'http://localhost:5000' + this.successes[i].image;
+      }
+      this.successes.reverse()
+    }
   }
   
 

@@ -49,6 +49,11 @@ nav .link-dashboard a{
     padding: 8px 20px;
     border-radius: 25px;
     background-color: #0d1223;
+    transition: 0.2s;
+}
+
+nav .link-dashboard a:hover{
+    background-color: #142444;
 }
 
 .link-dashboard img{

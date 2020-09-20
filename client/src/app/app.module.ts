@@ -41,6 +41,10 @@ import { SortPipe } from './shared/pipes/sort/sort.pipe';
 import { FilterSortComponent } from './admin/filter-sort/filter-sort.component';
 import { NotificationsComponent } from './admin/notifications/notifications.component';
 import { NotifFilterComponent } from './admin/notif-filter/notif-filter.component';
+import { FooterComponent } from './main/footer/footer.component';
+import { SearchNotifPipe } from './shared/pipes/notifications/searchNotif/search-notif.pipe';
+import { FilterNotifPipe } from './shared/pipes/notifications/filterNotif/filter-notif.pipe';
+import { SortNotifPipe } from './shared/pipes/notifications/sortNotif/sort-notif.pipe'
 
 @NgModule({
   declarations: [
@@ -74,6 +78,10 @@ import { NotifFilterComponent } from './admin/notif-filter/notif-filter.componen
     FilterSortComponent,
     NotificationsComponent,
     NotifFilterComponent,
+    FooterComponent,
+    SearchNotifPipe,
+    FilterNotifPipe,
+    SortNotifPipe,
   ],
   imports: [
     BrowserModule,

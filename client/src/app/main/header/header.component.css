@@ -50,6 +50,11 @@ header{
     color: white;
     background-color: #000000;
     justify-self: start;
+    transition: 0.2s;
+}
+
+.about .buy a:hover{
+    background-color: #142444;
 }
 
 
@@ -132,6 +137,12 @@ header .transition{
     row-gap: 5px;
     font-size: 14px;
     color: white;
+
+    margin-bottom: 15px;
+}
+
+.firstMessage{
+    margin-top: 10px;
 }
 
 .phone-success .message .avatar{
@@ -148,6 +159,5 @@ header .transition{
 
 .phone-success .message .text{
     grid-column: 2/3;
-    align-self: end;
-    margin-bottom: 3px;
+    margin-top: 10px;
 }

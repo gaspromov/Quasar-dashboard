@@ -3,24 +3,23 @@
         <h2 class="nameOfDescript bold-style">Успехи</h2>
     </div>
 
-    <div class="blockOfSuccesses">
+    <div class="blockOfSuccesses standart-padding">
 
         <div class="perMonth regular-style">
-            <h3 class="month bold-style">Месяц</h3>
-            <div class="descript-success">
-                Текст <br> (описание дропов,<br> комментарии и т.д)
-            </div>
-            <div class="img-success">
-                <img src="/assets/img/example-success/success.jpg" alt="" class="img-success">
-            </div>
+            <h3 class="month bold-style">{{currentSuccess.date}}</h3>
+            <p class="descript-success">
+                {{currentSuccess.description}}
+            </p>
             <div class="otherMonth">
-                <span id="prev" class="prev">&lt;</span> <span>посмотри <br> другие месяцы</span> <span id="next" class="next">&gt;</span>
+                <span id="prev" class="prev pointer" (click)=changeCurrentSuccess(-1)>&lt;</span>
+                <span>посмотри <br> другие месяцы</span> 
+                <span id="next" class="next pointer" (click)=changeCurrentSuccess(1)>&gt;</span>
             </div>
         </div>
 
         <div class="gradient">
             <div class="photo-success">
-                <!-- <img [src]="image" alt=""> -->
+                <img [src]="currentSuccess.image">
             </div>
         </div>
     </div>

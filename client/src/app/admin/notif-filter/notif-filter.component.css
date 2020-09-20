@@ -1,0 +1,52 @@
+.filt-sort{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 30px;
+    align-items: center;
+}
+
+select{
+    background: none;
+    border-radius: 12px;
+    padding: 10px 0px;
+    color: white;
+    text-align-last: center;
+}
+
+select option{
+    color: black;
+}
+
+.status{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 25px;
+    font-size: 14px;
+}
+
+.status>div{
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+}
+
+.filt-sort> input{
+    justify-self: end;
+    align-self: stretch;
+    text-align: center;
+    border-radius: 12px;
+    padding: 10px 0px;
+    width: 200px;
+    background: none;
+    border: 1px solid white;
+    color: white;
+}
+
+input[type=checkbox]:checked{
+    background: none;
+    
+}
+
+label, select, option, input[type=checkbox]{
+    cursor: pointer;
+}

@@ -4,8 +4,6 @@
     background-image: url("/assets/img/background/successes.png");
     padding-top: 150px;
     color: white;
-    padding-right: 100px;
-    padding-left: 100px;
     padding-bottom: 50px;
     /* z-index: -1; */
 }
@@ -24,28 +22,31 @@
     padding: 30px 100px;
     background-color: #000000;
     display: grid;
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-rows: auto 1fr auto;
     grid-row-gap: 20px;
     text-align: center;
 }
 
 .perMonth .month{
     margin: 0px;
-
+    font-size: 24px;
 }
 
-.perMonth .img-success{
-    min-height: 200px;
-    width: 200px;
+.descript-success{
+    align-self: center;
+    width: 161px;
+    margin: 0px;
 }
 
-.perMonth .img-success img{
-    width: 100%;
-}
 
+.perMonth .otherMonth{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    align-items: center;
+}
 
 .gradient{
-    padding: 5px;
+    padding: 4px;
     border-radius: 10px;
     justify-items: stretch;
     align-items: stretch;
@@ -56,6 +57,10 @@
 .photo-success{
     background-color: #000000;
     border-radius: inherit;
+}
+
+.photo-success img{
+    width: 100%;
 }
 
 .transition{

@@ -1,0 +1,28 @@
+footer{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-top: 2px solid #d8d8d8;
+    background-color: black;
+    color: white;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: auto auto;
+    column-gap: 30px;
+    font-size: 12px;
+}
+
+.cactus-web{
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.cactus-web img{
+    width: 25px;
+}
+
+.pointer:hover{
+    text-decoration: underline;
+}
