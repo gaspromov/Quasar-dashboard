@@ -16,7 +16,7 @@ export class DropService {
     this.headers = new HttpHeaders();
   }
 
-  async postPaymentToken(paymentToken: string, key: string){
-    return await this.http.post(`${this.url}/payment`, { paymentToken: paymentToken, key: key }).toPromise();
+  async postPaymentToken(paymentToken: string, email: string, dropId: string, key: string){
+    return await this.http.post(`${this.url}/payment`, { paymentToken: paymentToken, dropId: dropId, key: key, email: email }).toPromise();
   }
 }

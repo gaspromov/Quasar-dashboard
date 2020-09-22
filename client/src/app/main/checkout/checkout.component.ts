@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DropService } from 'src/app/shared/drop/drop.service';
 declare const YandexCheckout:any;
 
@@ -13,6 +13,7 @@ export class CheckoutComponent implements OnInit {
   cardDate: string = '';
   checkout = YandexCheckout(747566);
   @Output() onCloseCheckout = new EventEmitter<boolean>();
+  @Input() dropId: string = '';
 
   constructor(
     private http: DropService
@@ -21,6 +22,7 @@ export class CheckoutComponent implements OnInit {
   ngOnInit() {
     let disabled = false;
     this.cardForm = new FormGroup({
+      email: new FormControl({ value: '', disabled: disabled }),
       number: new FormControl({ value: '', disabled: disabled }),
       month: new FormControl({ value: '', disabled: disabled }),
       year: new FormControl({ value: '', disabled: disabled }),
@@ -46,7 +48,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   async postPaymentToken(paymentToken: string){
-    await this.http.postPaymentToken(paymentToken, this.generatePassword())
+    await this.http.postPaymentToken(paymentToken, this.cardForm.value.email, this.dropId, this.generatePassword())
     .then(w => console.log(w))
     .catch(e => console.log(e))
   }

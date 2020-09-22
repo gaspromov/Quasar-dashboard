@@ -9,6 +9,7 @@ import { UsersService } from 'src/app/shared/users/users.service';
 export class MainComponent implements OnInit {
   anchors;
   successes;
+  dropId;
   checkout: boolean = false;
 
   constructor(
@@ -54,8 +55,10 @@ export class MainComponent implements OnInit {
     }
   }
   
-  onOpenCheckout(checkout: boolean){
-    this.checkout = checkout;
+  onOpenCheckout(checkout: any = {}){
+    console.log(checkout)
+    this.checkout = checkout.drop;
+    this.dropId = checkout.dropId;
   }
 
   onCloseCheckout(checkout: boolean){

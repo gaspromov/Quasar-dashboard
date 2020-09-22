@@ -8,12 +8,13 @@ import { UsersService } from 'src/app/shared/users/users.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
+export class HeaderComponent implements OnDestroy {
   params;
   subscribtion;
   drop: boolean = false;
+  dropId: string = "";
   @Input() successes: any = [];
-  @Output() onOpenCheckout = new EventEmitter<boolean>()
+  @Output() onOpenCheckout = new EventEmitter<{}>()
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,21 +27,16 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
         this.checkPassword(params.password);
     })
    }
-
-  ngOnInit() {
-  }
   
   ngOnDestroy(){
     this.subscribtion.unsubscribe();
   }
 
-  ngOnChanges(){
-  }
-
   async checkPassword(password: string){
     await this.http.checkPassword(password)
-    .then(w =>{
+    .then((w: string) =>{
       this.drop = true;
+      this.dropId = w;
     })
     .catch(e =>{
       console.log(e);
@@ -55,7 +51,7 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   openCheckout(){
-    this.onOpenCheckout.emit(true);
+    this.onOpenCheckout.emit({ drop: this.drop, dropId: this.dropId });
   }
 
 
