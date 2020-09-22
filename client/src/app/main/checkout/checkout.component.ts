@@ -10,6 +10,7 @@ declare const YandexCheckout:any;
 })
 export class CheckoutComponent implements OnInit {
   cardForm: FormGroup;
+  cardDate: string = '';
   checkout = YandexCheckout(747566);
   @Output() onCloseCheckout = new EventEmitter<boolean>();
 
@@ -28,8 +29,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   async purshase(){
-    this.cardForm.value.month = this.cardForm.value.year.slice(0,2)
-    this.cardForm.value.year = this.cardForm.value.year.slice(2,5)
+    this.cardForm.value.month = this.cardDate.slice(0,2)
+    this.cardForm.value.year = this.cardDate.slice(2,5)
     console.log(this.cardForm.value)
     await this.checkout.tokenize(this.cardForm.value)
     .then(async res => {

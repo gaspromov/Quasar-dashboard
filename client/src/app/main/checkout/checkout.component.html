@@ -2,10 +2,10 @@
 <form class="checkout" [formGroup]="cardForm" (ngSubmit)="purshase()">
     <h3 class="medium-style">Checkout</h3>
     <div class="inputs">
-        <input type="email" class="email" placeholder="Email" id="email">
+        <input placeholder="Email" autocomplete="off">
         <div class="card-info">
             <input type="text" class="firstInfo" placeholder="Номер карты" autocomplete="off" formControlName="number">
-            <input type="text" class="secondInfo" placeholder="MM/ГГ" autocomplete="off" formControlName="year">
+            <input type="text" class="secondInfo" placeholder="MM/ГГ" autocomplete="off" [(ngModel)]="cardDate" [ngModelOptions]="{standalone: true}">
             <input type="text" class="thirdInfo" placeholder="CVC" autocomplete="off" formControlName="cvc">
         </div>
     </div>
