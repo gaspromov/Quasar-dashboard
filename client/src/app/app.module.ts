@@ -19,7 +19,6 @@ import { SuccessesComponent } from './main/successes/successes.component';
 import { SocialComponent } from './main/social/social.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordPageComponent } from './password-page/password-page.component';
-import { WindowImagesComponent } from './window-images/window-images.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ActivateKeyComponent } from './activate-key/activate-key.component';
@@ -44,7 +43,8 @@ import { NotifFilterComponent } from './admin/notif-filter/notif-filter.componen
 import { FooterComponent } from './main/footer/footer.component';
 import { SearchNotifPipe } from './shared/pipes/notifications/searchNotif/search-notif.pipe';
 import { FilterNotifPipe } from './shared/pipes/notifications/filterNotif/filter-notif.pipe';
-import { SortNotifPipe } from './shared/pipes/notifications/sortNotif/sort-notif.pipe'
+import { SortNotifPipe } from './shared/pipes/notifications/sortNotif/sort-notif.pipe';
+import { CheckoutComponent } from './main/checkout/checkout.component'
 
 @NgModule({
   declarations: [
@@ -57,7 +57,6 @@ import { SortNotifPipe } from './shared/pipes/notifications/sortNotif/sort-notif
     SocialComponent,
     LoginComponent,
     PasswordPageComponent,
-    WindowImagesComponent,
     DashboardComponent,
     ActivateKeyComponent,
     CheckAccessComponent,
@@ -82,6 +81,7 @@ import { SortNotifPipe } from './shared/pipes/notifications/sortNotif/sort-notif
     SearchNotifPipe,
     FilterNotifPipe,
     SortNotifPipe,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

@@ -27,18 +27,17 @@ export class PasswordPageComponent implements OnInit {
       this.error = true;
       return;
     }
-    console.log(this.password)
     await this.http.checkPassword(this.password)
     .then(w => {
-      console.log(w);
       this.router.navigate(['/'], { queryParams: { password: this.password }});
     })
     .catch(e =>{
-      console.log(e);
       if (e.status == 401)
         this.auth.logoutCookie();
-      else 
+      else {
         this.error = true;
+        console.log(e);
+      }
     })
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
-// declare const YandexCheckout:any;
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +8,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  // checkout = YandexCheckout(747566);
   
 
   constructor(
@@ -18,16 +16,6 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.checkout.tokenize({
-    //     number: '5555555555554535',
-    //     cvc: '888',
-    //     month: '12',
-    //     year: '24'
-    // }).then(res => {
-    //     console.log('dd')
-    //     console.log(res)
-    // })
-    // .catch(e => {console.log(e)})
   }
 
 

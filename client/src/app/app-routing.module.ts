@@ -25,6 +25,7 @@ const routes: Routes = [
 
   // for all
   { path: '', component: MainComponent },
+  { path: 'checking-access', component: CheckAccessComponent},
 
   // no login
   { path: 'login', component: LoginComponent, canActivate: [IsLoginGuard] },

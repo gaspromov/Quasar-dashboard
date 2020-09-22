@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SearchNotifPipe implements PipeTransform {
 
   transform(arr: any = [], searchParam: string): unknown {
-    console.log(arr)
     
     if ( searchParam != null && searchParam !== '' && searchParam != undefined){
       let filter = arr.filter(

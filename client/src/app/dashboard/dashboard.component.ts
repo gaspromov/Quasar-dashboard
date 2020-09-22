@@ -52,6 +52,8 @@ export class DashboardComponent implements OnInit {
       userData.createdAt = this.makeDate(userData.createdAt);
       if (userData.expiresIn)
         userData.expiresIn = this.makeDate(userData.expiresIn)
+      else
+        userData.expiresIn = 'xx.xx.xxxx';
       this.type = userData.status;
       userData.status = userData.status.slice(0,1).toUpperCase() + userData.status.slice(1)
       this.userData = userData;

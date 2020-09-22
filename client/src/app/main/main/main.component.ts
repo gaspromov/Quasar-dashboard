@@ -9,6 +9,7 @@ import { UsersService } from 'src/app/shared/users/users.service';
 export class MainComponent implements OnInit {
   anchors;
   successes;
+  checkout: boolean = false;
 
   constructor(
     private http: UsersService,
@@ -39,9 +40,7 @@ export class MainComponent implements OnInit {
   async getSuccesses(){
     await this.http.getSuccesses()
     .then(w => {
-      console.log(w)
       this.successes = w;
-      console.log(this.successes)
     })
     .catch(e => console.log(e))
   }
@@ -55,6 +54,13 @@ export class MainComponent implements OnInit {
     }
   }
   
+  onOpenCheckout(checkout: boolean){
+    this.checkout = checkout;
+  }
+
+  onCloseCheckout(checkout: boolean){
+    this.checkout = checkout;
+  }
 
 
 }

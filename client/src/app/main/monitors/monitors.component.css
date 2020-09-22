@@ -60,5 +60,59 @@ p{
     display: grid;
     justify-items: center;
     align-items: center;
+    transition: 0.2s !important;
 }
 
+.minicircle{
+    position: absolute;
+    display: grid;
+    place-items: center;
+
+    width: 115px;
+    height: 115px;
+    background-color: #ffffff;
+    border-radius: 50%;
+
+    transition: 0.5s;
+    pointer-events: none;
+
+}
+
+.shopify, .ru{
+    transition: .4s;
+}
+
+.shopify .first-circle{
+    top: 0px;
+    left: 320px;
+}
+
+.shopify .second-circle{
+    top: 240px;
+    left: 240px;
+}
+
+.shopify .third-circle{
+    top: 320px;
+    left: 0px;
+}
+
+.ru .first-circle{
+    top: 0px;
+    right: 320px;
+}
+
+.ru .second-circle{
+    top: 170px;
+    right: 290px;
+}
+
+.ru .third-circle{
+    top: 290px;
+    right: 170px;
+}
+
+.ru .four-circle{
+    top: 320px;
+    right: 0px;
+}

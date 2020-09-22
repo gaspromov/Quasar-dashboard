@@ -1,4 +1,4 @@
-<header class="relative standart-padding" id="main">
+<header class="relative standart-padding hiddenAll" id="main" >
         <div class="about">
             <h1 class="name bold-style">Quasar Cook <hr></h1>
             <p class="descript light-style">
@@ -8,7 +8,7 @@
             </p>
             <div class="buy gradient">
                 <a class="btn-buy light-style" *ngIf="!drop">Sold out</a>
-                <a class="btn-buy light-style" *ngIf="drop">Buy</a>
+                <a class="btn-buy light-style" *ngIf="drop" (click)="openCheckout()">Buy</a>
             </div>
         </div>
 

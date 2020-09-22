@@ -44,16 +44,13 @@ export class NotificationsComponent implements OnInit {
     this.bind = params.bind;
     this.expired = params.expired;
     this.search = params.search;
-    console.log(this.sort)
     this.sort = params.sort;
-    console.log(this.sort)
     this.notifFilter = this.makePipes(this.notifications);
   }
 
   makePipes(arr: any = []){
     arr = this.searching.transform(arr, this.search);
     arr = this.sorting.transform(arr, this.sort);
-    console.log(arr)
     arr = this.filter.transform(arr, this.unbind, this.bind, this.expired);
     return arr;
   }
@@ -61,8 +58,8 @@ export class NotificationsComponent implements OnInit {
   async getNotifications(){
     this.spinner.show();
     await this.http.getNotifications()
-    .then(w => {
-      this.notifications = w;
+    .then((w: any = []) => {
+      this.notifications = w.reverse();
       this.notifFilter = this.makePipes(w);
       for (let i = 0; i < this.notifications.length; i++){
         let date = new Date(this.notifications[i].date);
@@ -104,9 +101,7 @@ export class NotificationsComponent implements OnInit {
   }
 
   changeOutputNotifications(items){
-    console.log(items)
     this.output = items;
-    if (items.length)
     this.cdr.detectChanges();
   }
 

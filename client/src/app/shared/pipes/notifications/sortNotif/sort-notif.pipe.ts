@@ -9,7 +9,6 @@ export class SortNotifPipe implements PipeTransform {
     
     function makeValidDate(ell: any = {}){
       let date = Number(ell.date1.slice(6, 10) + ell.date1.slice(3,5) + ell.date1.slice(0,2) + ell.time.slice(0, 2) + ell.time.slice(3,5) + ell.time.slice(6,8));
-      // console.log(ell,date)
       return date;
     }
 
@@ -35,7 +34,6 @@ export class SortNotifPipe implements PipeTransform {
           break;
       }
     }
-    console.log(arr)
     return arr;
   }
 

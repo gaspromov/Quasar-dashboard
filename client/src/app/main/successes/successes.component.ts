@@ -44,7 +44,6 @@ export class SuccessesComponent implements OnInit, OnChanges {
   }
 
   makeValidMonth(date: string){
-    console.log(date)
     let returnYear = `20${date.slice(2,5)}`;
     date = date.slice(0, 2);
     switch (date){

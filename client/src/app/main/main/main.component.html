@@ -1,6 +1,8 @@
 <app-navbar></app-navbar>
-<app-header [successes]="successes"></app-header>
+<app-checkout *ngIf="checkout" (onCloseCheckout)="onCloseCheckout($event)"></app-checkout>
+<app-header [successes]="successes" (onOpenCheckout)="onOpenCheckout($event)"></app-header>
 <app-monitors></app-monitors>
 <app-successes [successes]="successes"></app-successes>
 <app-social></app-social>
 <app-footer></app-footer>
+<!-- <div class="black-back"></div> -->

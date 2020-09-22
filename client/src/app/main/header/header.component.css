@@ -54,7 +54,7 @@ header{
     color: white;
     background-color: #000000;
     justify-self: start;
-    transition: 0.2s;
+    transition: 0.4s;
 }
 
 .about .buy a:hover{
@@ -103,7 +103,8 @@ header .phone-success img{
   
 .content-success::-webkit-scrollbar-thumb{
     border-width:1px 1px 1px 2px;
-    background-color: rgb(29, 29, 29);
+    background: none;
+    background-color: rgb(22, 22, 22);
     border-radius: 15px;
 }
   
@@ -112,11 +113,12 @@ header .phone-success img{
     border-color: #555;
     background-color: rgb(29, 29, 29);
 }
-  
-::-webkit-scrollbar-track:hover{
-    background-color: rgb(92, 92, 92);
+
+::-webkit-scrollbar-track{
+    border-width:0;
+    background: none;
 }
-  
+    
 
 header .transition{
     background-image: url("/assets/img/background/transition-main.png");
@@ -125,7 +127,7 @@ header .transition{
     background-repeat: no-repeat;
     background-position: center center;
     position: absolute;
-    bottom: -1px;
+    bottom: 0px;
     left: 0;
     height: 370px;
     pointer-events: none;

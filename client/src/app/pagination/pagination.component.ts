@@ -39,7 +39,7 @@ export class PaginationComponent implements OnChanges, OnInit, OnDestroy {
       this.subscription = this.activatedRoute.queryParams.subscribe( queryParams => {
         if (queryParams['page'] != undefined){
           this.pageLink = Number(queryParams['page']);
-          if (this.items.length != 0){
+          if (this.items.length != undefined){
             if ( this.pageLink == undefined){
               this.pageLink = 1;
             }
@@ -89,7 +89,7 @@ export class PaginationComponent implements OnChanges, OnInit, OnDestroy {
 
   setPage(page){
     this.currentPage = page;
-    this.setOutputItems()
+    this.setOutputItems();
     this.setLink(this.currentPage)
   }
 
