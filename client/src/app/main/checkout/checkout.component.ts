@@ -46,9 +46,24 @@ export class CheckoutComponent implements OnInit {
   }
 
   async postPaymentToken(paymentToken: string){
-    await this.http.postPaymentToken(paymentToken)
+    await this.http.postPaymentToken(paymentToken, this.generatePassword())
     .then(w => console.log(w))
     .catch(e => console.log(e))
+  }
+
+  generatePassword() {
+    let library = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPWRSTUVWXYZ0123456789"
+    let newPassword = "";
+    for (var i = 0; i < 16; i++) {
+      if (i == 4 || i == 8 || i == 12){
+        newPassword += '-';
+        newPassword += library[Math.floor(Math.random()*library.length)];
+      }
+      else{
+        newPassword += library[Math.floor(Math.random()*library.length)];
+      }
+    }
+    return newPassword;
   }
 
 //   {status: "success", data: {…}}
