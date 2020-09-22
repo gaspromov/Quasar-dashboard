@@ -23,9 +23,11 @@ const schema = new Schema(
 			},
 		},
 		user: {
-      type: Types.ObjectId,
-      ref: 'User'
+			type: Types.ObjectId,
+			ref: 'User',
 		},
+		paymentId: String,
+		card: Object,
 	},
 	{ versionKey: false },
 )

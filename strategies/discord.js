@@ -32,7 +32,6 @@ const strategy = new DiscordStrategy(
 	},
 	async (accessToken, refreshToken, profile, done) => {
     try {
-      console.log(profile)
 			const currentUser = await User.findOne({ discordId: profile.id })
 			if (currentUser) {
 				await currentUser.updateInfo()

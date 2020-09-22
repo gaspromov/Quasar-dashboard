@@ -19,12 +19,12 @@ const schema = new Schema(
 			required: true,
 			enum: ['active', 'finished'],
 		},
+    purchases: {
+      type: Number,
+      default: 0
+    },
 	},
 	{ versionKey: false },
 )
-
-// schema.pre('', function (next, docs) {
-//   console.log('12312313', docs)
-// })
 
 module.exports = model('Drop', schema)

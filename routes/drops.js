@@ -42,10 +42,22 @@ router.get('/:password', authUser, async (req, res) => {
 			date: { $lt: Date.now() },
 		})
 		if (drop) {
-			return res.status(200).json(drop)
+			return res.status(200).json(drop._id)
 		} else {
 			return res.status(404).json({ message: 'Drop не найден' })
 		}
+	} catch (e) {
+		return res.status(500).json({
+			message: 'Что-то пошло не так, попробуйте позже',
+			error: e.message,
+		})
+	}
+})
+
+router.get('/', authAdmin, async (req, res) => {
+	try {
+		const drops = await Drop.find()
+		return res.status(200).json(drops)
 	} catch (e) {
 		return res.status(500).json({
 			message: 'Что-то пошло не так, попробуйте позже',
