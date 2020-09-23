@@ -3,21 +3,19 @@ module.exports.checkout = require('yandex-checkout')(
 	process.env.SHOP_SECRET_KEY,
 )
 
-module.exports.payment = async (payment_token, value, description, key) => {
+module.exports.payment = async (value, description, key) => {
 	try {
 		return await this.checkout.createPayment({
-			payment_token,
 			amount: {
 				value,
 				currency: 'RUB',
 			},
 			confirmation: {
-				type: 'redirect',
-				return_url: process.env.SHOP_REDIRECT,
+				type: 'embedded',
 			},
 			description,
 			save_payment_method: true,
-			capture: true,
+			capture: false,
 			metadata: {
 				key,
 			},
