@@ -88,8 +88,9 @@ export class DashboardComponent implements OnInit {
       this.headerPopup = "Отвязать ключ?"
       this.messagePopup = "Обязательно запишите куда-нибудь ключ!"
       this.showPopup = true;
-    }
-    if (type=="unsubscribe" && this.subscribe == false){
+    }else
+    if (type=="unsubscribe" && this.subscribe == false && this.type != 'lifetime'){
+      console.log('hui')
       this.typePopup = "unsubscribe";
       this.headerPopup = "Отписаться?"
       this.messagePopup = "По истечению даты действия подписки ключ будет удален навсегда!"

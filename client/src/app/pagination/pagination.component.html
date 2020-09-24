@@ -1,6 +1,7 @@
 <div class="pagination font-20-16" *ngIf="countPages != 0">
     <span class="prev pointer" id="prev" (click)="changePage(2)">&lt;</span>
     <div class="pages">
+    <!-- <div class="pages" *ngIf="3 > countPages "> -->
         <span class="page pointer" *ngFor="let page of arrayOfPages" [ngClass]="{'active': currentPage == page}" (click)="setLink(page)">
             <a >{{page}}</a>
         </span>

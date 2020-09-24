@@ -280,7 +280,7 @@ app-pop-up{
     z-index: 20;
 }
 
-app-checkout{
+app-checkout, app-checkout-widget{
     position: fixed;
     top: 0px;
     width: 100%;

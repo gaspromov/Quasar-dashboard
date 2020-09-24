@@ -14,13 +14,13 @@
                         {{userData.createdAt}}
                     </div>
 
-                    <div class="subscribe row-2">
+                    <div class="subscribe row-2" [ngClass]="{ 'disabled': type == 'lifetime' }">
                         <label> <img src="/assets/img/dashboard-icons/subscribe.svg">Subscription</label>
 
                         <div class="light-style checkbox">
                             OFF
                             <label class="switch" id="theme">
-                                <input type="checkbox" [(ngModel)]="subscribe" (ngModelChange)="confirm('unsubscribe')">
+                                <input type="checkbox" [(ngModel)]="subscribe" (ngModelChange)="confirm('unsubscribe')" [disabled]="type == 'lifetime'">
                                 <span class="slider round"></span>
                             </label>
                             ON
@@ -35,11 +35,11 @@
                         <label> <img src="/assets/img/dashboard-icons/type-subscribe.svg">Type</label>
                         {{userData.status}}
                     </div>
-                    <div class="renewal row-2">
+                    <div class="renewal row-2"  [ngClass]="{ 'disabled': type == 'lifetime' }">
                         <label> <img src="/assets/img/dashboard-icons/renewal.svg">Renew</label>
                         {{userData.expiresIn}}
                     </div>
-                    <div class="payment">
+                    <div class="payment" [ngClass]="{ 'disabled': type == 'lifetime' }">
                         <label> <img src="/assets/img/dashboard-icons/payment.svg">Payment</label>
                         <div class="div"></div>
                     </div>

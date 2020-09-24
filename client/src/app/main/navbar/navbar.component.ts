@@ -9,7 +9,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   
-
   constructor(
     private http: AuthService,
     private activatedRoute: ActivatedRoute,

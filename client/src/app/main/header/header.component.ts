@@ -43,7 +43,7 @@ export class HeaderComponent implements OnDestroy {
       if (e.status == 401)
         this.auth.logoutCookie();
       else if (e.error.message == 'У вас уже есть подписка')
-        this.router.navigate(['/dashboard']);
+        this.drop = false;
       else 
         this.drop = false;
 

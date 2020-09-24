@@ -44,7 +44,8 @@ import { FooterComponent } from './main/footer/footer.component';
 import { SearchNotifPipe } from './shared/pipes/notifications/searchNotif/search-notif.pipe';
 import { FilterNotifPipe } from './shared/pipes/notifications/filterNotif/filter-notif.pipe';
 import { SortNotifPipe } from './shared/pipes/notifications/sortNotif/sort-notif.pipe';
-import { CheckoutComponent } from './main/checkout/checkout.component'
+import { CheckoutComponent } from './main/checkout/checkout.component';
+import { CheckoutWidgetComponent } from './main/checkout-widget/checkout-widget.component'
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { CheckoutComponent } from './main/checkout/checkout.component'
     FilterNotifPipe,
     SortNotifPipe,
     CheckoutComponent,
+    CheckoutWidgetComponent,
   ],
   imports: [
     BrowserModule,

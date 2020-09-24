@@ -19,4 +19,8 @@ export class DropService {
   async postPaymentToken(paymentToken: string, email: string, dropId: string, key: string){
     return await this.http.post(`${this.url}/payment`, { paymentToken: paymentToken, dropId: dropId, key: key, email: email }).toPromise();
   }
+
+  async getWidgetToken(){
+    return await this.http.post(`${this.url}/payment`, {}).toPromise();
+  }
 }

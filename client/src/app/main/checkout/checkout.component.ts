@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DropService } from 'src/app/shared/drop/drop.service';
-declare const YandexCheckout:any;
+// declare const YandexCheckout:any;
 
 @Component({
   selector: 'app-checkout',
@@ -11,12 +12,13 @@ declare const YandexCheckout:any;
 export class CheckoutComponent implements OnInit {
   cardForm: FormGroup;
   cardDate: string = '';
-  checkout = YandexCheckout(747566);
+  // checkout = YandexCheckout(747566);
   @Output() onCloseCheckout = new EventEmitter<boolean>();
   @Input() dropId: string = '';
 
   constructor(
-    private http: DropService
+    private http: DropService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -31,16 +33,16 @@ export class CheckoutComponent implements OnInit {
   }
 
   async purshase(){
-    this.cardForm.value.month = this.cardDate.slice(0,2)
-    this.cardForm.value.year = this.cardDate.slice(2,5)
-    console.log(this.cardForm.value)
-    await this.checkout.tokenize(this.cardForm.value)
-    .then(async res => {
-        console.log('dd')
-        if (res.status  == 'success')
-          await this.postPaymentToken(res.data.response.paymentToken);
-    })
-    .catch(e => {console.log(e)})
+    // this.cardForm.value.month = this.cardDate.slice(0,2)
+    // this.cardForm.value.year = this.cardDate.slice(2,5)
+    // console.log(this.cardForm.value)
+    // await this.checkout.tokenize(this.cardForm.value)
+    // .then(async res => {
+    //     console.log('dd')
+    //     if (res.status  == 'success')
+    //       await this.postPaymentToken(res.data.response.paymentToken);
+    // })
+    // .catch(e => {console.log(e)})
   }
 
   closeCheckout(checkout: boolean){
@@ -49,7 +51,10 @@ export class CheckoutComponent implements OnInit {
 
   async postPaymentToken(paymentToken: string){
     await this.http.postPaymentToken(paymentToken, this.cardForm.value.email, this.dropId, this.generatePassword())
-    .then(w => console.log(w))
+    .then(w => {
+      localStorage.setItem('member', 'true');
+      this.router.navigate(['/dashboard']);
+    })
     .catch(e => console.log(e))
   }
 
