@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DropService } from 'src/app/shared/drop/drop.service';
 declare const YandexCheckout:any;
 
@@ -10,6 +10,7 @@ declare const YandexCheckout:any;
 export class CheckoutWidgetComponent implements OnInit {
   checkout;
   token: string;
+  @Input() dropId: string = '';
   @Output() onCloseCheckout = new EventEmitter<boolean>();
 
   constructor(
@@ -20,7 +21,7 @@ export class CheckoutWidgetComponent implements OnInit {
     await this.getToken();
     this.checkout = new YandexCheckout({
       confirmation_token: this.token, //Токен, который перед проведением оплаты нужно получить от Яндекс.Кассы
-      return_url: 'http://localhost:4200/login', //Ссылка на страницу завершения оплаты
+      return_url: 'http://localhost:4200', //Ссылка на страницу завершения оплаты
 
       customization: {
         //Настройка цветовой схемы, минимум один параметр, значения цветов в HEX
@@ -34,7 +35,7 @@ export class CheckoutWidgetComponent implements OnInit {
       },
 
       error_callback(error) {
-        console.log(error);
+        window.location.href = 'http://localhost:4200';
       }
     });
     this.checkout.render('payment-form');
@@ -42,7 +43,7 @@ export class CheckoutWidgetComponent implements OnInit {
   }
 
   async getToken(){
-    await this.http.getWidgetToken()
+    await this.http.getWidgetToken(this.generatePassword() ,this.dropId)
     .then((w:any = {}) => {
       this.token = w.confirmationToken;
     })
@@ -54,6 +55,21 @@ export class CheckoutWidgetComponent implements OnInit {
   
   closeCheckout(checkout: boolean){
     this.onCloseCheckout.emit(checkout);
+  }
+
+  generatePassword() {
+    let library = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPWRSTUVWXYZ0123456789"
+    let newPassword = "";
+    for (var i = 0; i < 16; i++) {
+      if (i == 4 || i == 8 || i == 12){
+        newPassword += '-';
+        newPassword += library[Math.floor(Math.random()*library.length)];
+      }
+      else{
+        newPassword += library[Math.floor(Math.random()*library.length)];
+      }
+    }
+    return newPassword;
   }
 
 }
