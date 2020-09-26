@@ -1,3 +1,8 @@
+.plug{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
 .home{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -22,8 +27,11 @@
     border: 2px solid #E5E5E5;
     border-radius: 30px;
     color: white;
+    transition: 0.4s;
 }
-
+.admin-button:hover{
+    background-color: #0F1D38;
+}
 .action > .admin-button{
     padding-right: 42px;
 }
@@ -70,4 +78,19 @@
 
 .close-modal{
     justify-self: end;
+}
+
+.notifications span{
+    display: grid;
+    place-items: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid rgb(255, 187, 0);
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    font-size: 12px;
+    color: rgb(255, 187, 0);
+    font-weight: 700;
 }

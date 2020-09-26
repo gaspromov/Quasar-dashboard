@@ -1,24 +1,29 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/shared/auth/auth.service';
-import { UsersService } from 'src/app/shared/users/users.service';
+import AOS from 'aos';
 
 @Component({
   selector: 'app-successes',
   templateUrl: './successes.component.html',
   styleUrls: ['./successes.component.css']
 })
-export class SuccessesComponent implements OnInit, OnChanges {
+export class SuccessesComponent implements OnChanges, OnInit {
   @Input() successes: any = []
   currentSuccess: any = {};
   numberSuccess;
 
   
-
-  constructor(
-    private http: UsersService,
-  ) { }
-
-  ngOnInit() {
+  ngOnInit(){
+    AOS.init({
+      // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+      offset: 50, // offset (in px) from the original trigger point
+      delay: 50, // values from 0 to 3000, with step 50ms
+      duration: 1000, // values from 0 to 3000, with step 50ms
+      easing: 'ease', // default easing for AOS animations
+      once: true, // whether animation should happen only once - while scrolling down
+      mirror: false, // whether elements should animate out while scrolling past them
+      anchorPlacement: 'top-top', // defines which position of the element regarding to window should trigger the animation
+    
+    });
   }
   
   ngOnChanges(){

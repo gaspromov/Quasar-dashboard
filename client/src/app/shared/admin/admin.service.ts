@@ -57,6 +57,11 @@ export class AdminService {
     return await this.http.delete(`${this.url}/notifications`, opt).toPromise();
   }
 
+  async getDrops(){
+    this.setHeader()
+    return await this.http.get(`${this.url}/drops`, {headers: this.headers}).toPromise();
+  }
+
   setHeader(){
     let token = localStorage.getItem('accessToken')
     this.headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)

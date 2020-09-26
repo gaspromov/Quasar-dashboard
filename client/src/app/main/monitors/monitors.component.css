@@ -4,6 +4,7 @@
     padding-top: 10px;
     background-color: #fff;
     padding-bottom: 4px;
+    z-index: 11;
 }
 
 .descript-block{
@@ -27,7 +28,12 @@ p{
 .details{
     display: grid;
     grid-template-columns: auto 1fr auto;
+    column-gap: 20px;
+    z-index: 13;
+
 }
+
+
 
 .gradient-circle{
     display: grid;
@@ -58,9 +64,25 @@ p{
 
 .details .point-img{
     display: grid;
-    justify-items: center;
-    align-items: center;
-    transition: 0.2s !important;
+    grid-template-columns: 1fr auto 1fr;
+    column-gap: 5px;
+}
+
+.point-img span{
+    margin-top: 50px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+.point-img img:first-child{
+    width: 100%;
+    margin-top: 60px;
+    max-height: 110px;
+}
+.point-img img:last-child{
+    width: 100%;
+    margin-top: 45px;
+    max-height: 110px;
 }
 
 .minicircle{
@@ -73,13 +95,27 @@ p{
     background-color: #ffffff;
     border-radius: 50%;
 
+    padding: 20px 20px;
+
     transition: 0.5s;
     pointer-events: none;
 
 }
 
+.brandshop, .sneakerhead{
+    width: 50px;
+}
+
+.tsum, .belief{
+    height: 40px;
+}
+
 .shopify, .ru{
-    transition: .4s;
+    transition: .6s;
+}
+
+.dsm img{
+    height: 100%;
 }
 
 .shopify .first-circle{
@@ -116,3 +152,27 @@ p{
     top: 320px;
     right: 0px;
 }
+
+.sub-details{
+    padding: 0px 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    column-gap: 5px;
+}
+
+.sub-details .sub-circle{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    background-color: #FFFFFF;
+    display: grid;
+    place-items: center;
+}
+
+.sub-details .sub-circle img, .sub-details .sub-circle svg{
+    width: 100%;
+}
+.sub-details .sub-circle{transition: .8s; }
+.sub-details .sub-circle:hover{filter: invert(100%);}

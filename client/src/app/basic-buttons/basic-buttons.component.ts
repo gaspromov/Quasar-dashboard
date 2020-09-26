@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthService } from '../shared/auth/auth.service';
 import { AdminAuthService } from '../shared/admin-auth/admin-auth.service';
 
@@ -7,7 +7,7 @@ import { AdminAuthService } from '../shared/admin-auth/admin-auth.service';
   templateUrl: './basic-buttons.component.html',
   styleUrls: ['./basic-buttons.component.css']
 })
-export class BasicButtonsComponent implements OnInit {
+export class BasicButtonsComponent {
   @Input() isAdmin: boolean = false;
 
   constructor(
@@ -15,8 +15,6 @@ export class BasicButtonsComponent implements OnInit {
     private adminAuth: AdminAuthService,
   ) { }
 
-  ngOnInit(): void {
-  }
 
   async logout(){
     if (this.isAdmin)

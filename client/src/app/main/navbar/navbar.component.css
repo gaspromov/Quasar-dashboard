@@ -13,7 +13,7 @@ nav>*{
     margin: 1px;
 }
 
-nav>img{
+nav>svg, nav>img{
     width: 50px;
 }
 

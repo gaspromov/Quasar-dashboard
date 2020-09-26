@@ -1,9 +1,9 @@
 <div class="home">
     <div class="links">
         <button class="admin-button" routerLink="/admin-panel/members">Members</button>
-        <button class="admin-button">Drops</button>
+        <button class="admin-button" routerLink="/admin-panel/drops">Drops</button>
         <button class="admin-button">Last payments</button>
-        <button class="admin-button" routerLink="/admin-panel/notifications">Notifications</button>
+        <button class="admin-button notifications" routerLink="/admin-panel/notifications">Notifications <span *ngIf="notifications"> {{notifications.length}}</span></button>
     </div>
     
     <div class="action">
@@ -17,6 +17,7 @@
 </div>
 
 <div class="artboard" *ngIf="modal!=0">
+    <div class="plug" (click)="hideModal()"></div>
     <div class="modal" (click)="showModal(modal)">
         <span (click)="hideModal()" class="danger-message pointer close-modal">Закрыть</span>
         <app-new-drop *ngIf="modal==1"></app-new-drop>

@@ -1,5 +1,5 @@
 <header class="relative standart-padding hiddenAll" id="main" >
-        <div class="about">
+        <div class="about" data-aos="fade-right">
             <h1 class="name bold-style">Quasar Cook <hr></h1>
             <p class="descript light-style">
                 твой лучший помощник <br>
@@ -16,29 +16,9 @@
         
     </div>
     
-    <div class="phone-success">
-        <img src="/assets/img/background/phone-success.png" alt="">
+    <div class="phone-success" >
+        <img src="/assets/img/background/phone-success.png" alt="phone" >
         <div class="content-success"> 
-            <div class="message" *ngFor="let message of successes; let index = index" [ngClass]="{'firstMessage': index==0}">
-                <img src="/assets/img/logo/quasar.svg" class="avatar">
-                <div class="text">{{message.description}}</div>
-                <img [src]="message.image" class="collage">
-            </div>
-            <div class="message" *ngFor="let message of successes; let index = index" [ngClass]="{'firstMessage': index==0}">
-                <img src="/assets/img/logo/quasar.svg" class="avatar">
-                <div class="text">{{message.description}}</div>
-                <img [src]="message.image" class="collage">
-            </div>
-            <div class="message" *ngFor="let message of successes; let index = index" [ngClass]="{'firstMessage': index==0}">
-                <img src="/assets/img/logo/quasar.svg" class="avatar">
-                <div class="text">{{message.description}}</div>
-                <img [src]="message.image" class="collage">
-            </div>
-            <div class="message" *ngFor="let message of successes; let index = index" [ngClass]="{'firstMessage': index==0}">
-                <img src="/assets/img/logo/quasar.svg" class="avatar">
-                <div class="text">{{message.description}}</div>
-                <img [src]="message.image" class="collage">
-            </div>
             <div class="message" *ngFor="let message of successes; let index = index" [ngClass]="{'firstMessage': index==0}">
                 <img src="/assets/img/logo/quasar.svg" class="avatar">
                 <div class="text">{{message.description}}</div>

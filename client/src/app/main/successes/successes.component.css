@@ -74,6 +74,7 @@
     /* bottom: -1px;
     
     left: 0; */
+    top: -1px;
     height: 370px;
     pointer-events: none;
     width: 100%;

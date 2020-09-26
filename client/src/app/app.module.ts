@@ -45,7 +45,8 @@ import { SearchNotifPipe } from './shared/pipes/notifications/searchNotif/search
 import { FilterNotifPipe } from './shared/pipes/notifications/filterNotif/filter-notif.pipe';
 import { SortNotifPipe } from './shared/pipes/notifications/sortNotif/sort-notif.pipe';
 import { CheckoutComponent } from './main/checkout/checkout.component';
-import { CheckoutWidgetComponent } from './main/checkout-widget/checkout-widget.component'
+import { CheckoutWidgetComponent } from './main/checkout-widget/checkout-widget.component';
+import { DropsComponent } from './admin/drops/drops.component'
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { CheckoutWidgetComponent } from './main/checkout-widget/checkout-widget.
     SortNotifPipe,
     CheckoutComponent,
     CheckoutWidgetComponent,
+    DropsComponent,
   ],
   imports: [
     BrowserModule,

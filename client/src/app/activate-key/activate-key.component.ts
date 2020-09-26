@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UsersService } from '../shared/users/users.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth/auth.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-activate-key',
   templateUrl: './activate-key.component.html',
   styleUrls: ['./activate-key.component.css']
 })
-export class ActivateKeyComponent implements OnInit {
+export class ActivateKeyComponent{
   key: string = '';
   error: boolean = false;
 
@@ -18,9 +17,6 @@ export class ActivateKeyComponent implements OnInit {
     private router: Router,
     private auth: AuthService,
   ) { }
-
-  async ngOnInit() {
-  }
 
   async bind(){
     if (this.key.length < 16){

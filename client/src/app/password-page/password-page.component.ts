@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth/auth.service';
 import { UsersService } from '../shared/users/users.service';
@@ -8,7 +8,7 @@ import { UsersService } from '../shared/users/users.service';
   templateUrl: './password-page.component.html',
   styleUrls: ['./password-page.component.css']
 })
-export class PasswordPageComponent implements OnInit {
+export class PasswordPageComponent{
   password: string = '';
   error: boolean = false;
 
@@ -17,9 +17,6 @@ export class PasswordPageComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
   ) { }
-
-  async ngOnInit() {
-  }
 
   async checkPassword(){
     this.error = false;
