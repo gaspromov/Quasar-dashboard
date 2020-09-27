@@ -11,7 +11,8 @@ const schema = new Schema(
 		username: String,
 		discriminator: String,
 		fullName: String,
-		avatar: String,
+    avatar: String,
+    email: String,
 		license: {
 			type: Types.ObjectId,
 			ref: 'License',
@@ -59,6 +60,7 @@ schema.methods.updateInfo = async function () {
 		const { data } = await axios(config)
 		this.discordId = data.id
 		this.username = data.username
+		this.email = data.email
 		this.discriminator = data.discriminator
 		this.fullName = `${data.username}#${data.discriminator}`
 		if (data.avatar) {

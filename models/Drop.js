@@ -19,10 +19,19 @@ const schema = new Schema(
 			required: true,
 			enum: ['active', 'finished'],
 		},
-    purchases: {
-      type: Number,
-      default: 0
-    },
+		idempotences: [
+			{
+				key: {
+					type: String,
+					required: true,
+				},
+				status: {
+					type: String,
+					enum: ['active', 'finished'],
+					required: true,
+				},
+			},
+		],
 	},
 	{ versionKey: false },
 )

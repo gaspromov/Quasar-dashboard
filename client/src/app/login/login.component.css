@@ -1,7 +1,7 @@
 .login-window{
     width: 30%;
     height: 50%;
-    
+
     display: grid;
     grid-template-rows: 1fr auto;
     grid-row-gap: 20%;

@@ -2,6 +2,7 @@ const { Router } = require('express')
 const { validationResult } = require('express-validator')
 
 const router = Router()
+const { v4: uuidv4 } = require('uuid')
 
 const authAdmin = require('../middleware/auth.admin.middleware')
 const authUser = require('../middleware/auth.user.middleware')
@@ -15,11 +16,16 @@ router.post('/', authAdmin, dropsValidators, async (req, res) => {
 		if (!errors.isEmpty())
 			return res.status(400).json({ message: errors.array()[0].msg })
 		const { password, date, quantity } = req.body
+		const idempotences = []
+		for (let i = 0; i < quantity; i++) {
+			idempotences.push({ key: uuidv4(), status: 'active' })
+		}
 		const drop = new Drop({
 			password,
 			date,
 			quantity,
 			status: 'active',
+			idempotences,
 		})
 		await drop.save()
 		return res.status(201).json({ message: 'Drop создан' })

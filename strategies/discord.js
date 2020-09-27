@@ -15,8 +15,8 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
 	User.findById(id, async (err, user) => {
-    if (!err) {
-      await user.checkLicense()
+		if (!err) {
+			await user.checkLicense()
 			await user.updateInfo()
 			done(null, user)
 		}
@@ -31,7 +31,7 @@ const strategy = new DiscordStrategy(
 		scope: ['identify', 'guilds', 'guilds.join'],
 	},
 	async (accessToken, refreshToken, profile, done) => {
-    try {
+		try {
 			const currentUser = await User.findOne({ discordId: profile.id })
 			if (currentUser) {
 				await currentUser.updateInfo()
@@ -51,6 +51,7 @@ const strategy = new DiscordStrategy(
 					discriminator: profile.discriminator,
 					fullName: `${profile.username}#${profile.discriminator}`,
 					avatar,
+					email: profile.email,
 				})
 				await newUser.save()
 				await newUser.updateInfo()
