@@ -3,7 +3,6 @@
     grid-row-gap: 70px;
     padding-top: 10px;
     background-color: #fff;
-    padding-bottom: 4px;
     z-index: 11;
 }
 
@@ -174,5 +173,11 @@ p{
 .sub-details .sub-circle img, .sub-details .sub-circle svg{
     width: 100%;
 }
+
+.sub-details .gradient-circle{
+    margin: 2px;
+}
+
+.svd>div{padding: 20px !important}
 .sub-details .sub-circle{transition: .8s; }
 .sub-details .sub-circle:hover{filter: invert(100%);}

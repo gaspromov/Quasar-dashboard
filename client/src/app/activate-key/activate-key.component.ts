@@ -21,6 +21,9 @@ export class ActivateKeyComponent{
   async bind(){
     if (this.key.length < 16){
       this.error = true;
+      setTimeout(() => {
+        this.error = false;
+      }, 1000);
       return;
     }
     this.error = false;
@@ -32,8 +35,13 @@ export class ActivateKeyComponent{
     .catch(e => {
       if (e.status == 401)
         this.auth.logoutCookie();
-      else 
+      else{
         this.error = true;
+        setTimeout(() => {
+          this.error = false;
+        }, 1000);
+      }
+        
     })
     
   }

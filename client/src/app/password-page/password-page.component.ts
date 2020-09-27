@@ -22,6 +22,9 @@ export class PasswordPageComponent{
     this.error = false;
     if (this.password == ''){
       this.error = true;
+      setTimeout(() => {
+        this.error = false;
+      }, 1000);
       return;
     }
     await this.http.checkPassword(this.password)
@@ -33,7 +36,9 @@ export class PasswordPageComponent{
         this.auth.logoutCookie();
       else {
         this.error = true;
-        console.log(e);
+        setTimeout(() => {
+          this.error = false;
+        }, 1000);
       }
     })
   }

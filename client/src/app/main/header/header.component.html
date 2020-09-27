@@ -7,7 +7,7 @@
                 лимитированных вещей
             </p>
             <div class="buy gradient">
-                <a class="btn-buy light-style" *ngIf="!drop">Sold out</a>
+                <a class="btn-buy light-style" routerLink="/password" *ngIf="!drop">Sold out</a>
                 <a class="btn-buy light-style" *ngIf="drop" (click)="openCheckout()">Buy</a>
             </div>
         </div>

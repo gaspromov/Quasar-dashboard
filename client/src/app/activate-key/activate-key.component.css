@@ -22,6 +22,10 @@
     border-color: red;
 }
 
+.simple-input, button{
+    transition: .4s !important;
+}
+
 /* .key-input input{
 } */
 

@@ -23,7 +23,7 @@ header{
     margin: 0px;
     display: grid;
     grid-template-columns: 1fr auto;
-    column-gap: 15px;
+    column-gap: 30px;
 }
 
 .about .name>hr{
@@ -31,9 +31,11 @@ header{
     border: 1px solid white;
     align-self: center;
     background-color: white;
-    width: 40px;
+    width: 70px;
     margin: 0px;
     padding: 0px;
+    margin-top: 10px;
+
 }
 
 .about .descript{
@@ -55,6 +57,8 @@ header{
     background-color: #000000;
     justify-self: start;
     transition: 0.4s;
+
+    font-size: 12pt;
 }
 
 .about .buy a:hover{

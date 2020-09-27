@@ -1,9 +1,9 @@
 .basic-buttons:first-child{
-    top: 3%;
+    top: 6% ;
     left: 9%;
 }
 .basic-buttons:nth-child(2){
-    top: 3%;
+    top: 6%;
     right: 9%;
 }
 
@@ -130,6 +130,15 @@
     
     border-radius: 50%;
     background-color: #E5E5E5;
+    transition: .4s;
+}
+
+.other .img:hover{
+    background-color: #BABABA;
+}
+
+.other .img:first-child img{
+    margin-left: 5px;
 }
 
 .other .img img{

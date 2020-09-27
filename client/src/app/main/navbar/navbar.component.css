@@ -46,10 +46,11 @@ a{
 
 
 nav .link-dashboard a{
-    padding: 8px 20px;
+    padding: 8px 25px;
     border-radius: 25px;
     background-color: #0d1223;
     transition: 0.4s;
+    font-size: 12pt;
 }
 
 nav .link-dashboard a:hover{
