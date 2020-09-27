@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-panel',
@@ -9,8 +10,10 @@ export class AdminPanelComponent {
   password: string = "";
   error: string;
   message: string;
+  viewChanging: boolean = false;
 
-
-
+  changingPassword(viewing){
+    this.viewChanging = viewing;
+  }
   
 }

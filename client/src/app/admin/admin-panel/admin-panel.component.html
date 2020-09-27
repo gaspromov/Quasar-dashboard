@@ -4,11 +4,12 @@
 
             <div class="discord-avatar" id="filter">
                 <img routerLink="home" src="/assets/img/logo/quasar.svg" class="pointer logo" > 
-                <app-basic-buttons [isAdmin]="true"></app-basic-buttons>
+                <app-basic-buttons [isAdmin]="true" (changingPassword)="changingPassword($event)"></app-basic-buttons>
             </div>
 
         <router-outlet></router-outlet>
 
+        
     </div>
 
 </div>

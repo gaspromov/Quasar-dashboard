@@ -1,19 +1,37 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { AuthService } from '../shared/auth/auth.service';
 import { AdminAuthService } from '../shared/admin-auth/admin-auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-basic-buttons',
   templateUrl: './basic-buttons.component.html',
   styleUrls: ['./basic-buttons.component.css']
 })
-export class BasicButtonsComponent {
+export class BasicButtonsComponent implements OnDestroy {
   @Input() isAdmin: boolean = false;
+  viewChanging: boolean = false;
+  @Output() changingPassword = new EventEmitter<boolean>();
+  subscribtion;
+
 
   constructor(
     private auth: AuthService,
+    private router: Router,
     private adminAuth: AdminAuthService,
-  ) { }
+  ) { 
+    this.subscribtion = this.router.events.subscribe((event: any = {}) => 
+      {
+        if (event.url == '/admin-panel/home')
+          this.viewChanging = true;
+        else
+          this.viewChanging = false;
+      });
+  }
+
+  ngOnDestroy(){
+    this.subscribtion.unsubscribe();
+  }
 
 
   async logout(){
@@ -28,6 +46,10 @@ export class BasicButtonsComponent {
         this.auth.logoutCookie();
       })
     }
+  }
+
+  changePassword(){
+    this.changingPassword.emit(true);
   }
 
 }

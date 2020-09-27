@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
@@ -10,11 +11,15 @@ export class CheckAccessComponent implements OnInit {
 
   constructor(
     private spinner: NgxSpinnerService,
+    private router: Router,
   ) { 
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.spinner.show();
+    localStorage.setItem('member', 'true');
+    this.router.navigate(['/dashboard']);
+    this.spinner.hide();
   }
 
   

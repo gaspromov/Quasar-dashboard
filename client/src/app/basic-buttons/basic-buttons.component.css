@@ -21,3 +21,21 @@
 .basic-buttons.logout{
     right: 0px;
 }
+
+
+.changePassword{
+    position: absolute;
+    top: 60px;
+    right: 0px;
+    text-align: center;
+    background: none;
+    border: 1px solid #E5E5E5;
+    border-radius: 12px;
+    padding: 2px 15px;
+    color: #E5E5E5;
+    transition: .4s;
+}
+
+.changePassword:hover{
+    background-color: #21355B;
+}

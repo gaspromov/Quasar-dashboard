@@ -21,7 +21,7 @@ export class CheckoutWidgetComponent implements OnInit {
     await this.getToken();
     this.checkout = new YandexCheckout({
       confirmation_token: this.token, //Токен, который перед проведением оплаты нужно получить от Яндекс.Кассы
-      return_url: 'http://localhost:4200', //Ссылка на страницу завершения оплаты
+      return_url: 'http://localhost:4200/checking-access', //Ссылка на страницу завершения оплаты
 
       customization: {
         //Настройка цветовой схемы, минимум один параметр, значения цветов в HEX
@@ -36,9 +36,12 @@ export class CheckoutWidgetComponent implements OnInit {
 
       error_callback(error) {
         window.location.href = 'http://localhost:4200';
+        console.log(error, 'error');
       }
     });
-    this.checkout.render('payment-form');
+    
+    await this.checkout.render('payment-form');
+    console.log('chtoto')
 
   }
 
