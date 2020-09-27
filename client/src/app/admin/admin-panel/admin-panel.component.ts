@@ -15,5 +15,9 @@ export class AdminPanelComponent {
   changingPassword(viewing){
     this.viewChanging = viewing;
   }
+
+  onCloseChanging(close: boolean){
+    this.viewChanging = close;
+  }
   
 }

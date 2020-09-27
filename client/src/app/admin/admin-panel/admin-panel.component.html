@@ -9,7 +9,7 @@
 
         <router-outlet></router-outlet>
 
-        
+        <app-change-password *ngIf="viewChanging" (onCloseChanging)="onCloseChanging($event)"></app-change-password>
     </div>
 
 </div>

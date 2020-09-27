@@ -62,7 +62,7 @@ export class MainComponent implements OnInit {
   makeValidURL(){
     if (this.successes != undefined){
       for (let i = 0; i < this.successes.length; i++){
-        this.successes[i].image = 'http://localhost:5000' + this.successes[i].image;
+        this.successes[i].image = this.successes[i].image;
       }
       this.successes.reverse()
     }

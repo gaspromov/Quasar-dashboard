@@ -35,7 +35,7 @@ export class CheckoutWidgetComponent implements OnInit {
       },
 
       error_callback(error) {
-        window.location.href = 'http://localhost:4200';
+        window.location.href = 'https://quasarcook.com/checking-access';
         console.log(error, 'error');
       }
     });

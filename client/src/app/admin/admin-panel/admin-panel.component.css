@@ -18,6 +18,13 @@ router-outlet{
     position: absolute;
 }
 
+app-change-password{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+
 .discord-avatar{
     display: grid;
     height: 100%;
