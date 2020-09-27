@@ -35,10 +35,11 @@ app.use(
 	}),
 )
 app.use(express.static(path.resolve(__dirname, 'public')))
+app.use(express.static(path.resolve(__dirname, 'images')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(compression())
-app.use(morgan('dev'))
+app.use(morgan('combined'))
 app.use(helmet())
 
 const sess = {
@@ -71,14 +72,9 @@ app.use('/api/v1/drops', require('./routes/drops'))
 app.use('/api/v1/notifications', require('./routes/notification'))
 app.use('/api/v1/payment', require('./routes/payment'))
 
-// Docs
-app.get('/api/v1/docs', (req, res) => {
-	return res.sendFile(path.resolve(__dirname, 'docs', 'index.html'))
-})
-
 // Single Page
 app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, 'public', 'src', 'index.html'))
+	res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 })
 
 const start = async () => {

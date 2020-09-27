@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "node index.js",
+		"start": "cross-env NODE_ENV=production node index.js",
 		"server": "nodemon index.js",
 		"client": "npm run start --prefix client",
 		"client:i": "npm install --prefix client",
@@ -19,6 +19,7 @@
 		"bcryptjs": "^2.4.3",
 		"compression": "^1.7.4",
 		"connect-mongo": "^3.2.0",
+		"cross-env": "^7.0.2",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"express-fileupload": "^1.2.0",
