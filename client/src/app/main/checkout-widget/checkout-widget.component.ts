@@ -21,7 +21,7 @@ export class CheckoutWidgetComponent implements OnInit {
     await this.getToken();
     this.checkout = new YandexCheckout({
       confirmation_token: this.token, //Токен, который перед проведением оплаты нужно получить от Яндекс.Кассы
-      return_url: 'http://localhost:4200/checking-access', //Ссылка на страницу завершения оплаты
+      return_url: 'https://quasarcook.com/checking-access', //Ссылка на страницу завершения оплаты
 
       customization: {
         //Настройка цветовой схемы, минимум один параметр, значения цветов в HEX
