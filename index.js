@@ -39,7 +39,7 @@ app.use(express.static(path.resolve(__dirname, 'images')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(compression())
-app.use(morgan('combined'))
+app.use(morgan('dev'))
 app.use(helmet())
 
 const sess = {

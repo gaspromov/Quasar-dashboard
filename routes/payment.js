@@ -45,10 +45,43 @@ router.post('/', authUser, async (req, res) => {
 	}
 })
 
-router.post('/webhook', (req, res) => {
+router.post('/webhook', async (req, res) => {
 	try {
-		console.log('webhook', req.body)
-		return res.status(200).json()
+		const nextMonth = new Date()
+		nextMonth.setMonth(nextMonth.getMonth() + 1)
+		const { object } = req.body
+		const { payment_method, metadata, status } = object
+		if (status === 'succeeded') {
+			const drop = await Drop.findById(metadata.dropId)
+
+			drop.idempotences.forEach(idempotence => {
+				if (idempotence.key === metadata.idempotence) {
+					idempotence.status = 'finished'
+				}
+			})
+			await drop.save()
+
+			const license = License({
+				key: metadata.key,
+				status: 'renewal',
+				expiresIn: nextMonth,
+				user: metadata.userId,
+				paymentId: payment_method.id,
+				card: payment_method.card,
+			})
+			await license.save()
+
+			const user = await User.findById(metadata.userId)
+			user.license = license._id
+			await user.save()
+
+			const active = drop.idempotences.find(i => i.status === 'active')
+			if (!active) {
+				drop.status = 'finished'
+				await drop.save()
+			}
+			return res.status(200).json()
+		}
 	} catch (e) {
 		console.log(e)
 	}
