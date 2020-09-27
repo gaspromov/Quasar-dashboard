@@ -47,6 +47,7 @@ router.post('/', authUser, async (req, res) => {
 
 router.post('/webhook', (req, res) => {
 	try {
+		console.log('webhook', req.body)
 		return res.status(200).json()
 	} catch (e) {
 		console.log(e)

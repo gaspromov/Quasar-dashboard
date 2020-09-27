@@ -31,7 +31,7 @@ router.post('/', authAdmin, async (req, res) => {
 				image: `/${name}`,
 			})
 			await success.save()
-			await image.mv(path.resolve(__dirname, '..', 'public', name))
+			await image.mv(path.resolve(__dirname, '..', name))
 			return res.status(201).json({ message: 'Success создан' })
 		} else {
 			return res
