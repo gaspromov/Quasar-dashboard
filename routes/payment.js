@@ -8,6 +8,7 @@ const { payment, subscribe } = require('../utils/payment')
 const License = require('../models/License')
 const User = require('../models/User')
 const Drop = require('../models/Drop')
+const Notification = require('../models/Notification')
 
 router.post('/', authUser, async (req, res) => {
 	try {
@@ -73,8 +74,15 @@ router.post('/webhook', async (req, res) => {
 
 			const user = await User.findById(metadata.userId)
 			user.license = license._id
-			await user.save()
-
+      await user.save()
+      
+      const notification = new Notification({
+				user: user.fullName,
+				license: license.key,
+				type: 'Вind',
+			})
+      await notification.save()
+      
 			const active = drop.idempotences.find(i => i.status === 'active')
 			if (!active) {
 				drop.status = 'finished'
