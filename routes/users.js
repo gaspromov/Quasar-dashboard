@@ -136,14 +136,15 @@ router.patch('/license/:type', authUser, async (req, res) => {
 		const { type } = req.params
 		const user = await User.findById(req.user.id)
 		const license = await License.findById(user.license)
-    if (type === 'subscribe' && user && license) {
-      if (license.subscribe) {
-        license.card = undefined
-        license.paymentId = undefined
-        license.subscribe = false
-			  await license.save()
-      } else {
-        const { confirmation } = await payment(
+		if (type === 'subscribe' && user && license) {
+			if (license.subscribe) {
+				license.card = undefined
+				license.paymentId = undefined
+				license.subscribe = false
+				await license.save()
+				return res.status(200).json({ message: 'Изменено' })
+			} else {
+				const { confirmation } = await payment(
 					1,
 					`Ключ для ${user.fullName}`,
 					{
@@ -157,8 +158,7 @@ router.patch('/license/:type', authUser, async (req, res) => {
 				return res
 					.status(200)
 					.json({ confirmationToken: confirmation.confirmation_token })
-      }
-			return res.status(200).json({ message: 'Изменено' })
+			}
 		} else if (type === 'card' && user && license) {
 			const { confirmation } = await payment(
 				1,
