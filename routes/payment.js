@@ -3,12 +3,14 @@ const authUser = require('../middleware/auth.user.middleware')
 
 const router = Router()
 
-const { payment, subscribe } = require('../utils/payment')
+const { payment } = require('../utils/payment')
 
 const License = require('../models/License')
 const User = require('../models/User')
 const Drop = require('../models/Drop')
 const Notification = require('../models/Notification')
+
+let queue = 0
 
 router.post('/', authUser, async (req, res) => {
 	try {
@@ -16,8 +18,14 @@ router.post('/', authUser, async (req, res) => {
 
 		const user = await User.findById(req.user.id)
 		const drop = await Drop.findOne({ _id: dropId, status: 'active' })
-		const idempotence = drop.idempotences.find(i => i.status === 'active')
+		queue = drop.quantity === queue - 1 ? 0 : queue
+		const idempotence =
+			drop.idempotences[queue].status === 'active'
+				? drop.idempotences[queue].status
+				: drop.idempotences.find(i => i.status === 'active')
+
 		if (user && !user.license && drop && idempotence) {
+			queue++
 			const { confirmation } = await payment(
 				2000,
 				`Ключ для ${user.fullName}`,
@@ -52,7 +60,7 @@ router.post('/webhook', async (req, res) => {
 		const nextMonth = new Date()
 		nextMonth.setMonth(nextMonth.getMonth() + 1)
 		const { object } = req.body
-    const { payment_method, metadata, status } = object
+		const { payment_method, metadata, status } = object
 		if (status === 'succeeded' && metadata.type === 'buy') {
 			const drop = await Drop.findById(metadata.dropId)
 
@@ -89,6 +97,7 @@ router.post('/webhook', async (req, res) => {
 			if (!active) {
 				drop.status = 'finished'
 				await drop.save()
+				queue = 0
 			}
 			return res.status(200).json()
 		} else if (status === 'succeeded' && metadata.type === 'change-card') {
@@ -97,10 +106,10 @@ router.post('/webhook', async (req, res) => {
 
 			user.license = license._id
 
-      license.user = metadata.userId
-      license.paymentId = payment_method.id
-      license.card = payment_method.card
-      license.subscribe = true
+			license.user = metadata.userId
+			license.paymentId = payment_method.id
+			license.card = payment_method.card
+			license.subscribe = true
 
 			await license.save()
 			await user.save()
