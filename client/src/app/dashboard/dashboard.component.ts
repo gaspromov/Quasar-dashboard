@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
   subscribe: boolean = true;
 
   checkout: boolean = false;
+  typeCheckout: string = ''
 
   constructor(
     private http: UsersService,
@@ -60,6 +61,8 @@ export class DashboardComponent implements OnInit {
         userData.expiresIn = this.makeDate(userData.expiresIn)
       else
         userData.expiresIn = 'xx.xx.xxxx';
+      // this.userData.card.first6 = '888889'
+      // this.userData.card.last4 = '8888777777'
       this.type = userData.status;
       userData.status = userData.status.slice(0,1).toUpperCase() + userData.status.slice(1)
       this.userData = userData;
@@ -103,6 +106,11 @@ export class DashboardComponent implements OnInit {
     }else
     if (type=="unsubscribe" && this.subscribe==true && this.type != 'lifetime'){
       this.checkout = true;
+      this.typeCheckout = 'subscribe';
+    }else 
+    if (type == 'change'){
+      this.checkout = true;
+      this.typeCheckout = 'changeCard';
     }
   }
 

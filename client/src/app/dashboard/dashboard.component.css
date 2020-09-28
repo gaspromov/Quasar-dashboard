@@ -76,7 +76,7 @@
 .subscribe-info .payment{
     grid-row: 3/5;
     grid-template-rows: auto 1fr;
-    row-gap: 15px !important;
+    /* row-gap: px !important; */
 }
 
 
@@ -250,4 +250,13 @@
   }
   .card-info .date-cvv input:first-child, .card-info .date-cvv input:last-child{
       width: 45%; 
+  }
+
+  .changeCard{
+      background: none;
+      border: 0px;
+      text-decoration: underline;
+      color: white;
+      justify-self: end;
+      font-size: 10px;
   }

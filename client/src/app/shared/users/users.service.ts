@@ -35,4 +35,8 @@ export class UsersService {
   async changeSubscribe(){
     return await this.http.patch(`${this.url}/users/license/subscribe`, {}).toPromise();
   }
+
+  async changeCard(){
+    return await this.http.patch(`${this.url}/users/license/card`, {}).toPromise();
+  }
 }
