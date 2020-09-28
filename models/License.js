@@ -40,7 +40,7 @@ const schema = new Schema(
 schema.statics.clear = async function () {
   try {
     const date = new Date()
-    date.setDate(date.getDate() + 3)
+    date.setDate(date.getDate() - 3)
 		const licenses = await this.find()
 		const promises = licenses.map(license => {
 			if (license.expiresIn <= date) {
