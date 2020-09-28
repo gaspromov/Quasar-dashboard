@@ -30,7 +30,7 @@ const schema = new Schema(
 		card: Object,
 		subscribe: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 	},
 	{ versionKey: false },
