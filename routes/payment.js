@@ -93,17 +93,15 @@ router.post('/webhook', async (req, res) => {
 			return res.status(200).json()
 		} else if (status === 'succeeded' && metadata.type === 'change-card') {
 			const user = await User.findById(metadata.userId)
-			let license = await License.findById(metadata.licenseId)
+			const license = await License.findById(metadata.licenseId)
 
 			user.license = license._id
 
-			license = {
-				...license,
-				user: metadata.userId,
-				paymentId: payment_method.id,
-				card: payment_method.card,
-				subscribe: true,
-			}
+      license.user = metadata.userId
+      license.paymentId = metadata.paymentId
+      license.card = metadata.card
+      license.subscribe = metadata.subscribe
+
 			await license.save()
 			await user.save()
 
