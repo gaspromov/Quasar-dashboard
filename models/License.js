@@ -62,7 +62,7 @@ schema.statics.subscribePayment = function () {
 			const licenses = await this.find().populate('user')
 			const promises = licenses.map(license => {
 				if (license.expiresIn <= prevDate && license.paymentId) {
-					subscribe(license.paymentId, 2000, 'Оплата ключа', {
+					subscribe(license.paymentId, 2000, `Оплата ${license.key}`, {
 						type: 'subscribe',
 						licenseId: license._id,
 					})
@@ -74,7 +74,7 @@ schema.statics.subscribePayment = function () {
 		} catch (e) {
 			console.log('Не удалось произвести автоплатеж:', e.message)
 		}
-	}, /* 60 * 1000 * 60 * 24 */ 10000)
+	}, 60 * 1000 * 60 * 24)
 }
 
 module.exports = model('License', schema)

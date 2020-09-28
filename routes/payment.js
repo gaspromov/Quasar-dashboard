@@ -61,7 +61,6 @@ router.post('/webhook', async (req, res) => {
 		nextMonth.setMonth(nextMonth.getMonth() + 1)
 		const { object } = req.body
 		const { payment_method, metadata, status } = object
-		console.log(status, metadata.type)
 		if (status === 'succeeded' && metadata.type === 'buy') {
 			const drop = await Drop.findById(metadata.dropId)
 
