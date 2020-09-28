@@ -53,7 +53,6 @@ router.post('/webhook', async (req, res) => {
 		nextMonth.setMonth(nextMonth.getMonth() + 1)
 		const { object } = req.body
     const { payment_method, metadata, status } = object
-    console.log(metadata, status)
 		if (status === 'succeeded' && metadata.type === 'buy') {
 			const drop = await Drop.findById(metadata.dropId)
 
@@ -94,7 +93,7 @@ router.post('/webhook', async (req, res) => {
 			return res.status(200).json()
 		} else if (status === 'succeeded' && metadata.type === 'change-card') {
 			const user = await User.findById(metadata.userId)
-			const license = await License.findById(metadata.licenseId)
+			let license = await License.findById(metadata.licenseId)
 
 			user.license = license._id
 
