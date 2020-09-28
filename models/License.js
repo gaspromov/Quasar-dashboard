@@ -28,6 +28,10 @@ const schema = new Schema(
 		},
 		paymentId: String,
 		card: Object,
+		subscribe: {
+			type: Boolean,
+			default: true,
+		},
 	},
 	{ versionKey: false },
 )
