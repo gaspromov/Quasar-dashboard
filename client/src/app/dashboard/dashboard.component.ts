@@ -61,8 +61,8 @@ export class DashboardComponent implements OnInit {
         userData.expiresIn = this.makeDate(userData.expiresIn)
       else
         userData.expiresIn = 'xx.xx.xxxx';
-      // this.userData.card.first6 = '888889'
-      // this.userData.card.last4 = '8888777777'
+      if (userData.card)
+        userData.card.number = this.makeValidNumber(userData.card.first6, userData.card.last4);
       this.type = userData.status;
       userData.status = userData.status.slice(0,1).toUpperCase() + userData.status.slice(1)
       this.userData = userData;
@@ -71,6 +71,10 @@ export class DashboardComponent implements OnInit {
 
   makeDate(date: string){
     return date.slice(8, 10) + '.' + date.slice(5,7) + '.' + date.slice(0,4);
+  }
+
+  makeValidNumber(first6: string, last4: string){
+    return first6.slice(0,4) + ' ' + first6.slice(4,6) + '** **** ' + last4;
   }
 
   async unbind(){

@@ -42,7 +42,7 @@
                     <div class="payment" [ngClass]="{ 'disabled': type == 'lifetime' }">
                         <label> <img src="/assets/img/dashboard-icons/payment.svg">Payment</label>
                         <div class="card-info" *ngIf="userData.card">
-                            <input type="text" class="card-number" mask="0000 0000 0000 0000" [value]="userData.card.first6 + '******' + userData.card.last4" disabled>
+                            <input type="text" class="card-number" [value]="userData.card.number" disabled>
                             <div class="date-cvv">
                                 <input type="text" class="card-date" [value]="userData.card.expiry_month + '/' + userData.card.expiry_year" disabled>
                                 <input type="text" class="card-cvv" value="***" disabled>

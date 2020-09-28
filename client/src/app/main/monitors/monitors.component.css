@@ -105,9 +105,11 @@ p{
     width: 50px;
 }
 
-.tsum, .belief{
+.tsum{
     height: 40px;
 }
+
+.belief{width: 100%;}
 
 .shopify, .ru{
     transition: .6s;

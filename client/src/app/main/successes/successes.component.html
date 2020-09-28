@@ -11,9 +11,13 @@
                 {{currentSuccess.description}}
             </p>
             <div class="otherMonth">
-                <span id="prev" class="prev pointer" (click)=changeCurrentSuccess(-1)>&lt;</span>
+                <span id="prev" class="prev pointer" (click)=changeCurrentSuccess(-1)>
+                    <img src="/assets/img/icons/left-arrow.svg" alt="previos" class="change-successes">
+                </span>
                 <span>посмотри <br> другие месяцы</span> 
-                <span id="next" class="next pointer" (click)=changeCurrentSuccess(1)>&gt;</span>
+                <span id="next" class="next pointer" (click)=changeCurrentSuccess(1)>
+                    <img src="/assets/img/icons/left-arrow.svg" alt="next" class="change-successes">
+                </span>
             </div>
         </div>
 

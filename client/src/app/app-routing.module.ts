@@ -10,6 +10,7 @@ import { AdminAuthComponent } from './admin/admin-auth/admin-auth.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { HomeComponent } from './admin/home/home.component';
 import { MembersComponent } from './admin/members/members.component';
+import { UserAgreementComponent } from './user-agreement/user-agreement.component';
 
 import { IsLoginGuard } from './shared/guards/is-login.guard';
 import { LoginGuard } from './shared/guards/login.guard';
@@ -26,12 +27,13 @@ const routes: Routes = [
 
   // for all
   { path: '', component: MainComponent },
-  { path: 'checking-access', component: CheckAccessComponent},
+  { path: 'user_agreement', component: UserAgreementComponent },
 
   // no login
   { path: 'login', component: LoginComponent, canActivate: [IsLoginGuard] },
 
   // login
+  { path: 'checking-access', component: CheckAccessComponent, canActivate: [LoginGuard]},
   { path: 'password', component: PasswordPageComponent, canActivate: [LoginGuard, IsMemberGuard] },
   { path: 'license', component: ActivateKeyComponent, canActivate: [LoginGuard, IsMemberGuard] },
   

@@ -38,27 +38,27 @@ export class CheckoutWidgetComponent implements OnInit {
   async getToken(){
     if (this.typeCheckout == 'drop')
       await this.http.getWidgetToken(this.generatePassword() ,this.dropId)
-      .then((w:any = {}) => {
+      .then(async (w:any = {}) => {
         this.token = w.confirmationToken;
-        this.generateWidget();
+        await this.generateWidget();
       })
       .catch(e =>{
         console.log(e);
       })
     else if (this.typeCheckout == 'subscribe')
       await this.subscribeHTTP.changeSubscribe()
-      .then((w:any = {}) => {
+      .then(async (w:any = {}) => {
         this.token = w.confirmationToken;
-        this.generateWidget();
+        await this.generateWidget();
       })
       .catch(e =>{
         console.log(e);
       })
     else if (this.typeCheckout == 'changeCard')
       await this.subscribeHTTP.changeCard()
-      .then((w:any = {}) => {
+      .then(async(w:any = {}) => {
         this.token = w.confirmationToken;
-        this.generateWidget();
+        await this.generateWidget();
       })
       .catch(e =>{
         console.log(e);

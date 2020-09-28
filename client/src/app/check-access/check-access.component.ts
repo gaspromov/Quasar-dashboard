@@ -10,6 +10,8 @@ import { UsersService } from '../shared/users/users.service';
   styleUrls: ['./check-access.component.css']
 })
 export class CheckAccessComponent implements OnInit {
+  countChecking: number = 0;
+  error: boolean = false;
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -25,11 +27,15 @@ export class CheckAccessComponent implements OnInit {
   }
 
   async checkingAccess(){
+    if (this.countChecking == 2){
+      this.error = true;
+    }
     setTimeout(async ()=>{
       await this.http.getUserData()
       .then( async (w: any ={}) => {
         if (w.license == undefined || w.license == null || w.license == ''){
           console.log("Лицензии нет. Повторная проверка...");
+          this.countChecking++;
           this.checkingAccess()
         }
         else{
@@ -49,10 +55,11 @@ export class CheckAccessComponent implements OnInit {
         }
         else{
           console.log('Лицензии нет. Повторная проверка...');
+          this.countChecking++;
           this.checkingAccess();
         }
       })
-    }, 5000)
+    }, 4000)
   }
 
   

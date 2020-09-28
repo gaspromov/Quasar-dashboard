@@ -47,7 +47,8 @@ import { SortNotifPipe } from './shared/pipes/notifications/sortNotif/sort-notif
 import { CheckoutComponent } from './main/checkout/checkout.component';
 import { CheckoutWidgetComponent } from './main/checkout-widget/checkout-widget.component';
 import { DropsComponent } from './admin/drops/drops.component';
-import { ChangePasswordComponent } from './admin/change-password/change-password.component'
+import { ChangePasswordComponent } from './admin/change-password/change-password.component';
+import { UserAgreementComponent } from './user-agreement/user-agreement.component'
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { ChangePasswordComponent } from './admin/change-password/change-password
     CheckoutWidgetComponent,
     DropsComponent,
     ChangePasswordComponent,
+    UserAgreementComponent,
   ],
   imports: [
     BrowserModule,
