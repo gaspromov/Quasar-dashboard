@@ -19,6 +19,8 @@ export class DashboardComponent implements OnInit {
 
   subscribe: boolean = true;
 
+  checkout: boolean = false;
+
   constructor(
     private http: UsersService,
     private auth: AuthService,
@@ -98,6 +100,9 @@ export class DashboardComponent implements OnInit {
       this.headerPopup = "Отписаться?"
       this.messagePopup = "По истечению даты действия подписки ключ будет удален навсегда!"
       this.showPopup = true;
+    }else
+    if (type=="unsubscribe" && this.subscribe==true && this.type != 'lifetime'){
+      this.checkout = true;
     }
   }
 
@@ -115,9 +120,22 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  unsubscribe(){
-    this.onConfirm(false);
-    this.subscribe = false;
+  async unsubscribe(){
+    await this.http.changeSubscribe()
+    .then(w => {
+      this.onConfirm(false);
+      console.log(w)
+    })
+    .catch(e =>{
+      if (e.status == 401)
+        this.auth.logoutCookie();
+      else 
+        console.log(e);
+    })
+  }
+
+  onCloseCheckout(close){
+    this.checkout = close;
   }
 
 }

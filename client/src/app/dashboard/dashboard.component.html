@@ -41,11 +41,11 @@
                     </div>
                     <div class="payment" [ngClass]="{ 'disabled': type == 'lifetime' }">
                         <label> <img src="/assets/img/dashboard-icons/payment.svg">Payment</label>
-                        <div class="card-info">
-                            <input type="text" class="card-number">
+                        <div class="card-info" *ngIf="userData.card">
+                            <input type="text" class="card-number" [value]="userData.card.first6 + '******' + userData.card.last4" disabled>
                             <div class="date-cvv">
-                                <input type="text" class="card-date">
-                                <input type="text" class="card-cvv">
+                                <input type="text" class="card-date" [value]="userData.card.expiry_month + '/' + userData.card.expiry_year" disabled>
+                                <input type="text" class="card-cvv" value="***" disabled>
                             </div>
                         </div>
                     </div>
@@ -76,6 +76,8 @@
 
     </div>
     <app-pop-up *ngIf="showPopup" [header]="headerPopup" [message]="messagePopup" (onConfirm)="onConfirm($event)"></app-pop-up>
+    <app-checkout-widget *ngIf="checkout" typeCheckout="subscribe" (onCloseCheckout)="onCloseCheckout($event)"></app-checkout-widget>
+
 
 </div>
 
