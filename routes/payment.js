@@ -79,10 +79,10 @@ router.post('/webhook', async (req, res) => {
       const notification = new Notification({
 				user: user.fullName,
 				license: license.key,
-				type: 'Вind',
+				type: 'Bind',
 			})
       await notification.save()
-      
+
 			const active = drop.idempotences.find(i => i.status === 'active')
 			if (!active) {
 				drop.status = 'finished'
