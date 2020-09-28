@@ -98,9 +98,9 @@ router.post('/webhook', async (req, res) => {
 			user.license = license._id
 
       license.user = metadata.userId
-      license.paymentId = metadata.paymentId
-      license.card = metadata.card
-      license.subscribe = metadata.subscribe
+      license.paymentId = payment_method.id
+      license.card = payment_method.card
+      license.subscribe = true
 
 			await license.save()
 			await user.save()
