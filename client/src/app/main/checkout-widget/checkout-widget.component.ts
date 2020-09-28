@@ -54,6 +54,16 @@ export class CheckoutWidgetComponent implements OnInit {
       .catch(e =>{
         console.log(e);
       })
+    else if (this.typeCheckout == 'changeCard')
+      await this.subscribeHTTP.changeCard()
+      .then((w:any = {}) => {
+        this.token = w.confirmationToken;
+        this.generateWidget();
+      })
+      .catch(e =>{
+        console.log(e);
+      })
+      
       
   }
 
