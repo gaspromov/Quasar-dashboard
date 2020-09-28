@@ -15,6 +15,7 @@ const helmet = require('helmet')
 const path = require('path')
 
 const session = require('express-session')
+const License = require('./models/License')
 const MongoStore = require('connect-mongo')(session)
 
 // Variables
@@ -95,7 +96,8 @@ const start = async () => {
 		// Start server
 		app.listen(PORT, () =>
 			console.log(`Server has been started on PORT ${PORT}`),
-		)
+    )
+    License.subscribePayment()
 	} catch (e) {
 		// Error processing
 		console.log('Неизвестная ошибка', e.message)

@@ -10,7 +10,7 @@ module.exports.payment = async (
 	description,
 	metadata,
 	idempotenceKey = v4(),
-	email,
+	email = 'quasarcook@gmail.com',
 ) => {
 	try {
 		return await this.checkout.createPayment(
@@ -56,7 +56,7 @@ module.exports.subscribe = async (
 	value,
 	description,
 	metadata,
-	email,
+	email = 'quasarcook@gmail.com',
 ) => {
 	try {
 		return await this.checkout.createPayment({
@@ -84,6 +84,7 @@ module.exports.subscribe = async (
 			description,
 			metadata,
 			payment_method_id,
+			capture: true,
 		})
 	} catch (e) {
 		console.log(e)
