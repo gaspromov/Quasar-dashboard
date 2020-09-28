@@ -30,8 +30,8 @@
                     <div class="unbind"><button (click)="confirm('unbind')">Unbind</button></div>
 
                 </div>
-                <div class="second row-2">
-                    <div class="type-subscribe">
+                <div class="second">
+                    <div class="type-subscribe row-2">
                         <label> <img src="/assets/img/dashboard-icons/type-subscribe.svg">Type</label>
                         {{userData.status}}
                     </div>
@@ -41,7 +41,13 @@
                     </div>
                     <div class="payment" [ngClass]="{ 'disabled': type == 'lifetime' }">
                         <label> <img src="/assets/img/dashboard-icons/payment.svg">Payment</label>
-                        <div class="div"></div>
+                        <div class="card-info">
+                            <input type="text" class="card-number">
+                            <div class="date-cvv">
+                                <input type="text" class="card-date">
+                                <input type="text" class="card-cvv">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -76,6 +76,7 @@
 .subscribe-info .payment{
     grid-row: 3/5;
     grid-template-rows: auto 1fr;
+    row-gap: 15px !important;
 }
 
 
@@ -221,4 +222,32 @@
 
   .disabled{
       opacity: .3;
+  }
+
+  
+    .card-info{
+      display: grid;
+      row-gap: 5%;
+      align-items: center;
+    }
+  
+  .card-info input{
+    display: inline-block;
+    box-sizing: border-box;
+    height: 30px;
+    border-radius: 50px;
+    background-color: #21355B;
+    text-align: center;
+    border: none;
+    color: white;
+  }
+  .card-info>input:first-child{
+      width: 100%;
+  }
+
+  .card-info .date-cvv input:last-child{
+      margin-left: 10%;
+  }
+  .card-info .date-cvv input:first-child, .card-info .date-cvv input:last-child{
+      width: 45%; 
   }

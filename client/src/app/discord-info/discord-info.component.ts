@@ -20,8 +20,7 @@ export class DiscordInfoComponent implements OnInit {
     private http: UsersService,
     private auth: AuthService,
     private spinner: NgxSpinnerService,
-  ) { 
-  }
+  ) {}
 
   async ngOnInit(){
     this.spinner.show()
