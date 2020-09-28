@@ -41,7 +41,6 @@ export class CheckoutWidgetComponent implements OnInit {
     });
     
     await this.checkout.render('payment-form');
-    console.log('chtoto')
 
   }
 

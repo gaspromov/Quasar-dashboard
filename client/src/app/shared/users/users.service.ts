@@ -31,4 +31,8 @@ export class UsersService {
   async checkPassword(password: string){
     return await this.http.get(`${this.url}/drops/${password}`).toPromise();
   }
+
+  async changeSubscribe(){
+    return await this.http.patch(`${this.url}/users/license/subscribe`, {}).toPromise();
+  }
 }

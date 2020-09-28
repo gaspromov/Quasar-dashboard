@@ -23,9 +23,12 @@ export class DashboardComponent implements OnInit {
     private http: UsersService,
     private auth: AuthService,
     private spinner: NgxSpinnerService,
-  ) { }
+  ) { 
+
+  }
 
   async ngOnInit() {
+
     if (this.get_cookie('userType')){
       localStorage.setItem('member', 'true');
       document.cookie = "userType=''; expires=Thu, 01 Jan 1970 00:00:00 GMT;"
@@ -50,6 +53,7 @@ export class DashboardComponent implements OnInit {
         .catch(() => this.auth.logoutCookie())
     }else{
       userData.createdAt = this.makeDate(userData.createdAt);
+      this.subscribe = userData.subscribe;
       if (userData.expiresIn)
         userData.expiresIn = this.makeDate(userData.expiresIn)
       else
@@ -90,7 +94,6 @@ export class DashboardComponent implements OnInit {
       this.showPopup = true;
     }else
     if (type=="unsubscribe" && this.subscribe == false && this.type != 'lifetime'){
-      console.log('hui')
       this.typePopup = "unsubscribe";
       this.headerPopup = "Отписаться?"
       this.messagePopup = "По истечению даты действия подписки ключ будет удален навсегда!"
