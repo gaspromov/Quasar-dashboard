@@ -40,7 +40,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(compression())
 app.use(morgan('dev'))
-// app.use(helmet())
+app.use(helmet())
 
 const sess = {
 	name: 'discord.oauth2',
@@ -74,13 +74,13 @@ app.use('/api/v1/notifications', require('./routes/notification'))
 app.use('/api/v1/payment', require('./routes/payment'))
 
 // Single Page
-// app.get('*', (req, res) => {
-// 	res.setHeader(
-// 		'Content-Security-Policy',
-// 		"default-src * 'self'; script-src * 'self' 'unsafe-inline'; style-src * 'self' 'unsafe-inline'; img-src * 'self' data: https:;",
-// 	)
-// 	res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
-// })
+app.get('*', (req, res) => {
+	res.setHeader(
+		'Content-Security-Policy',
+		"default-src * 'self'; script-src * 'self' 'unsafe-inline'; style-src * 'self' 'unsafe-inline'; img-src * 'self' data: https:;",
+	)
+	res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+})
 
 const start = async () => {
 	try {
