@@ -48,6 +48,7 @@ const sess = {
 	cookie: {
 		maxAge: 60 * 1000 * 60 * 24,
 		httpOnly: false,
+		sameSite: 'strict',
 	},
 	resave: false,
 	saveUninitialized: false,
@@ -74,7 +75,11 @@ app.use('/api/v1/payment', require('./routes/payment'))
 
 // Single Page
 app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+	res.setHeader(
+		'Content-Security-Policy',
+		"default-src * 'self'; script-src * 'self' 'unsafe-inline'; style-src * 'self' 'unsafe-inline'; img-src * 'self' data: https:;",
+	)
+	return res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 })
 
 const start = async () => {

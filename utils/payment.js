@@ -1,13 +1,15 @@
+const {v4} = require('uuid')
+
 module.exports.checkout = require('yandex-checkout')(
 	process.env.SHOP_ID,
 	process.env.SHOP_SECRET_KEY,
 )
 
 module.exports.payment = async (
-	value,
+	value = 1500,
 	description,
 	metadata,
-	idempotenceKey,
+	idempotenceKey = v4(),
 	email,
 ) => {
 	try {
@@ -53,7 +55,8 @@ module.exports.subscribe = async (
 	payment_method_id,
 	value,
 	description,
-	key,
+	metadata,
+	email,
 ) => {
 	try {
 		return await this.checkout.createPayment({
@@ -61,12 +64,26 @@ module.exports.subscribe = async (
 				value,
 				currency: 'RUB',
 			},
-			payment_method_id,
-			description,
-			capture: true,
-			metadata: {
-				key,
+			receipt: {
+				customer: {
+					email,
+				},
+				items: [
+					{
+						description: `Ключ ${metadata.key}`,
+						quantity: '1.00',
+						amount: {
+							value,
+							currency: 'RUB',
+						},
+						vat_code: 1,
+					},
+				],
+				email,
 			},
+			description,
+			metadata,
+			payment_method_id,
 		})
 	} catch (e) {
 		console.log(e)

@@ -10,6 +10,9 @@ const License = require('../models/License')
 const Drop = require('../models/Drop')
 const Notification = require('../models/Notification')
 
+const { payment } = require('../utils/payment')
+const { v4 } = require('uuid')
+
 // Variables
 const router = Router()
 
@@ -128,4 +131,57 @@ router.post('/drop', authUser, async (req, res) => {
 	}
 })
 
+router.patch('/license/:type', authUser, async (req, res) => {
+	try {
+		const { type } = req.params
+		const user = await User.findById(req.user.id)
+		const license = await License.findById(user.license)
+    if (type === 'subscribe' && user && license) {
+      if (license.subscribe) {
+        license.card = undefined
+        license.paymentId = undefined
+        license.subscribe = false
+			  await license.save()
+      } else {
+        const { confirmation } = await payment(
+					1,
+					`Ключ для ${user.fullName}`,
+					{
+						licenseId: license._id,
+						userId: req.user.id,
+						type: 'change-card',
+					},
+					v4(),
+					user.email,
+				)
+				return res
+					.status(200)
+					.json({ confirmationToken: confirmation.confirmation_token })
+      }
+			return res.status(200).json({ message: 'Изменено' })
+		} else if (type === 'card' && user && license) {
+			const { confirmation } = await payment(
+				1,
+				`Ключ для ${user.fullName}`,
+				{
+					licenseId: license._id,
+					userId: req.user.id,
+					type: 'change-card',
+				},
+				v4(),
+				user.email,
+			)
+			return res
+				.status(200)
+				.json({ confirmationToken: confirmation.confirmation_token })
+		} else {
+			return res.status(400).json({ message: 'Вы не можете изменить данные' })
+		}
+	} catch (e) {
+		return res.status(500).json({
+			message: 'Что-то пошло не так, попробуйте позже',
+			error: e.message,
+		})
+	}
+})
 module.exports = router

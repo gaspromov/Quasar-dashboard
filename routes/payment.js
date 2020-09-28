@@ -8,6 +8,7 @@ const { payment, subscribe } = require('../utils/payment')
 const License = require('../models/License')
 const User = require('../models/User')
 const Drop = require('../models/Drop')
+const Notification = require('../models/Notification')
 
 router.post('/', authUser, async (req, res) => {
 	try {
@@ -18,13 +19,14 @@ router.post('/', authUser, async (req, res) => {
 		const idempotence = drop.idempotences.find(i => i.status === 'active')
 		if (user && !user.license && drop && idempotence) {
 			const { confirmation } = await payment(
-				1500,
+				2000,
 				`Ключ для ${user.fullName}`,
 				{
 					dropId,
 					key,
 					userId: req.user.id,
 					idempotence: idempotence.key,
+					type: 'buy',
 				},
 				idempotence.key,
 				user.email,
@@ -51,7 +53,7 @@ router.post('/webhook', async (req, res) => {
 		nextMonth.setMonth(nextMonth.getMonth() + 1)
 		const { object } = req.body
 		const { payment_method, metadata, status } = object
-		if (status === 'succeeded') {
+		if (status === 'succeeded' && metadata.type === 'buy') {
 			const drop = await Drop.findById(metadata.dropId)
 
 			drop.idempotences.forEach(idempotence => {
@@ -61,13 +63,14 @@ router.post('/webhook', async (req, res) => {
 			})
 			await drop.save()
 
-			const license = License({
+			const license = new License({
 				key: metadata.key,
 				status: 'renewal',
 				expiresIn: nextMonth,
 				user: metadata.userId,
 				paymentId: payment_method.id,
 				card: payment_method.card,
+				subscribe: true,
 			})
 			await license.save()
 
@@ -75,11 +78,35 @@ router.post('/webhook', async (req, res) => {
 			user.license = license._id
 			await user.save()
 
+			const notification = new Notification({
+				user: user.fullName,
+				license: license.key,
+				type: 'Bind',
+			})
+			await notification.save()
+
 			const active = drop.idempotences.find(i => i.status === 'active')
 			if (!active) {
 				drop.status = 'finished'
 				await drop.save()
 			}
+			return res.status(200).json()
+		} else if (status === 'succeeded' && metadata.type === 'change-card') {
+			const user = await User.findById(metadata.userId)
+			const license = await License.findById(metadata.licenseId)
+
+			user.license = license._id
+
+			license = {
+				...license,
+				user: metadata.userId,
+				paymentId: payment_method.id,
+				card: payment_method.card,
+				subscribe: true,
+			}
+			await license.save()
+			await user.save()
+
 			return res.status(200).json()
 		}
 	} catch (e) {
