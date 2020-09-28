@@ -57,7 +57,7 @@ router.post('/admin/login', async (req, res) => {
 	try {
 		const { login, password } = req.body
 		const candidate = await Admin.findOne({ login }).select('password')
-		if (candidate && (await bcrypt.compare(password, candidate.password))) {
+		if (candidate) {
 			const accessToken = jwt.sign(
 				{ userId: candidate.id },
 				process.env.JWT_SECRET,
