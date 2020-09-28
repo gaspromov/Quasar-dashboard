@@ -18,10 +18,10 @@ router.post('/', authUser, async (req, res) => {
 
 		const user = await User.findById(req.user.id)
 		const drop = await Drop.findOne({ _id: dropId, status: 'active' })
-		queue = drop.quantity === queue - 1 ? 0 : queue
+    queue = drop.quantity === queue - 1 ? 0 : queue
 		const idempotence =
 			drop.idempotences[queue].status === 'active'
-				? drop.idempotences[queue].status
+				? drop.idempotences[queue]
 				: drop.idempotences.find(i => i.status === 'active')
 
     if (user && !user.license && drop && idempotence) {
