@@ -27,7 +27,8 @@ router.get(
 		const lastDate = new Date()
 		lastDate.setDate(lastDate.getDate() - 3)
 
-    const user = await User.findById(req.user.id).populate('license')
+		const user = await User.findById(req.user.id).populate('license')
+		res.setHeader('Content-Security-Policy', 'default-src *;')
 		if (
 			user.license &&
 			(user.license.expiresIn >= lastDate || user.license.status === 'lifetime')
