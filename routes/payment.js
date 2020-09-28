@@ -17,14 +17,14 @@ router.post('/', authUser, async (req, res) => {
 		const { dropId, key } = req.body
 
 		const user = await User.findById(req.user.id)
-    const drop = await Drop.findOne({ _id: dropId, status: 'active' })
-    queue = drop.quantity <= queue ? 0 : queue
+		const drop = await Drop.findOne({ _id: dropId, status: 'active' })
+		queue = drop.quantity <= queue ? 0 : queue
 		const idempotence =
 			drop.idempotences[queue].status === 'active'
 				? drop.idempotences[queue]
 				: drop.idempotences.find(i => i.status === 'active')
 
-    if (user && !user.license && drop && idempotence) {
+		if (user && !user.license && drop && idempotence) {
 			queue++
 			const { confirmation } = await payment(
 				2000,
@@ -114,6 +114,13 @@ router.post('/webhook', async (req, res) => {
 			await license.save()
 			await user.save()
 
+			return res.status(200).json()
+		} else if (status === 'succeeded' && metadata.type === 'subscribe') {
+			const nextDate = new Date()
+			nextDate.setMonth(nextDate.getMonth() + 1)
+			const license = await License.findById(metadata.licenseId)
+			license.expiresIn = nextDate
+			license.save()
 			return res.status(200).json()
 		}
 	} catch (e) {

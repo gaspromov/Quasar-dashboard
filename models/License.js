@@ -1,4 +1,5 @@
 const { Schema, model, Types } = require('mongoose')
+const { subscribe } = require('../utils/payment')
 
 const schema = new Schema(
 	{
@@ -37,10 +38,12 @@ const schema = new Schema(
 )
 
 schema.statics.clear = async function () {
-	try {
+  try {
+    const date = new Date()
+    date.setDate(date.getDate() + 3)
 		const licenses = await this.find()
 		const promises = licenses.map(license => {
-			if (license.expiresIn <= new Date()) {
+			if (license.expiresIn <= date) {
 				license.status = 'expired'
 				license.save()
 			}
@@ -49,6 +52,29 @@ schema.statics.clear = async function () {
 	} catch (e) {
 		console.log('Не удалось обновить статусы ключей:', e.message)
 	}
+}
+
+schema.statics.subscribePayment = function () {
+	setInterval(async () => {
+		try {
+			const prevDate = new Date()
+			prevDate.setDate(prevDate.getDate() - 1)
+			const licenses = await this.find().populate('user')
+			const promises = licenses.map(license => {
+				if (license.expiresIn <= prevDate && license.paymentId) {
+					subscribe(license.paymentId, 2000, 'Оплата ключа', {
+						type: 'subscribe',
+						licenseId: license._id,
+					})
+					console.log(`Оплата ${license.key}`)
+				}
+			})
+			await Promise.all(promises)
+			console.log('Автоплатежи сделаны')
+		} catch (e) {
+			console.log('Не удалось произвести автоплатеж:', e.message)
+		}
+	}, /* 60 * 1000 * 60 * 24 */ 10000)
 }
 
 module.exports = model('License', schema)
