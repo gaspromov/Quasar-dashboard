@@ -84,6 +84,7 @@ module.exports.subscribe = async (
 			description,
 			metadata,
 			payment_method_id,
+			capture: true,
 		})
 	} catch (e) {
 		console.log(e)
