@@ -24,7 +24,8 @@ router.post('/', authUser, async (req, res) => {
 				? drop.idempotences[queue].status
 				: drop.idempotences.find(i => i.status === 'active')
 
-		if (user && !user.license && drop && idempotence) {
+    if (user && !user.license && drop && idempotence) {
+      console.log(queue)
 			queue++
 			const { confirmation } = await payment(
 				2000,
