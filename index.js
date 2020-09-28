@@ -73,9 +73,9 @@ app.use('/api/v1/notifications', require('./routes/notification'))
 app.use('/api/v1/payment', require('./routes/payment'))
 
 // Single Page
-app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
-})
+// app.get('*', (req, res) => {
+// 	res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+// })
 
 const start = async () => {
 	try {
