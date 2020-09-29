@@ -13,14 +13,17 @@ passport.serializeUser((user, done) => {
 	done(null, user.id)
 })
 
-passport.deserializeUser((id, done) => {
-	User.findById(id, async (err, user) => {
-		if (!err) {
+passport.deserializeUser(async (id, done) => {
+	try {
+		const user = await User.findById(id)
+		if (user) {
 			await user.checkLicense()
 			await user.updateInfo()
 			done(null, user)
 		}
-	})
+	} catch (e) {
+		console.log(e)
+	}
 })
 
 const strategy = new DiscordStrategy(
