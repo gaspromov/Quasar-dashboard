@@ -49,7 +49,10 @@ import { CheckoutWidgetComponent } from './main/checkout-widget/checkout-widget.
 import { DropsComponent } from './admin/drops/drops.component';
 import { ChangePasswordComponent } from './admin/change-password/change-password.component';
 import { UserAgreementComponent } from './user-agreement/user-agreement.component';
-import { PaginationPipe } from './shared/pipes/pagination/pagination.pipe'
+import { PaginationPipe } from './shared/pipes/pagination/pagination.pipe';
+import { LastPaymentsComponent } from './admin/last-payments/last-payments.component';
+import { FilterPaymentsPipe } from './shared/pipes/payments/filter-payments.pipe';
+import { SearchPaymentsPipe } from './shared/pipes/payments/search-payments.pipe'
 
 @NgModule({
   declarations: [
@@ -92,6 +95,9 @@ import { PaginationPipe } from './shared/pipes/pagination/pagination.pipe'
     ChangePasswordComponent,
     UserAgreementComponent,
     PaginationPipe,
+    LastPaymentsComponent,
+    FilterPaymentsPipe,
+    SearchPaymentsPipe,
   ],
   imports: [
     BrowserModule,

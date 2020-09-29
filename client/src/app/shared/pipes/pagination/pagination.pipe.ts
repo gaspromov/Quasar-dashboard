@@ -33,7 +33,6 @@ export class PaginationPipe implements PipeTransform {
       else 
         end = length - 1;
       
-        console.log(start,end)
       if (startMore)
         newArr.push(1, 'more');
       newArr = newArr.concat(arr.slice(start, end+1));

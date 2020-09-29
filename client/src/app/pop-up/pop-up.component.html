@@ -7,9 +7,13 @@
 
         <p class="message">{{ message }}</p>
 
-        <div class="buttons">
+        <div class="buttons" *ngIf="!warning">
             <button (click)="confirm(true)">Да</button>
             <button (click)="confirm(false)">Нет</button>
+        </div>
+        
+        <div class="button" *ngIf="warning">
+            <button (click)="confirm(true)">Ок</button>
         </div>
         
     </div>

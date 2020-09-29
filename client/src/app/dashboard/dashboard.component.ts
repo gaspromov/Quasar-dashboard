@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
 
   typePopup: string = '';
   showPopup: boolean = false;
+  popupWarning: boolean = false;
   headerPopup: string = '';
   messagePopup: string = '';
 
@@ -59,6 +60,9 @@ export class DashboardComponent implements OnInit {
     }else{
       userData.createdAt = this.makeDate(userData.createdAt);
       this.subscribe = userData.subscribe;
+      if (this.subscribe == false){
+        this.confirm('noSubscription');
+      }
       if (userData.expiresIn)
         userData.expiresIn = this.makeDate(userData.expiresIn)
       else
@@ -106,17 +110,28 @@ export class DashboardComponent implements OnInit {
     }else
     if (type=="unsubscribe" && this.subscribe == false && this.type != 'lifetime'){
       this.typePopup = "unsubscribe";
-      this.headerPopup = "Отписаться?"
+      this.headerPopup = "Отвязать карту?"
       this.messagePopup = "По истечению даты действия подписки ключ будет удален навсегда!"
       this.showPopup = true;
     }else
     if (type=="unsubscribe" && this.subscribe==true && this.type != 'lifetime'){
       this.checkout = true;
       this.typeCheckout = 'subscribe';
+    }else
+    if (type=="subscribe" && this.type != 'lifetime'){
+      this.subscribe = true;
+      this.checkout = true;
+      this.typeCheckout = 'subscribe';
     }else 
-    if (type == 'change'){
+    if (type == 'change' && this.type != 'lifetime'){
       this.checkout = true;
       this.typeCheckout = 'changeCard';
+    }else
+    if (type == "noSubscription"){
+      this.popupWarning = true;
+      this.headerPopup = "Подписка отключена."
+      this.messagePopup = "Привяжите карту, чтобы не потерять свой ключ навсегда."
+      this.showPopup = true;
     }
   }
 
@@ -128,9 +143,9 @@ export class DashboardComponent implements OnInit {
     else{
       this.showPopup = false;
       this.typePopup = '';
-      this.subscribe = true;
       this.headerPopup = "";
       this.messagePopup = "";
+      this.popupWarning = false;
     }
   }
 

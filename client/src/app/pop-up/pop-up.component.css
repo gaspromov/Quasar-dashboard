@@ -54,6 +54,11 @@ p{
     column-gap: 30px;
 }
 
+.button{
+    justify-self: center;
+    display: grid;
+}
+
 button{
     background: none;
     font-size: 12px;

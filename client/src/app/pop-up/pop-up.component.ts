@@ -9,7 +9,7 @@ export class PopUpComponent {
   @Input() message: string = '';
   @Input() header: string = '';
   @Output() onConfirm = new EventEmitter<boolean>()
-
+  @Input() warning: boolean = false;
 
   confirm(answere: boolean){
     this.onConfirm.emit(answere);

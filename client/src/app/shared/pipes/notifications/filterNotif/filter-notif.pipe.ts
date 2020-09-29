@@ -8,7 +8,7 @@ export class FilterNotifPipe implements PipeTransform {
   transform(arr: any = [], unbind: boolean, bind: boolean, expired: boolean): unknown {
     let d = '1';
     let i = '1';
-    let b = '1'
+    let b = '1';
 
     if (unbind)
       d = "Unbind";

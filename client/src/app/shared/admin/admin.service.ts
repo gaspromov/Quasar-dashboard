@@ -63,7 +63,12 @@ export class AdminService {
     return await this.http.delete(`${this.url}/notifications`, opt).toPromise();
   }
 
-  setHeader(){
+  async getLastPayments(){
+    this.setHeader();
+    return await this.http.get(`${this.url}/payment`, {headers: this.headers}).toPromise();
+  }
+
+  setHeader(str?){
     let token = localStorage.getItem('accessToken')
     this.headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
   }

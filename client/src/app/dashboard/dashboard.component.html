@@ -49,18 +49,24 @@
                                 <input type="text" class="card-cvv" value="***" disabled>
                             </div>
                         </div>
+                        <div class="subscribe">
+                            <button *ngIf="!userData.card" (click)="confirm('subscribe')">
+                                Привязать карту
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="other">
-                <div class="img pointer">
+                <a class="img pointer" href="https://www.notion.so/Quasar-Cook-Guides-53e50dbe31af4fcfb1372738b5772681" target="_blank">
                     <img src="/assets/img/dashboard/guides.svg" alt="">
                     <span>Guides</span>
-                </div>
-                <div class="img pointer">
+                </a>
+                <a class="img pointer" href="https://vk.com/quasar_logistic" target="_blank">
                     <img src="/assets/img/dashboard/logistic.svg" alt="">
                     <span>Quasar <br>Logistic</span>
-                </div>
+                </a>
+                <a href="https://discord.gg/EEsX2xN" target="_blank"><img src="/assets/img/icons/discord-icon.svg">Discord server</a>
             </div>
 
         </div>
@@ -76,7 +82,7 @@
         
 
     </div>
-    <app-pop-up *ngIf="showPopup" [header]="headerPopup" [message]="messagePopup" (onConfirm)="onConfirm($event)"></app-pop-up>
+    <app-pop-up *ngIf="showPopup" [warning]="popupWarning" [header]="headerPopup" [message]="messagePopup" (onConfirm)="onConfirm($event)"></app-pop-up>
     <app-checkout-widget *ngIf="checkout" [typeCheckout]="typeCheckout" (onCloseCheckout)="onCloseCheckout($event)"></app-checkout-widget>
 
 

@@ -20,6 +20,7 @@ import { IsMemberGuard } from './shared/guards/member/is-member.guard';
 import { MemberGuard } from './shared/guards/member/member.guard';
 import { NotificationsComponent } from './admin/notifications/notifications.component';
 import { DropsComponent } from './admin/drops/drops.component';
+import { LastPaymentsComponent } from './admin/last-payments/last-payments.component';
 
 
 
@@ -49,6 +50,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'members', component: MembersComponent },
       { path: 'notifications', component: NotificationsComponent },
+      { path: 'last-payments', component: LastPaymentsComponent },
       { path: 'drops', component: DropsComponent },
       { path: '**', redirectTo: '/admin-panel/home' }
     ] 
