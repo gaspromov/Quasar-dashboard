@@ -34,12 +34,14 @@ router.post('/', authAdmin, async (req, res) => {
 	try {
 		let { key, status, expiresIn } = req.body
 		expiresIn = new Date(expiresIn)
-		expiresIn = status === 'lifetime' ? undefined : expiresIn
+    expiresIn = status === 'lifetime' ? undefined : expiresIn
+    const subscribe = status === 'lifetime' ? true : false
 		if (expiresIn >= new Date() || status === 'lifetime') {
 			const license = new License({
 				key,
 				status,
 				expiresIn,
+				subscribe,
 			})
 			await license.save()
 			return res.status(201).json({ message: `Ключ ${key} успешно создан` })
