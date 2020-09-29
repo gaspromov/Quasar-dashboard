@@ -35,7 +35,8 @@ router.post('/', authUser, async (req, res) => {
 					key,
 					userId: req.user.id,
 					idempotence: idempotence.key,
-					type: 'buy',
+          type: 'buy',
+          username: user.fullName
 				},
 				idempotence.key,
 				user.email,
@@ -125,7 +126,10 @@ router.post('/webhook', async (req, res) => {
 			return res.status(200).json()
 		}
 	} catch (e) {
-		console.log(e)
+		return res.status(500).json({
+			message: 'Что-то пошло не так, попробуйте позже',
+			error: e.message,
+		})
 	}
 })
 
@@ -134,7 +138,10 @@ router.get('/', authAdmin, async (req, res) => {
 		const { data } = await getPayments()
 		return res.status(200).json(data)
 	} catch (e) {
-		console.log(e)
+		return res.status(500).json({
+			message: 'Что-то пошло не так, попробуйте позже',
+			error: e.message,
+		})
 	}
 })
 
