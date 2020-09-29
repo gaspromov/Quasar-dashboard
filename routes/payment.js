@@ -10,6 +10,7 @@ const User = require('../models/User')
 const Drop = require('../models/Drop')
 const Notification = require('../models/Notification')
 const authAdmin = require('../middleware/auth.admin.middleware')
+const { v4 } = require('uuid')
 
 let queue = 0
 
@@ -35,8 +36,8 @@ router.post('/', authUser, async (req, res) => {
 					key,
 					userId: req.user.id,
 					idempotence: idempotence.key,
-          type: 'buy',
-          username: user.fullName
+					type: 'buy',
+					username: user.fullName,
 				},
 				idempotence.key,
 				user.email,
@@ -123,6 +124,14 @@ router.post('/webhook', async (req, res) => {
 			const license = await License.findById(metadata.licenseId)
 			license.expiresIn = nextDate
 			await license.save()
+			return res.status(200).json()
+		} else if (status === 'canceled' && metadata.type === 'buy') {
+			const drop = await Drop.findById(metadata.dropId)
+			drop.idempotences.push({
+				key: v4(),
+				status: 'active',
+      })
+      await drop.save()
 			return res.status(200).json()
 		}
 	} catch (e) {
