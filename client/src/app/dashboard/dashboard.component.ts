@@ -20,7 +20,9 @@ export class DashboardComponent implements OnInit {
   subscribe: boolean = true;
 
   checkout: boolean = false;
-  typeCheckout: string = ''
+  typeCheckout: string = '';
+
+  unsubscription: boolean = false;
 
   constructor(
     private http: UsersService,
@@ -136,7 +138,7 @@ export class DashboardComponent implements OnInit {
     await this.http.changeSubscribe()
     .then(w => {
       this.onConfirm(false);
-      console.log(w)
+      this.unsubscription = !this.unsubscription;
     })
     .catch(e =>{
       if (e.status == 401)
@@ -148,6 +150,8 @@ export class DashboardComponent implements OnInit {
 
   onCloseCheckout(close){
     this.checkout = close;
+    if (this.typeCheckout == 'subscribe')
+      this.subscribe = false;
   }
 
 }

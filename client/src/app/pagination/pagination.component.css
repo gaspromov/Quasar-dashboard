@@ -17,3 +17,6 @@
 .active{
     border-color: white;
 }
+
+.more{vertical-align: bottom; margin-left: 5px; margin-right: 5px;}
+.more>a{cursor: default !important; vertical-align: bottom;}

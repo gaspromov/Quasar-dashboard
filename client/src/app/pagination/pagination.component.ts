@@ -77,14 +77,14 @@ export class PaginationComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   changePage(num){
-    if ( this.currentPage == this.countPages && num == 1 || this.currentPage == 1 && num == 2)
-      return;
-    if (num == 2)
-      this.currentPage = this.currentPage - 1;
-    else 
-      this.currentPage = Number(this.currentPage) + 1;
-    this.setOutputItems()
-    this.setLink(this.currentPage)
+      if ( this.currentPage == this.countPages && num == 1 || this.currentPage == 1 && num == 2)
+        return;
+      if (num == 2)
+        this.currentPage = this.currentPage - 1;
+      else 
+        this.currentPage = Number(this.currentPage) + 1;
+      this.setOutputItems()
+      this.setLink(this.currentPage)
   }
 
   setPage(page){
@@ -111,12 +111,14 @@ export class PaginationComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   setLink(page){
-    this.router.navigate([], {
-      queryParams: {
-        page: page
-      },
-      queryParamsHandling: 'merge',
-    });
+    if (page != 'more'){
+      this.router.navigate([], {
+        queryParams: {
+          page: page
+        },
+        queryParamsHandling: 'merge',
+      });
+    }
   }
 
   setCurrentPage(){

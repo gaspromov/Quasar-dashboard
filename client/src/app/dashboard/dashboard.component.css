@@ -87,12 +87,14 @@
     grid-template-columns: auto 1fr;
     column-gap: 5px;
     align-items: center;
-    
 }
 
 .subscribe-info>div>div{
     display: grid;
     grid-row-gap: 4px;
+}
+.subscribe-info>div>div label:first-child{
+    font-weight: 500;
 }
 
 .subscribe-info .unbind{

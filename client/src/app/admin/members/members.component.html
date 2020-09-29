@@ -44,7 +44,7 @@
     </table>
     <app-pagination *ngIf="keys[0] != null" 
         [items]="keys" 
-        onPage="15" 
+        onPage="15"
         [lifetime]="lifetime"
         [renewal]="renewal"
         [sort]="sort"
@@ -61,7 +61,6 @@
     color="#fff"
     [fullScreen]="false"
     >
-    <p style="font-size: 20px; margin-top: 130px; color: white">Loading...</p>
     </ngx-spinner>
     <app-pop-up *ngIf="showPopup" [header]="headerPopup" [message]="messagePopup" (onConfirm)="onConfirm($event)"></app-pop-up>
 </div>

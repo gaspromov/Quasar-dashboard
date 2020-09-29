@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { AuthService } from '../shared/auth/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { UsersService } from '../shared/users/users.service';
@@ -8,10 +8,11 @@ import { UsersService } from '../shared/users/users.service';
   templateUrl: './discord-info.component.html',
   styleUrls: ['./discord-info.component.css']
 })
-export class DiscordInfoComponent implements OnInit {
+export class DiscordInfoComponent implements OnInit, OnChanges {
   @Input() border: boolean = false;
   @Input() showSpinner: boolean = true;
   @Output() onSendData = new EventEmitter<{}>();
+  @Input() changingData: boolean = false;
   avatar: string;
   username: string;
   discriminator: string;
@@ -24,6 +25,17 @@ export class DiscordInfoComponent implements OnInit {
 
   async ngOnInit(){
     this.spinner.show()
+    await this.getUserData();
+    this.spinner.hide()
+  }
+
+  ngOnChanges(){
+    if (this.changingData = true){
+      this.ngOnInit();
+    }
+  }
+
+  async getUserData(){
     await this.http.getUserData()
     .then((w: any ={}) =>{
       this.avatar = w.avatar;
@@ -36,7 +48,6 @@ export class DiscordInfoComponent implements OnInit {
         this.auth.logoutCookie();
       }
     })
-    this.spinner.hide()
   }
 
   sendData(data){

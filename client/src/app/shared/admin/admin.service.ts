@@ -42,8 +42,14 @@ export class AdminService {
   }
 
   async newDrop(data){
-    this.setHeader()
+    this.setHeader();
     return await this.http.post(`${this.url}/drops`, data, {headers: this.headers}).toPromise();
+  }
+
+  
+  async getDrops(){
+    this.setHeader()
+    return await this.http.get(`${this.url}/drops`, {headers: this.headers}).toPromise();
   }
 
   async getNotifications(){
@@ -55,11 +61,6 @@ export class AdminService {
     this.setHeader();
     let opt = {headers: this.headers, body: {id: id}};
     return await this.http.delete(`${this.url}/notifications`, opt).toPromise();
-  }
-
-  async getDrops(){
-    this.setHeader()
-    return await this.http.get(`${this.url}/drops`, {headers: this.headers}).toPromise();
   }
 
   setHeader(){
