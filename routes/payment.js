@@ -3,12 +3,13 @@ const authUser = require('../middleware/auth.user.middleware')
 
 const router = Router()
 
-const { payment } = require('../utils/payment')
+const { payment, getPayments } = require('../utils/payment')
 
 const License = require('../models/License')
 const User = require('../models/User')
 const Drop = require('../models/Drop')
 const Notification = require('../models/Notification')
+const authAdmin = require('../middleware/auth.admin.middleware')
 
 let queue = 0
 
@@ -127,4 +128,14 @@ router.post('/webhook', async (req, res) => {
 		console.log(e)
 	}
 })
+
+router.get('/', authAdmin, async (req, res) => {
+	try {
+		const { data } = await getPayments()
+		return res.status(200).json(data)
+	} catch (e) {
+		console.log(e)
+	}
+})
+
 module.exports = router
