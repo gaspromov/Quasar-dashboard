@@ -6,8 +6,8 @@
     <div class="blockOfSuccesses standart-padding">
 
         <div class="perMonth regular-style" data-aos="fade-right">
-            <h3 class="month bold-style">{{currentSuccess.date}}</h3>
-            <p class="descript-success">
+            <h3 class="month bold-style" *ngIf="currentSuccess != undefined">{{currentSuccess.date}}</h3>
+            <p class="descript-success" *ngIf="currentSuccess != undefined">
                 {{currentSuccess.description}}
             </p>
             <div class="otherMonth">
@@ -23,7 +23,7 @@
 
         <div class="gradient" data-aos="fade-left">
             <div class="photo-success">
-                <img [src]="currentSuccess.image">
+                <img [src]="currentSuccess.image" *ngIf="currentSuccess != undefined">
             </div>
         </div>
     </div>

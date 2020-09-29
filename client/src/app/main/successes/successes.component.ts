@@ -10,6 +10,9 @@ export class SuccessesComponent implements OnChanges {
   currentSuccess: any = {};
   numberSuccess;
 
+  constructor(){
+  }
+
   
   ngOnChanges(){
     if (this.successes != undefined){

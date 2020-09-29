@@ -27,8 +27,9 @@ export class CheckAccessComponent implements OnInit {
   }
 
   async checkingAccess(){
-    if (this.countChecking == 2){
+    if (this.countChecking >= 3){
       this.error = true;
+      return;
     }
     setTimeout(async ()=>{
       await this.http.getUserData()
@@ -36,7 +37,7 @@ export class CheckAccessComponent implements OnInit {
         if (w.license == undefined || w.license == null || w.license == ''){
           console.log("Лицензии нет. Повторная проверка...");
           this.countChecking++;
-          this.checkingAccess()
+          this.checkingAccess();
         }
         else{
           localStorage.setItem('member', 'true');

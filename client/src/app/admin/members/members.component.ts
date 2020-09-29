@@ -40,8 +40,8 @@ export class MembersComponent implements OnInit {
   async getKeys(){
     this.spinner.show();
     await this.http.getKeys()
-    .then(w =>{
-      this.keys = this.makeValidData(w);
+    .then((w: any) =>{
+      this.keys = this.makeValidData(w.reverse());
       this.spinner.hide();
       
     })

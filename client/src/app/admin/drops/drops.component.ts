@@ -26,8 +26,8 @@ export class DropsComponent implements OnInit {
   async getDrops(){
     this.spinner.show();
     await this.http.getDrops()
-    .then(w => {
-      this.drops = this.makeValidDate(w);
+    .then((w: any) => {
+      this.drops = this.makeValidDate(w.reverse());
       this.spinner.hide();
 
     })

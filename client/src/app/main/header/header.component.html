@@ -18,7 +18,7 @@
     
     <div class="phone-success">
         <img src="/assets/img/background/phone-success.png" alt="phone">
-        <div class="content-success"> 
+        <div class="content-success" *ngIf="successes != undefined && successes != null"> 
             <div class="message" *ngFor="let message of successes; let index = index" [ngClass]="{'firstMessage': index==0}">
                 <img src="/assets/img/logo/quasar.svg" class="avatar">
                 <div class="text">{{message.description}}</div>

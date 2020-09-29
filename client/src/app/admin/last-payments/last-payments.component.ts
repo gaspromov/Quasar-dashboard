@@ -66,7 +66,6 @@ export class LastPaymentsComponent implements OnInit {
 
   changeOutputPayments(payments: any){
     this.outputPayments = payments;
-    console.log(this.payments)
     this.cdr.detectChanges();
   }
 
