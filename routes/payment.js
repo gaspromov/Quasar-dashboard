@@ -126,7 +126,11 @@ router.post('/webhook', async (req, res) => {
 			await license.save()
 			return res.status(200).json()
 		} else if (status === 'canceled' && metadata.type === 'buy') {
-			const drop = await Drop.findById(metadata.dropId)
+      const drop = await Drop.findById(metadata.dropId)
+      const idempotenceIndex = drop.idempotences.findIndex(
+				i => i.key === metadata.idempotence,
+      )
+      drop.idempotences[idempotenceIndex].status = 'finished'
 			drop.idempotences.push({
 				key: v4(),
 				status: 'active',
