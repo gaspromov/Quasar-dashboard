@@ -60,9 +60,6 @@ export class DashboardComponent implements OnInit {
     }else{
       userData.createdAt = this.makeDate(userData.createdAt);
       this.subscribe = userData.subscribe;
-      if (this.subscribe == false){
-        this.confirm('noSubscription');
-      }
       if (userData.expiresIn)
         userData.expiresIn = this.makeDate(userData.expiresIn)
       else
@@ -70,6 +67,9 @@ export class DashboardComponent implements OnInit {
       if (userData.card)
         userData.card.number = this.makeValidNumber(userData.card.first6, userData.card.last4);
       this.type = userData.status;
+      if (this.subscribe == false && this.type != 'lifetime'){
+        this.confirm('noSubscription');
+      }
       userData.status = userData.status.slice(0,1).toUpperCase() + userData.status.slice(1)
       this.userData = userData;
     }

@@ -266,6 +266,9 @@
   .disabled{
       opacity: .3;
   }
+  .disabled *{
+      cursor: default;
+  }
 
   
     .card-info{

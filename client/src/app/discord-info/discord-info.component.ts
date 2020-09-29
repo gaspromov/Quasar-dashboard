@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angu
 import { AuthService } from '../shared/auth/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { UsersService } from '../shared/users/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-discord-info',
@@ -21,6 +22,7 @@ export class DiscordInfoComponent implements OnInit, OnChanges {
     private http: UsersService,
     private auth: AuthService,
     private spinner: NgxSpinnerService,
+    private router: Router,
   ) {}
 
   async ngOnInit(){
@@ -41,6 +43,12 @@ export class DiscordInfoComponent implements OnInit, OnChanges {
       this.avatar = w.avatar;
       this.username = w.username;
       this.discriminator = w.discriminator
+      if (w.license && localStorage.getItem('member') !=='true'){
+        localStorage.setItem('member', 'true');
+        this.router.navigate(['/dashboard']);
+        return;
+      }
+
       this.sendData(w.license);
     })
     .catch(e =>{
