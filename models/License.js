@@ -56,7 +56,8 @@ schema.statics.clear = async function () {
 
 schema.statics.subscribePayment = function () {
 	setInterval(async () => {
-		try {
+    try {
+      await this.clear()
 			const prevDate = new Date()
 			prevDate.setDate(prevDate.getDate() - 1)
 			const licenses = await this.find({ status: 'renewal' }).populate('user')
