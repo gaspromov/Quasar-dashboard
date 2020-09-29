@@ -48,7 +48,8 @@ import { CheckoutComponent } from './main/checkout/checkout.component';
 import { CheckoutWidgetComponent } from './main/checkout-widget/checkout-widget.component';
 import { DropsComponent } from './admin/drops/drops.component';
 import { ChangePasswordComponent } from './admin/change-password/change-password.component';
-import { UserAgreementComponent } from './user-agreement/user-agreement.component'
+import { UserAgreementComponent } from './user-agreement/user-agreement.component';
+import { PaginationPipe } from './shared/pipes/pagination/pagination.pipe'
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { UserAgreementComponent } from './user-agreement/user-agreement.componen
     DropsComponent,
     ChangePasswordComponent,
     UserAgreementComponent,
+    PaginationPipe,
   ],
   imports: [
     BrowserModule,

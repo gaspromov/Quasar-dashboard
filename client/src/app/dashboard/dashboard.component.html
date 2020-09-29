@@ -1,6 +1,6 @@
 <div class="content">
     <div class="window db-window">
-        <app-discord-info [showSpinner]="false" (onSendData)="onSendData($event)"></app-discord-info>
+        <app-discord-info [showSpinner]="false" (onSendData)="onSendData($event)" [changingData]="unsubscription"></app-discord-info>
 
         <div class="info">
             <div class="subscribe-info">
@@ -9,8 +9,8 @@
                         <label> <img src="/assets/img/dashboard-icons/key.svg">Key</label>
                         {{userData.key}}
                     </div>
-                    <div class="joing row-2">
-                        <label> <img src="/assets/img/dashboard-icons/joing.svg">Joing</label>
+                    <div class="joining row-2">
+                        <label> <img src="/assets/img/dashboard-icons/joing.svg">Joining</label>
                         {{userData.createdAt}}
                     </div>
 
@@ -42,6 +42,7 @@
                     <div class="payment" [ngClass]="{ 'disabled': type == 'lifetime' }">
                         <label> <img src="/assets/img/dashboard-icons/payment.svg">Payment</label>
                         <div class="card-info" *ngIf="userData.card">
+                            <button class="changeCard" (click)="confirm('change')">Изменить способ оплаты</button>
                             <input type="text" class="card-number" [value]="userData.card.number" disabled>
                             <div class="date-cvv">
                                 <input type="text" class="card-date" [value]="userData.card.expiry_month + '/' + userData.card.expiry_year" disabled>

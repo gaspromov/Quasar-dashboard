@@ -26,8 +26,6 @@ export class CheckoutWidgetComponent implements OnInit {
     this.spinner.show();
     await this.getToken();
     this.spinner.hide();
-    
-
   }
 
   async getTokenSubscribe(){
