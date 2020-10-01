@@ -23,12 +23,12 @@ router.get('/discord', passport.authenticate('discord'))
 router.get(
 	'/discord/redirect',
 	passport.authenticate('discord', {
-		failureRedirect: '/',
+		failureRedirect: '/login',
 	}),
 	async (req, res) => {
 		const lastDate = new Date()
 		lastDate.setDate(lastDate.getDate() - 3)
-
+  
 		const user = await User.findById(req.user.id).populate('license')
 		res.setHeader(
 			'Content-Security-Policy',
