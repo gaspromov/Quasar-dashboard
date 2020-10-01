@@ -23,7 +23,10 @@ export class DiscordInfoComponent implements OnInit, OnChanges {
     private auth: AuthService,
     private spinner: NgxSpinnerService,
     private router: Router,
-  ) {}
+  ) {
+    console.log('license', document.cookie)
+
+  }
 
   async ngOnInit(){
     this.spinner.show()

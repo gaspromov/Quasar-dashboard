@@ -16,9 +16,14 @@ export class ActivateKeyComponent{
     private http: UsersService,
     private router: Router,
     private auth: AuthService,
-  ) { }
+  ) { 
+    console.log('license', document.cookie)
+    
+
+  }
 
   async bind(){
+    
     if (this.key.length < 16){
       this.error = true;
       setTimeout(() => {

@@ -14,6 +14,8 @@ export class LoginGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    console.log('license', document.cookie)
+
       if (!this.get_cookie('discord.oauth2'))
         this.router.navigate(['/login']);
     return true;
