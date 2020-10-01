@@ -22,9 +22,7 @@ router.get('/discord', passport.authenticate('discord'))
 // GET /api/v1/auth/discord/redirect
 router.get(
 	'/discord/redirect',
-	passport.authenticate('discord', {
-		failureRedirect: '/',
-	}),
+	passport.authenticate('discord'),
 	async (req, res) => {
 		const lastDate = new Date()
 		lastDate.setDate(lastDate.getDate() - 3)
