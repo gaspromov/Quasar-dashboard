@@ -140,7 +140,14 @@ export class DashboardComponent implements OnInit {
       this.unbind();
     else if (answere && this.typePopup == "unsubscribe")
       this.unsubscribe();
-    else{
+    else if (!answere && this.typePopup == 'unsubscribe'){
+      this.subscribe = true;
+      this.showPopup = false;
+      this.typePopup = '';
+      this.headerPopup = "";
+      this.messagePopup = "";
+      this.popupWarning = false;
+    }else{
       this.showPopup = false;
       this.typePopup = '';
       this.headerPopup = "";

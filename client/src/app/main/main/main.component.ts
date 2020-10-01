@@ -12,6 +12,7 @@ export class MainComponent implements OnInit {
   successes;
   dropId;
   checkout: boolean = false;
+  password: string = '';
 
   constructor(
     private http: UsersService,
@@ -72,6 +73,7 @@ export class MainComponent implements OnInit {
     console.log(checkout)
     this.checkout = checkout.drop;
     this.dropId = checkout.dropId;
+    this.password = checkout.password
   }
 
   onCloseCheckout(checkout: boolean){

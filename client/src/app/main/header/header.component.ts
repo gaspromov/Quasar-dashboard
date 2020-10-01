@@ -11,6 +11,7 @@ import { UsersService } from 'src/app/shared/users/users.service';
 export class HeaderComponent implements OnDestroy {
   params;
   subscribtion;
+  password: string = '';
   drop: boolean = false;
   dropId: string = "";
   @Input() successes: any = [];
@@ -38,6 +39,8 @@ export class HeaderComponent implements OnDestroy {
     .then((w: string) =>{
       this.drop = true;
       this.dropId = w;
+      this.password = password;
+      
     })
     .catch(e =>{
       console.log(e);
@@ -52,7 +55,7 @@ export class HeaderComponent implements OnDestroy {
   }
 
   openCheckout(){
-    this.onOpenCheckout.emit({ drop: this.drop, dropId: this.dropId });
+    this.onOpenCheckout.emit({ drop: this.drop, dropId: this.dropId, password: this.password });
   }
 
 

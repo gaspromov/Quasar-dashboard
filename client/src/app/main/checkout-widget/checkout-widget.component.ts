@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DropService } from 'src/app/shared/drop/drop.service';
 import { UsersService } from 'src/app/shared/users/users.service';
@@ -9,11 +9,13 @@ declare const YandexCheckout:any;
   templateUrl: './checkout-widget.component.html',
   styleUrls: ['./checkout-widget.component.css']
 })
-export class CheckoutWidgetComponent implements OnInit {
+export class CheckoutWidgetComponent implements OnInit, OnDestroy {
   checkout;
   token: string;
+  error: boolean = false;
   @Input() typeCheckout: string = 'drop';
   @Input() dropId: string = '';
+  @Input() password: string = '';
   @Output() onCloseCheckout = new EventEmitter<boolean>();
 
   constructor(
@@ -28,6 +30,9 @@ export class CheckoutWidgetComponent implements OnInit {
     this.spinner.hide();
   }
 
+  ngOnDestroy(){
+    this.error = false;
+  }
   async getTokenSubscribe(){
     await this.subscribeHTTP.changeSubscribe()
     
@@ -42,6 +47,7 @@ export class CheckoutWidgetComponent implements OnInit {
       })
       .catch(e =>{
         console.log(e);
+        this.error = true;
       })
     else if (this.typeCheckout == 'subscribe')
       await this.subscribeHTTP.changeSubscribe()
@@ -102,8 +108,8 @@ export class CheckoutWidgetComponent implements OnInit {
       },
 
       error_callback(error) {
-        window.location.href = 'https://quasarcook.com/checking-access';
-        console.log(error, 'error');
+        if (this.typeCheckout == 'drop')
+          this.error = true;
       }
     });
      this.checkout.render('payment-form');

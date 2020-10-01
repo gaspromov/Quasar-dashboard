@@ -15,6 +15,7 @@
 .blockOfSuccesses{
     display: grid;
     grid-template-columns: auto 1fr;
+    row-gap: 30px;
     grid-column-gap: 100px;
 }
 
@@ -52,6 +53,8 @@
     align-items: center;
     justify-items: center;
 }
+#prev800, #next800{display: none; position: absolute; top: 50%; transform: translate(0%, -50%); height: 15px; width: 15px;}
+#next800{transform: scale(-1, 1) translate(0%, -50%);}
 
 .gradient{
     padding: 4px;
@@ -95,4 +98,31 @@
 
 #next img{
     transform: scale(-1,1);
+}
+
+@media(max-width: 900px){
+    .successes .transition{height: 180px;}
+    .successes{padding-top: 120px;}
+}
+@media(max-width: 800px){
+    .successes{row-gap: 20px;}
+    .blockOfSuccesses{
+        grid-template-columns: 1fr;
+    }
+
+    .perMonth{padding: 10px 40px; row-gap: 10px;}
+    .perMonth .otherMonth{display: none;}    
+    #next800, #prev800{display: grid; }
+    #next800{right: 10px}
+    #prev800{left: 10px}
+
+    .gradient{border-radius: 35px; padding: 2px;}
+
+}
+@media(max-width: 600px){
+
+    .successes .transition{height: 120px;}
+    .successes{padding-top: 80px; padding-bottom: 35px;}
+    .perMonth .month{font-size: 18px;}
+    .descript-success{font-size: 12px;}
 }

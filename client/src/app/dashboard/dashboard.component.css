@@ -93,6 +93,7 @@
     color: white;
     padding: 0px 10px;
     height: 30px;
+    box-sizing: border-box;
 
 }
 
@@ -127,6 +128,7 @@
     color: white;
     padding: 0px 30px;
     height: 30px;
+    box-sizing: border-box;
 
     transition: 0.2s;
     /* min-height: 20px; */
@@ -186,6 +188,9 @@
     color: white;
     font-size: 12px;
     transition: .4s;
+    align-self: end;
+    margin-bottom: 12px;
+
 }
 
 .other a:last-child:hover{background-color: #21355b;}

@@ -16,6 +16,7 @@ footer{
     display: grid;
     grid-template-columns: auto auto;
     align-items: center;
+    vertical-align: center;
     column-gap: 5px;
 }
 
@@ -25,4 +26,15 @@ footer{
 
 .pointer:hover{
     text-decoration: underline;
+}
+
+@media (max-width: 450px){
+    footer{
+        font-size: 8px;
+        column-gap: 20px;
+        padding: 5px 0px; 
+    }
+
+    .cactus-web img{width: 20px}
+    
 }

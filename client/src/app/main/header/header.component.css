@@ -171,3 +171,81 @@ header .transition{
     grid-column: 2/3;
     margin-top: 10px;
 }
+
+
+
+@media (max-width: 900px){
+    header{
+        height: 450px;
+    }
+
+    header .phone-success{
+        display: none;
+    }
+
+    .about{margin-bottom: 150px;}
+    header .about{
+        /* align-self: center; */
+        justify-self: center;
+        justify-items: center;
+    }
+
+    header .about .name{
+        grid-template-columns: 1fr !important;
+        place-items: center;
+        font-size: 50px;
+    }
+
+    .about .name>hr{
+        width: 150px;
+    }
+
+    .about .descript{
+        text-align: center;
+    }
+
+    .about .buy{
+        margin-top: 10px;
+    }
+
+    header .transition{
+        height: 180px;
+    }
+
+}
+
+@media(max-width: 600px){
+    header{
+        height: 310px;
+    }
+    .about{margin-bottom: 60px;}
+    .about .descript{
+        font-size: 14px;
+    }
+    
+
+    .about .buy a{
+        font-size: 12px;
+    }
+
+    
+    header .transition{
+        height: 120px;
+    }
+}
+
+@media (max-width: 375px){
+    
+    header .about .name{
+        grid-template-columns: 1fr !important;
+        place-items: center;
+        font-size: 35px;
+    }
+
+    .about{margin-bottom: 70px;}
+    
+    .about .name>hr{
+        width: 120px;
+    }
+    
+}

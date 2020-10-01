@@ -21,13 +21,31 @@ p{
 
 .img-links{
     display: grid;
-    grid-template-columns: repeat(4, auto);
-    grid-column-gap: 120px;
+    grid-template-columns: repeat(4, 1fr);
     align-items: center;
     justify-items: center;
+    justify-self: stretch;
 }
 
 .img-links img{
     width: 70px;
+}
+
+@media(max-width: 900px){
+    .img-links img{
+        width: 50px
+    }
+}
+
+@media (max-width: 600px){
+    .social{
+        padding: 15px 0px;
+        row-gap: 10px;
+    }
+    p{
+        font-size: 12px;
+    }
+    .img-links{margin-top: 15px;}
+    .img-links img{width: 40px}
     
 }

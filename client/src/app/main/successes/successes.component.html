@@ -5,11 +5,14 @@
 
     <div class="blockOfSuccesses standart-padding">
 
-        <div class="perMonth regular-style" data-aos="fade-right">
+        <div class="perMonth regular-style relative" data-aos="fade-right">
             <h3 class="month bold-style" *ngIf="currentSuccess != undefined">{{currentSuccess.date}}</h3>
             <p class="descript-success" *ngIf="currentSuccess != undefined">
                 {{currentSuccess.description}}
             </p>
+            <span id="prev800" class="prev pointer" (click)=changeCurrentSuccess(-1)>
+                <img src="/assets/img/icons/left-arrow.svg" alt="previos" class="change-successes">
+            </span>
             <div class="otherMonth">
                 <span id="prev" class="prev pointer" (click)=changeCurrentSuccess(-1)>
                     <img src="/assets/img/icons/left-arrow.svg" alt="previos" class="change-successes">
@@ -19,9 +22,13 @@
                     <img src="/assets/img/icons/left-arrow.svg" alt="next" class="change-successes">
                 </span>
             </div>
+            
+            <span id="next800" class="next pointer" (click)=changeCurrentSuccess(1)>
+                <img src="/assets/img/icons/left-arrow.svg" alt="next" class="change-successes">
+            </span>
         </div>
 
-        <div class="gradient" data-aos="fade-left">
+        <div class="gradient" data-aos="fade-right">
             <div class="photo-success">
                 <img [src]="currentSuccess.image" *ngIf="currentSuccess != undefined">
             </div>

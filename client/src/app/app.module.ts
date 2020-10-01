@@ -52,7 +52,8 @@ import { UserAgreementComponent } from './user-agreement/user-agreement.componen
 import { PaginationPipe } from './shared/pipes/pagination/pagination.pipe';
 import { LastPaymentsComponent } from './admin/last-payments/last-payments.component';
 import { FilterPaymentsPipe } from './shared/pipes/payments/filter-payments.pipe';
-import { SearchPaymentsPipe } from './shared/pipes/payments/search-payments.pipe'
+import { SearchPaymentsPipe } from './shared/pipes/payments/search-payments.pipe';
+import { CheckoutWarningComponent } from './main/checkout-warning/checkout-warning.component'
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { SearchPaymentsPipe } from './shared/pipes/payments/search-payments.pipe
     LastPaymentsComponent,
     FilterPaymentsPipe,
     SearchPaymentsPipe,
+    CheckoutWarningComponent,
   ],
   imports: [
     BrowserModule,

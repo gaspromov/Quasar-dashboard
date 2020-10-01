@@ -2,6 +2,7 @@ nav{
     background-color: #0d1223;
     display: grid;
     grid-template-columns: auto 1fr auto;
+    column-gap: 15px;
     padding-top: 10px ;
     padding-bottom: 10px;
     align-items: center;
@@ -45,7 +46,7 @@ a{
     background-color: #0d1223;
 }
 
-
+.link-dashboard{justify-self: end;}
 nav .link-dashboard a{
     padding: 8px 25px;
     border-radius: 25px;
@@ -60,4 +61,22 @@ nav .link-dashboard a:hover{
 
 .link-dashboard img{
     width: 100%;
+}
+
+@media (max-width: 750px){
+    ul.menu{grid-template-columns: repeat(3, 1fr); column-gap: 25px;}
+    ul.menu li:first-child{display: none;}
+}
+
+@media (max-width: 600px){
+
+    nav{font-size: 12px;}
+    nav>svg, nav>img{width: 45px;}
+
+    nav .link-dashboard a{ font-size: 12px;}
+}
+
+@media(max-width: 500px){
+    nav{grid-template-columns: repeat(2, 1fr);}
+    ul.menu{display: none;}
 }

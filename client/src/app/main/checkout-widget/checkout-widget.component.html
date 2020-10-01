@@ -1,5 +1,6 @@
 <div class="plug" (click)="closeCheckout(false)"></div>
 <div id="payment-form"></div>
+<app-checkout-warning [password]="password" *ngIf="error"></app-checkout-warning>
 
 <ngx-spinner
 type="ball-clip-rotate"
