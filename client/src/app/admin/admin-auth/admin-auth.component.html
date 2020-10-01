@@ -2,7 +2,12 @@
 
     <div class="window login-window">
 
-            <img src="/assets/img/logo/quasar.svg" routerLink="" alt="quasar" class="logo pointer">
+        
+        <div class="logo relative">
+            <img src="/assets/img/logo/quasar.svg" routerLink="" alt="link on main" class="logo pointer">
+            <img src="/assets/img/logo/quasar.svg" routerLink="" alt="link on main" class="logo-absolute pointer">
+
+        </div>
             <form [formGroup]="loginForm" (ngSubmit)="auth()">
                 <input type="text" class="admin-input" placeholder="login" formControlName="login">
                 <input type="password" class="admin-input" placeholder="password" formControlName="password">

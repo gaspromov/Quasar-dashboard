@@ -8,13 +8,24 @@
 }
 
 
+div.logo{
+    height: 100%;
+}
 img.logo{
     height: 100%;
-    transition: 0.2s;
+    opacity: 0%;
 }
 
-img.logo:hover{
-    height: 110%;
+.logo-absolute{
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    height: 100%;
+    transition: .4s;
+}
+.logo-absolute:hover{
+    height: 120%;
 }
 
 form{

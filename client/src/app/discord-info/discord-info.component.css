@@ -15,8 +15,6 @@
 
 .discord-avatar{
     height: 100%;
-    width: 100%;
-    display: grid;
     place-items: center;
     min-height: 100px;
     padding-bottom: 1%;

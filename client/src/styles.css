@@ -188,8 +188,13 @@ a{
 
     background-color: #0F1D38;
     border-radius: 30px;
-
     color: white;
+}
+@media(max-width: 940px){
+    .window{width: 70%;}
+}
+@media(max-width: 550px){
+    .window{width: 80%}
 }
 
 .admin-window{
@@ -225,7 +230,12 @@ a{
     color: white;
 
     margin: 0px 10px;
-    transition: 0.25s;
+    transition: 0.4s;
+}
+@media (max-width: 600px){
+    .discord-login-btn{
+        border: 1px solid #e5e5e5;
+    } 
 }
 
 .discord-login-btn:hover{

@@ -16,11 +16,7 @@ export class ActivateKeyComponent{
     private http: UsersService,
     private router: Router,
     private auth: AuthService,
-  ) { 
-    console.log('license', document.cookie)
-    
-
-  }
+  ) {}
 
   async bind(){
     
