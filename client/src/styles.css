@@ -193,8 +193,13 @@ a{
 @media(max-width: 940px){
     .window{width: 70%;}
 }
+@media(max-width: 700px){
+    .window{
+        height: 50%;
+    }
+}
 @media(max-width: 550px){
-    .window{width: 80%}
+    .window{width: 90%}
 }
 
 .admin-window{
@@ -283,11 +288,35 @@ a{
     right: -2px;
 }
 
+
 .simple-input button img{
     transition: 0.25s;
 }
 .simple-input button:hover img, .simple-input button:active img{
     margin-left: 15px;
+}
+
+
+@media(max-width: 600px){
+    .window .simple-input{
+        height: 32px;
+        border: 1px solid #E5E5E5;
+    }
+    .simple-input input[type="text"]{
+        font-size: 12px;
+        padding: 10px 0px;
+        max-height: 30px;
+    }
+    .simple-input button{
+        height: 32px;
+        width: 40px;
+        top: -1px;
+        right: -1px;
+        border: 1px solid #E5E5E5;
+    }
+    .simple-input button:hover img, .simple-input button:active img{
+        margin-left: 10px;
+    }
 }
 
 

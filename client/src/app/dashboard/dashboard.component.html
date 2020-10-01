@@ -41,16 +41,24 @@
                     </div>
                     <div class="payment" [ngClass]="{ 'disabled': type == 'lifetime' }">
                         <label> <img src="/assets/img/dashboard-icons/payment.svg">Payment</label>
-                        <div class="card-info" *ngIf="userData.card">
-                            <button class="changeCard" (click)="confirm('change')">Изменить способ оплаты</button>
-                            <input type="text" class="card-number" [value]="userData.card.number" disabled>
+                        <div class="card-info relative" *ngIf="!userData.card">
+                            <button class="changeCard text" (click)="confirm('change')">Изменить способ оплаты</button>
+                            <!-- <input type="text" class="card-number" [value]="userData.card.number" disabled>
                             <div class="date-cvv">
                                 <input type="text" class="card-date" [value]="userData.card.expiry_month + '/' + userData.card.expiry_year" disabled>
                                 <input type="text" class="card-cvv" value="***" disabled>
+                            </div> -->
+                            <input type="text" class="card-number" value="5469 60** **** 6475" disabled>
+                            <div class="date-cvv">
+                                <input type="text" class="card-date" value="12/33" disabled>
+                                <input type="text" class="card-cvv" value="***" disabled>
                             </div>
+                            <button class="changeCard button" (click)="confirm('change')">
+                                <img src="/assets/img/dashboard-icons/changeCard.svg" alt="change payment card">
+                            </button>
                         </div>
                         <div class="subscribe">
-                            <button *ngIf="!userData.card" (click)="confirm('subscribe')">
+                            <button *ngIf="userData.card" (click)="confirm('subscribe')">
                                 Привязать карту
                             </button>
                         </div>

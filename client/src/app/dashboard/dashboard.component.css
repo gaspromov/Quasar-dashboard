@@ -22,7 +22,7 @@
 
 .info{
     display: grid;
-    grid-template-columns: 1fr minmax(150px, auto);
+    grid-template-columns: 1fr minmax(130px, auto);
     justify-self: stretch;
     align-self: stretch;
     border-top: 2px solid white;
@@ -31,7 +31,7 @@
 
 
 .info>div{
-    padding: 15px 35px;
+    padding: 15px 0px;
     display: grid;
     justify-items: center;
     align-items: center;
@@ -49,13 +49,12 @@
 
 .subscribe-info{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
     column-gap: 5%;
     font-size: 14px;
 }
 
 .subscribe-info>*{
-    width: 100%; 
     height: 100%;
 
     display: grid;
@@ -292,15 +291,15 @@
     border: none;
     color: white;
   }
-  .card-info>input:first-child{
-      width: 100%;
+  .card-info .card-number{
+      width: 90%;
   }
 
   .card-info .date-cvv input:last-child{
       margin-left: 10%;
   }
   .card-info .date-cvv input:first-child, .card-info .date-cvv input:last-child{
-      width: 45%; 
+      width: 40%; 
   }
 
   .changeCard{
@@ -310,4 +309,110 @@
       color: white;
       justify-self: end;
       font-size: 10px;
+      margin-right: 10%;
   }
+
+  .changeCard.button{display: none;}
+
+  @media(max-width: 800px){
+      .db-window{
+          height: auto;
+          min-height: 70%;
+          grid-template-rows: minmax(50px, 150px) 1fr auto;
+      }
+      .info{
+          grid-template-columns: auto;
+      }
+      .info>div{
+          padding: 15px 0px;
+      }
+      .info>div:first-child{
+          border-right: none;
+      }
+      .info>div:last-child{
+          border-left: none;
+          border-top: 1px solid white;
+          grid-template-columns: repeat(3, 1fr);
+          place-items: center;
+      }
+      .info>div:last-child>*{
+        width: 60px;
+        height: 60px;
+        margin: 0px;
+        font-size: 8px;
+        font-weight: 500;
+        grid-template-columns: auto;
+        place-items: center;
+        text-align: center;
+      }
+      .info>div:last-child>*:last-child{
+        filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.3));
+        align-self: center;
+      }
+      .info>div:last-child>a>img{
+          width: 30px;
+          height: 30px;
+      }
+      .info>div:last-child>a:last-child>img{
+          width: 20px;
+          height: auto;
+          align-self: end;
+      }
+      .subscribe-info{
+        grid-template-columns: repeat(2, minmax(90px, 1fr));
+    }
+}
+
+@media (max-width: 600px){
+    .subscribe-info{
+      font-size: 10px;
+  }
+    .subscribe-info label{
+      font-size: 12px;
+    }
+    .subscribe-info label img{height: 11px; width: auto;}
+    .subscribe-info .unbind button, .subscribe-info .subscribe button{
+        padding: 0px 10px;
+        height: 18px;
+        font-size: 10px;
+    }
+    .subscribe-info .subscribe button{
+        padding: 0px 2px;
+    }
+    .checkbox{
+        font-size: 10px;
+    }
+
+    
+  .card-info input{
+    height: 17px;
+    /* width:  */
+    font-size: 7px;
+    border-radius: 50px;
+  }
+  .card-info .card-number{
+      width: 80%;
+  }
+  .card-info .date-cvv input:last-child{
+      margin-left: 20%;
+  }
+  .card-info .date-cvv input:first-child, .card-info .date-cvv input:last-child{
+      width: 30%; 
+  }
+
+  .card-info button.changeCard.text{display: none;}
+  .card-info button.changeCard.button{
+      margin: 0px;
+      position: absolute;
+      top: 50%;
+      right: 0px;
+      transform: translate(0%, -50%);
+      height: 100%;
+      padding: 0px 5px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #E5E5E5;
+      border-radius: 12px;
+    }
+
+}

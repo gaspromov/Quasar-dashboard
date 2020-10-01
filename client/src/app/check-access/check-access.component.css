@@ -62,3 +62,13 @@ ngx-spinner{
     position: absolute;
 }
 
+@media(max-width: 400px){
+    .error{
+        padding: 10px 5px;
+        width: 300px;
+    }
+    .error h3{font-size: 20px;}
+    .error p{
+        font-size: 14px;
+    }
+}

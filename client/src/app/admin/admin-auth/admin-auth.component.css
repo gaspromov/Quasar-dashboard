@@ -1,18 +1,34 @@
 .login-window{
     width: 30%;
     height: 50%;
-    
+
     display: grid;
-    grid-template-rows: 1fr 0.7fr;
+
+    position: relative;
+
+    padding: 3% 5%;
+    box-sizing: border-box;
+
+    background-color: #0F1D38;
+    border-radius: 30px;
+    color: white;
+}
+
+.info{
+    display: grid;
     grid-row-gap: 10%;
+    align-items: center;
+    justify-items: center;
 }
 
-
-div.logo{
+.logodiv{
     height: 100%;
+    place-items: center;
+    min-height: 100px;
 }
-img.logo{
+.logodiv img{
     height: 100%;
+    transition: .4s;
 }
 
 form{
@@ -44,4 +60,16 @@ button.admin-input{
 
 button.admin-input:hover{
     padding: 2px 20px;
+}
+
+@media(max-width: 900px){
+    .login-window{
+        width: 80%;
+    }
+}
+@media(max-width: 600px){
+    .login-window{
+        width: 100%;
+        /* height: 100%; */
+    }
 }

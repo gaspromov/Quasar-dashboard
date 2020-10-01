@@ -3,22 +3,36 @@
     height: 50%;
 
     display: grid;
-    grid-template-rows: 1fr auto;
+
+    position: relative;
+
+    padding: 3% 5%;
+    box-sizing: border-box;
+
+    background-color: #0F1D38;
+    border-radius: 30px;
+    color: white;
+}
+
+.info{
+    display: grid;
     grid-row-gap: 20%;
+    align-items: center;
+    justify-items: center;
 }
 
 .logodiv{
-    place-items: center;
     height: 100%;
-    /* align-self: stretch; */
+    place-items: center;
+    min-height: 100px;
 }
-img.logo{
+.logodiv img{
     height: 100%;
     transition: .4s;
 }
-img.logo:hover{
-    /* filter: invert(20%) */
-}
+
+
+
 
 @media (max-width: 940px){
     .login-window{

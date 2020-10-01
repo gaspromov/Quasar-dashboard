@@ -29,4 +29,11 @@
 .discord-nickname{
     font-size: 24px;
 }
-
+@media(max-width: 600px){
+    .discord-nickname{
+        font-size: 18px;
+    }
+    .border{
+        border-bottom: 1px solid white;
+    }
+}

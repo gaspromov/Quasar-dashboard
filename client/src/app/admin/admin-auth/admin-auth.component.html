@@ -1,17 +1,19 @@
 <div class="content admin-content">
 
-    <div class="window login-window">
+    <div class="login-window">
+        <div class="info">
+            <div class="logodiv">
+                <img src="/assets/img/logo/quasar.svg" routerLink="" alt="link on main" class="logo pointer">
+            </div>
+                <form [formGroup]="loginForm" (ngSubmit)="auth()">
+                    <input type="text" class="admin-input" placeholder="login" formControlName="login">
+                    <input type="password" class="admin-input" placeholder="password" formControlName="password">
+                    <button class="admin-input">Log in</button>
+                </form>
+                <span *ngIf="message" class="danger-message">{{message}}</span>
 
-        
-        <div class="logo relative">
-            <img src="/assets/img/logo/quasar.svg" routerLink="" alt="link on main" class="logo pointer">
         </div>
-            <form [formGroup]="loginForm" (ngSubmit)="auth()">
-                <input type="text" class="admin-input" placeholder="login" formControlName="login">
-                <input type="password" class="admin-input" placeholder="password" formControlName="password">
-                <button class="admin-input">Log in</button>
-            </form>
-            <span *ngIf="message" class="danger-message">{{message}}</span>
+        
     </div>
 
 </div>

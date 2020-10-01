@@ -25,6 +25,12 @@
 .simple-input, button{
     transition: .4s !important;
 }
+@media(max-width: 600px){
+    .font-24{
+        font-size: 18px;
+    }
+
+}
 
 /* .key-input input{
 } */
