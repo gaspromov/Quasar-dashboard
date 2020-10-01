@@ -13,19 +13,6 @@ div.logo{
 }
 img.logo{
     height: 100%;
-    opacity: 0%;
-}
-
-.logo-absolute{
-    position: absolute;
-    top: 0px;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    height: 100%;
-    transition: .4s;
-}
-.logo-absolute:hover{
-    height: 120%;
 }
 
 form{
