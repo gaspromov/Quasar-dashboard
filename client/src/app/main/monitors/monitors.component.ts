@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./monitors.component.css']
 })
 export class MonitorsComponent {
+  countHide: number = 0;
 
 
   hover(action: string, hiddenMonitors: string, typeMonitors: string){
@@ -19,7 +20,7 @@ export class MonitorsComponent {
         setTimeout(() => {
           for (let i = 0; i < minicircles.length; i++)
             setTimeout(() => {
-              this.show(minicircles[i])
+              this.show(minicircles[i], 'show')
             }, 150*i);
         }, 300)
         document.getElementById('body').style.background = "black";
@@ -32,23 +33,45 @@ export class MonitorsComponent {
         this.show(document.querySelector(`.${hiddenMonitors}`));
         for (let i = 0; i < elements.length; i++)
           this.show(elements[i]);          
-        setTimeout(() => {
-          for (let i = 0; i < minicircles.length; i++)
-            setTimeout(() => {
-              this.hidden(minicircles[i])
-            }, 150*i);
-        }, 300)
+        this.hideMinicircles(typeMonitors);
+        // setTimeout(() => {
+        //   for (let i = 0; i < minicircles.length; i++)
+        //     setTimeout(() => {
+        //       this.hidden(minicircles[i], 'show')
+        //     }, 150*i);
+        // }, 300)
       }
 
     }, 50)
   }
 
-  hidden(ell){
-    ell.classList.add('hidden')
+  hideMinicircles(typeMonitors: string){
+    let ellements = document.querySelectorAll(`.${typeMonitors} .minicircle.show`);
+    setTimeout( ()=>{
+
+      if (ellements.length != 0 || this.countHide < 13){
+        for (let i = 0; i < ellements.length; i++){
+          this.hidden(ellements[i], 'show');
+        }
+        this.countHide++;
+        this.hideMinicircles(typeMonitors);
+      }
+      else this.countHide = 0;
+
+    }, 50)
+    console.log(0);
   }
 
-  show(ell){
+  hidden(ell, hideClass?: string){
+    ell.classList.add('hidden')
+    if (hideClass)
+      ell.classList.remove(hideClass);
+  }
+
+  show(ell, newClass?: string){
     ell.classList.remove('hidden')
+    if (newClass)
+      ell.classList.add(newClass);
   }
 
 
