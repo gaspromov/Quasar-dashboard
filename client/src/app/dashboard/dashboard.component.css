@@ -388,6 +388,14 @@
     .checkbox{
         font-size: 10px;
     }
+    .subscribe-info .unbind{
+        padding: 0px;
+    }
+    .payment .subscribe{
+        padding: 0px;
+    }
+
+
 
     .card-info{align-self: end; margin-bottom: 10px;}
   .card-info input{

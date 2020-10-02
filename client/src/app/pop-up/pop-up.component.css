@@ -65,11 +65,17 @@ button{
     border: 2px solid white;
     border-radius: 12px;
     color: white;
-
+    text-align: center;
     width: 40px;
     height: 30px;
 }
 
 button:hover{
     background-color: #21355B;
+}
+
+@media(max-width: 600px){
+    .pop-up{
+        padding: 25px 10px 15px;
+    }
 }

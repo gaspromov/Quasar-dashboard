@@ -216,6 +216,7 @@ header .transition{
 
 @media(max-width: 600px){
     header{
+        background-image: url("/assets/img/background/header-phone.png");
         height: 310px;
     }
     .about{margin-bottom: 60px;}
