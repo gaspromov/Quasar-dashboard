@@ -7,6 +7,7 @@
     pointer-events: none;
 }
 
+.content{padding: 10px 0px;}
 
 
 ::-webkit-scrollbar{
@@ -293,7 +294,7 @@ a{
     transition: 0.25s;
 }
 .simple-input button:hover img, .simple-input button:active img{
-    margin-left: 15px;
+    margin-left: 10px;
 }
 
 

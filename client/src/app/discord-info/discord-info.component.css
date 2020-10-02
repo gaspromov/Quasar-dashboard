@@ -1,6 +1,6 @@
 .discord-info{
     display: grid;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: minmax(100px, 140px) auto;
     justify-items: center;
     height: 100%;
     align-items: center;
@@ -17,6 +17,7 @@
     height: 100%;
     place-items: center;
     min-height: 100px;
+    max-height: 140px;
     padding-bottom: 1%;
 }
 
@@ -28,6 +29,11 @@
 
 .discord-nickname{
     font-size: 24px;
+}
+@media(max-width: 800px){
+    .discord-avatar{
+        height: 110px;
+    }
 }
 @media(max-width: 600px){
     .discord-nickname{

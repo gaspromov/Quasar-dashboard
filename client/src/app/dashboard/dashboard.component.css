@@ -15,14 +15,17 @@
 .db-window{
     display: grid;
     grid-row-gap: 3%;
+    height: auto;
+    min-height: 70%;
     padding: 1% 5% !important;
-    grid-template-rows: 0.7fr 1fr auto;
+    grid-template-rows: 0.5fr 1fr auto;
     place-items: stretch;
 }
 
 .info{
     display: grid;
     grid-template-columns: 1fr minmax(130px, auto);
+    padding-bottom: 20px;
     justify-self: stretch;
     align-self: stretch;
     border-top: 2px solid white;
@@ -44,6 +47,7 @@
 
 .info>div:last-child{
     border-left: 1px solid white;
+    row-gap: 10px;
 }
 
 
@@ -168,6 +172,7 @@
 
 .other .img img{
     align-self: end;
+    height: 30px;
 }
 
 .other .img span{
@@ -317,11 +322,12 @@
   @media(max-width: 800px){
       .db-window{
           height: auto;
-          min-height: 70%;
-          grid-template-rows: minmax(50px, 150px) 1fr auto;
+          /* min-height: 70%; */
+          grid-template-rows: minmax(50px, 130px) 1fr auto;
       }
       .info{
           grid-template-columns: auto;
+          padding-bottom: 0px;
       }
       .info>div{
           padding: 15px 0px;
@@ -383,7 +389,7 @@
         font-size: 10px;
     }
 
-    
+    .card-info{align-self: end; margin-bottom: 10px;}
   .card-info input{
     height: 17px;
     /* width:  */
@@ -394,10 +400,10 @@
       width: 80%;
   }
   .card-info .date-cvv input:last-child{
-      margin-left: 20%;
+      margin-left: 10%;
   }
   .card-info .date-cvv input:first-child, .card-info .date-cvv input:last-child{
-      width: 30%; 
+      width: 35%; 
   }
 
   .card-info button.changeCard.text{display: none;}
@@ -415,4 +421,7 @@
       border-radius: 12px;
     }
 
+    .other{
+        padding: 15px 15px 20px !important;
+    }
 }

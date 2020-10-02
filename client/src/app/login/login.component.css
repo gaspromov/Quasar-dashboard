@@ -1,7 +1,7 @@
 .login-window{
     width: 30%;
     height: 50%;
-
+    /* height: auto; */
     display: grid;
 
     position: relative;
@@ -37,6 +37,12 @@
 @media (max-width: 940px){
     .login-window{
         width: 40%;
+    }
+}
+
+@media(max-width: 800px){
+    .login-window{
+        height: auto;
     }
 }
 @media (max-width: 700px){
