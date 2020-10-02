@@ -76,6 +76,7 @@
 .photo-success{
     background-color: #000000;
     border-radius: inherit;
+    display: grid;
 }
 
 .photo-success img{
