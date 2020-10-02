@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output, OnChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { UsersService } from 'src/app/shared/users/users.service';
@@ -8,7 +8,7 @@ import { UsersService } from 'src/app/shared/users/users.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnDestroy {
+export class HeaderComponent implements OnDestroy, OnChanges {
   params;
   subscribtion;
   password: string = '';
@@ -29,6 +29,11 @@ export class HeaderComponent implements OnDestroy {
     })
    }
 
+  ngOnChanges(){
+    if (this.successes != undefined){
+      this.successes.reverse()
+    }
+  }
   
   ngOnDestroy(){
     this.subscribtion.unsubscribe();
