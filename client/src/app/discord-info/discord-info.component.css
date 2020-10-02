@@ -1,11 +1,13 @@
 .discord-info{
     display: grid;
-    grid-template-rows: minmax(100px, 140px) auto;
+    grid-template-rows: auto 1fr;
     justify-items: center;
     height: 100%;
     align-items: center;
     position: relative;
 }
+
+ngx-spinner{position: absolute;}
 
 .border{
     padding-bottom: 2%;
@@ -16,8 +18,8 @@
 .discord-avatar{
     height: 100%;
     place-items: center;
-    min-height: 100px;
-    max-height: 140px;
+    min-height: 110px;
+    max-height: 180px;
     padding-bottom: 1%;
 }
 
@@ -29,6 +31,9 @@
 
 .discord-nickname{
     font-size: 24px;
+    justify-self: stretch;
+    text-align: center;
+    align-self: start;
 }
 @media(max-width: 800px){
     .discord-avatar{

@@ -1,6 +1,6 @@
-<div class="discord-info" [ngClass]="{'border': border}">
+<div class="discord-info">
         <div class="discord-avatar"><img [src]="avatar" class=""></div>
-        <span class="discord-nickname medium-style">{{username}}#{{discriminator}}</span>
+        <span class="discord-nickname medium-style" [ngClass]="{'border': border}">{{username}}#{{discriminator}}</span>
         <ngx-spinner
             *ngIf="showSpinner"
             type="ball-clip-rotate"
