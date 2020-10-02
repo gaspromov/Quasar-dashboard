@@ -184,7 +184,7 @@
     border: 1px solid white;
     padding: 5px 7px;
     border-radius: 30px;
-    width: 120px;
+    width: 125px;
     display: grid;
     grid-template-columns: auto 1fr;
     place-items: center;

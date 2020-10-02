@@ -26,8 +26,13 @@ export class SuccessesComponent implements OnChanges {
   }
 
   changeCurrentSuccess(i: number){
-    if (this.numberSuccess == 0 && i == -1 || this.numberSuccess == (this.successes.length-1) && i == 1 ){
-      return;
+    if (this.numberSuccess == (this.successes.length-1) && i == 1 ){
+      this.numberSuccess = 0;
+      this.currentSuccess = this.successes[0];
+    }else 
+    if (this.numberSuccess == 0 && i == -1){
+      this.numberSuccess = this.successes.length-1;
+      this.currentSuccess = this.successes[this.successes.length-1];
     }
     else{
       this.numberSuccess += i

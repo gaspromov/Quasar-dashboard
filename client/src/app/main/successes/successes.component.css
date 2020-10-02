@@ -14,7 +14,7 @@
 
 .blockOfSuccesses{
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 400px auto;
     row-gap: 30px;
     grid-column-gap: 100px;
 }
@@ -37,9 +37,12 @@
 
 .descript-success{
     align-self: center;
-    justify-self: center;
-    width: 161px;
+    justify-self: stretch;
+    text-align: center;
     margin: 0px;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
 }
 
 
@@ -47,6 +50,11 @@
     display: grid;
     grid-template-columns: repeat(3, auto);
     align-items: center;
+    font-size: 12px;
+}
+
+.perMonth .otherMonth img{
+    width: 16px;
 }
 .perMonth .otherMonth span{
     display: grid;
@@ -101,6 +109,9 @@
     transform: scale(-1,1);
 }
 
+@media(max-width: 1000px){
+    .blockOfSuccesses{grid-template-columns: 300px auto;}
+}
 @media(max-width: 900px){
     .successes .transition{height: 180px;}
     .successes{padding-top: 120px;}

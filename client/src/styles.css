@@ -242,6 +242,11 @@ a{
     margin: 0px 10px;
     transition: 0.4s;
 }
+
+.discord-login-btn img{
+    height: 90%;
+}
+
 @media (max-width: 600px){
     .discord-login-btn{
         border: 1px solid #e5e5e5;
