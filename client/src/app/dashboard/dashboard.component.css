@@ -119,7 +119,7 @@
 }
 
 .subscribe-info .unbind{
-    align-items: center;
+    align-items: end;
     justify-items: start;
     padding: 10px 0px;
     
@@ -322,7 +322,7 @@
   @media(max-width: 800px){
       .db-window{
           height: auto;
-          /* min-height: 70%; */
+          min-height: 60%;
           grid-template-rows: minmax(50px, 130px) 1fr auto;
       }
       .info{
