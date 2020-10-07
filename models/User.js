@@ -78,7 +78,8 @@ schema.methods.updateInfo = async function () {
 schema.methods.checkLicense = async function () {
 	const license = await License.findById(this.license)
 	if (license && license.status === 'expired') {
-		this.license = undefined
+    await License.findByIdAndDelete(this.license)
+    this.license = undefined
 		const notification = new Notification({
 			user: this.fullName,
 			license: license.key,
