@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class SeoService {
     private meta: Meta,
   ) { }
 
-  
+
   changeIndex(content: string){
     this.meta.updateTag({ name: 'robots', content: content });
   }
