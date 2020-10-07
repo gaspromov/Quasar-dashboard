@@ -58,11 +58,10 @@ schema.statics.subscribePayment = function () {
 	setInterval(async () => {
 		try {
 			await this.clear()
-			const prevDate = new Date()
-			// prevDate.setDate(prevDate.getDate() - 1)
+			const date = new Date()
 			const licenses = await this.find({ status: 'renewal' }).populate('user')
 			const promises = licenses.map(async license => {
-				if (license.expiresIn <= prevDate && license.paymentId) {
+				if (license.expiresIn <= date && license.paymentId) {
 					await subscribe(
 						license.paymentId,
 						2000,
@@ -82,7 +81,7 @@ schema.statics.subscribePayment = function () {
 		} catch (e) {
 			console.log('Не удалось произвести автоплатеж:', e.message)
 		}
-	}, 10000)
+	}, 60 * 1000 * 60 * 24)
 }
-// 60 * 1000 * 60 * 24
+
 module.exports = model('License', schema)
