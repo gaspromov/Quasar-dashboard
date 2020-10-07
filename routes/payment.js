@@ -20,13 +20,21 @@ router.post('/', authUser, async (req, res) => {
 
 		const user = await User.findById(req.user.id)
 		const drop = await Drop.findOne({ _id: dropId, status: 'active' })
-		queue = drop.quantity <= queue ? 0 : queue
+		queue = drop.idempotences.length <= queue ? 0 : queue
 		const idempotence =
 			drop.idempotences[queue].status === 'active'
 				? drop.idempotences[queue]
 				: drop.idempotences.find(i => i.status === 'active')
 
 		if (user && !user.license && drop && idempotence) {
+			drop.idempotences = drop.idempotences.filter(
+				i => i.key !== idempotence.key,
+			)
+			if (drop.idempotences.length === 0) {
+				queue = 0
+				drop.status = 'finished'
+			}
+			await drop.save()
 			queue++
 			const { confirmation } = await payment(
 				2000,
@@ -65,15 +73,6 @@ router.post('/webhook', async (req, res) => {
 		const { object } = req.body
 		const { payment_method, metadata, status } = object
 		if (status === 'succeeded' && metadata.type === 'buy') {
-			const drop = await Drop.findById(metadata.dropId)
-
-			drop.idempotences.forEach(idempotence => {
-				if (idempotence.key === metadata.idempotence) {
-					idempotence.status = 'finished'
-				}
-			})
-			await drop.save()
-
 			const license = new License({
 				key: metadata.key,
 				status: 'renewal',
@@ -96,12 +95,6 @@ router.post('/webhook', async (req, res) => {
 			})
 			await notification.save()
 
-			const active = drop.idempotences.find(i => i.status === 'active')
-			if (!active) {
-				drop.status = 'finished'
-				await drop.save()
-				queue = 0
-			}
 			return res.status(200).json()
 		} else if (status === 'succeeded' && metadata.type === 'change-card') {
 			const user = await User.findById(metadata.userId)
@@ -126,16 +119,13 @@ router.post('/webhook', async (req, res) => {
 			await license.save()
 			return res.status(200).json()
 		} else if (status === 'canceled' && metadata.type === 'buy') {
-      const drop = await Drop.findById(metadata.dropId)
-      const idempotenceIndex = drop.idempotences.findIndex(
-				i => i.key === metadata.idempotence,
-      )
-      drop.idempotences[idempotenceIndex].status = 'finished'
+			const drop = await Drop.findById(metadata.dropId)
+			drop.idempotences = drop.idempotences.filter(i => i.key !== metadata.key)
 			drop.idempotences.push({
 				key: v4(),
 				status: 'active',
-      })
-      await drop.save()
+			})
+			await drop.save()
 			return res.status(200).json()
 		}
 	} catch (e) {
