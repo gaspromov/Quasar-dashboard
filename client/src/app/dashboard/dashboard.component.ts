@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.spinner.show();
 
     if (this.get_cookie('userType')){
       localStorage.setItem('member', 'true');

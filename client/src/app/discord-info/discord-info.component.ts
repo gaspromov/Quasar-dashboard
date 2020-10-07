@@ -30,7 +30,6 @@ export class DiscordInfoComponent implements OnInit, OnChanges {
   async ngOnInit(){
     this.spinner.show()
     await this.getUserData();
-    this.spinner.hide()
   }
 
   ngOnChanges(){
@@ -52,6 +51,8 @@ export class DiscordInfoComponent implements OnInit, OnChanges {
       }
 
       this.sendData(w.license);
+      this.spinner.hide()
+
     })
     .catch(e =>{
       if (e.status == 401){
