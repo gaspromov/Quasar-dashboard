@@ -77,7 +77,7 @@ schema.statics.subscribePayment = function () {
 		} catch (e) {
 			console.log('Не удалось произвести автоплатеж:', e.message)
 		}
-	}, 60 * 1000 * 60 * 24)
+	}, 10000)
 }
-
+// 60 * 1000 * 60 * 24
 module.exports = model('License', schema)
