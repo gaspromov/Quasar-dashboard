@@ -96,10 +96,12 @@ router.patch('/', authAdmin, licenseEditValidators, async (req, res) => {
 		if (license) {
 			if (status === 'lifetime') {
 				license.status = status
-				license.expiresIn = undefined
+        license.expiresIn = undefined
+        license.subscribe = true
 			} else {
 				license.status = status
-				license.expiresIn = correctDate
+        license.expiresIn = correctDate
+        license.subscribe = license.paymentId ? true : false
 			}
 			await license.save()
 			await License.clear()

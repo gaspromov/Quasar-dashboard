@@ -155,7 +155,6 @@ router.patch('/license/:type', authUser, async (req, res) => {
 						key: license.key,
 					},
 					v4(),
-					user.email,
 				)
 				return res
 					.status(200)
@@ -173,7 +172,6 @@ router.patch('/license/:type', authUser, async (req, res) => {
 					key: license.key,
 				},
 				v4(),
-				user.email,
 			)
 			return res
 				.status(200)

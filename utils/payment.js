@@ -7,11 +7,10 @@ module.exports.checkout = require('yandex-checkout')(
 )
 
 module.exports.payment = async (
-	value = 1500,
+	value = 2000,
 	description,
 	metadata,
 	idempotenceKey = v4(),
-	email = 'quasarcook@gmail.com',
 ) => {
 	try {
 		return await this.checkout.createPayment(
@@ -23,27 +22,26 @@ module.exports.payment = async (
 				confirmation: {
 					type: 'embedded',
 				},
-				receipt: {
-					customer: {
-						email,
-					},
-					items: [
-						{
-							description: `Ключ ${metadata.key}`,
-							quantity: '1.00',
-							amount: {
-								value,
-								currency: 'RUB',
-							},
-							vat_code: 1,
-						},
-					],
-					email,
-				},
 				description,
 				save_payment_method: true,
 				capture: true,
 				metadata,
+				// receipt: {
+				// 	customer: {
+				// 		email: 'QSRcook@yandex.ru',
+				// 	},
+				// 	items: [
+				// 		{
+				// 			description: 'Ключ для QuasarCook',
+				// 			quantity: '1.00',
+				// 			amount: {
+				// 				value,
+				// 				currency: 'RUB',
+				// 			},
+				// 			vat_code: 1,
+				// 		},
+				// 	],
+				// },
 			},
 			idempotenceKey,
 		)
@@ -57,7 +55,6 @@ module.exports.subscribe = async (
 	value,
 	description,
 	metadata,
-	email = 'quasarcook@gmail.com',
 ) => {
 	try {
 		return await this.checkout.createPayment({
@@ -65,27 +62,26 @@ module.exports.subscribe = async (
 				value,
 				currency: 'RUB',
 			},
-			receipt: {
-				customer: {
-					email,
-				},
-				items: [
-					{
-						description: `Ключ ${metadata.key}`,
-						quantity: '1.00',
-						amount: {
-							value,
-							currency: 'RUB',
-						},
-						vat_code: 1,
-					},
-				],
-				email,
-			},
 			description,
 			metadata,
 			payment_method_id,
 			capture: true,
+			// receipt: {
+			// 	customer: {
+			// 		email: 'QSRcook@yandex.ru',
+			// 	},
+			// 	items: [
+			// 		{
+			// 			description: 'Ключ для QuasarCook',
+			// 			quantity: '1.00',
+			// 			amount: {
+			// 				value,
+			// 				currency: 'RUB',
+			// 			},
+			// 			vat_code: 1,
+			// 		},
+			// 	],
+			// },
 		})
 	} catch (e) {
 		console.log(e)

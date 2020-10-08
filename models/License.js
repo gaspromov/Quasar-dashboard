@@ -56,19 +56,23 @@ schema.statics.clear = async function () {
 
 schema.statics.subscribePayment = function () {
 	setInterval(async () => {
-    try {
-      await this.clear()
-			const prevDate = new Date()
-			prevDate.setDate(prevDate.getDate() - 1)
+		try {
+			await this.clear()
+			const date = new Date()
 			const licenses = await this.find({ status: 'renewal' }).populate('user')
-			const promises = licenses.map(license => {
-				if (license.expiresIn <= prevDate && license.paymentId) {
-					subscribe(license.paymentId, 2000, `Продление ключа ${license.key}`, {
-						type: 'subscribe',
-						licenseId: license._id,
-						username: license.user.fullName,
-						key: license.key,
-					})
+			const promises = licenses.map(async license => {
+				if (license.expiresIn <= date && license.paymentId) {
+					await subscribe(
+						license.paymentId,
+						2000,
+						`Продление ключа ${license.key}`,
+						{
+							type: 'subscribe',
+							licenseId: license._id,
+							username: license.user.fullName,
+							key: license.key,
+						},
+					)
 					console.log(`Продление ключа ${license.key}`)
 				}
 			})

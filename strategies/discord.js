@@ -1,7 +1,6 @@
 // Dependencies
 const passport = require('passport')
 const refresh = require('passport-oauth2-refresh')
-const License = require('../models/License')
 
 // Strategy
 const DiscordStrategy = require('passport-discord').Strategy

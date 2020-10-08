@@ -21,7 +21,6 @@ router.get('/', authAdmin, async (req, res) => {
 router.delete('/', authAdmin, (req, res) => {
 	try {
 		const { id } = req.body
-		console.log(id)
 		Notification.findByIdAndDelete(id, (err, notification) => {
 			if (!err && notification) {
 				return res.status(200).json({ message: 'Уведомление удалено' })
