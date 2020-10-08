@@ -48,7 +48,6 @@ router.post('/', authUser, async (req, res) => {
 					username: user.fullName,
 				},
 				idempotence.key,
-				user.email,
 			)
 			return res
 				.status(200)

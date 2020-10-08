@@ -11,7 +11,6 @@ module.exports.payment = async (
 	description,
 	metadata,
 	idempotenceKey = v4(),
-	email = 'quasarcook@gmail.com',
 ) => {
 	try {
 		return await this.checkout.createPayment(
@@ -22,23 +21,6 @@ module.exports.payment = async (
 				},
 				confirmation: {
 					type: 'embedded',
-				},
-				receipt: {
-					customer: {
-						email,
-					},
-					items: [
-						{
-							description: `Ключ ${metadata.key}`,
-							quantity: '1.00',
-							amount: {
-								value,
-								currency: 'RUB',
-							},
-							vat_code: 1,
-						},
-					],
-					email,
 				},
 				description,
 				save_payment_method: true,
@@ -57,30 +39,12 @@ module.exports.subscribe = async (
 	value,
 	description,
 	metadata,
-	email = 'quasarcook@gmail.com',
 ) => {
 	try {
 		return await this.checkout.createPayment({
 			amount: {
 				value,
 				currency: 'RUB',
-			},
-			receipt: {
-				customer: {
-					email,
-				},
-				items: [
-					{
-						description: `Ключ ${metadata.key}`,
-						quantity: '1.00',
-						amount: {
-							value,
-							currency: 'RUB',
-						},
-						vat_code: 1,
-					},
-				],
-				email,
 			},
 			description,
 			metadata,
