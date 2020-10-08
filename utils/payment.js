@@ -27,15 +27,17 @@ module.exports.payment = async (
 				capture: true,
 				metadata,
 				receipt: {
-					items: {
-						description: 'Ключ для QuasarCook',
-						quantity: '1.00',
-						amount: {
-							value,
-							currency: 'RUB',
+					items: [
+						{
+							description: 'Ключ для QuasarCook',
+							quantity: '1.00',
+							amount: {
+								value,
+								currency: 'RUB',
+							},
+							vat_code: 1,
 						},
-						vat_code: 1,
-					},
+					],
 				},
 			},
 			idempotenceKey,
@@ -62,15 +64,17 @@ module.exports.subscribe = async (
 			payment_method_id,
 			capture: true,
 			receipt: {
-				items: {
-					description: 'Ключ для QuasarCook',
-					quantity: '1.00',
-					amount: {
-						value,
-						currency: 'RUB',
+				items: [
+					{
+						description: 'Ключ для QuasarCook',
+						quantity: '1.00',
+						amount: {
+							value,
+							currency: 'RUB',
+						},
+						vat_code: 1,
 					},
-					vat_code: 1,
-				},
+				],
 			},
 		})
 	} catch (e) {
