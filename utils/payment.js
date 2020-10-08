@@ -27,6 +27,9 @@ module.exports.payment = async (
 				capture: true,
 				metadata,
 				receipt: {
+					customer: {
+						email: 'QSRcook@yandex.ru',
+					},
 					items: [
 						{
 							description: 'Ключ для QuasarCook',
@@ -64,6 +67,9 @@ module.exports.subscribe = async (
 			payment_method_id,
 			capture: true,
 			receipt: {
+				customer: {
+					email: 'QSRcook@yandex.ru',
+				},
 				items: [
 					{
 						description: 'Ключ для QuasarCook',
