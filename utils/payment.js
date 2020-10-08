@@ -26,22 +26,22 @@ module.exports.payment = async (
 				save_payment_method: true,
 				capture: true,
 				metadata,
-				receipt: {
-					customer: {
-						email: 'QSRcook@yandex.ru',
-					},
-					items: [
-						{
-							description: 'Ключ для QuasarCook',
-							quantity: '1.00',
-							amount: {
-								value,
-								currency: 'RUB',
-							},
-							vat_code: 1,
-						},
-					],
-				},
+				// receipt: {
+				// 	customer: {
+				// 		email: 'QSRcook@yandex.ru',
+				// 	},
+				// 	items: [
+				// 		{
+				// 			description: 'Ключ для QuasarCook',
+				// 			quantity: '1.00',
+				// 			amount: {
+				// 				value,
+				// 				currency: 'RUB',
+				// 			},
+				// 			vat_code: 1,
+				// 		},
+				// 	],
+				// },
 			},
 			idempotenceKey,
 		)
@@ -66,22 +66,22 @@ module.exports.subscribe = async (
 			metadata,
 			payment_method_id,
 			capture: true,
-			receipt: {
-				customer: {
-					email: 'QSRcook@yandex.ru',
-				},
-				items: [
-					{
-						description: 'Ключ для QuasarCook',
-						quantity: '1.00',
-						amount: {
-							value,
-							currency: 'RUB',
-						},
-						vat_code: 1,
-					},
-				],
-			},
+			// receipt: {
+			// 	customer: {
+			// 		email: 'QSRcook@yandex.ru',
+			// 	},
+			// 	items: [
+			// 		{
+			// 			description: 'Ключ для QuasarCook',
+			// 			quantity: '1.00',
+			// 			amount: {
+			// 				value,
+			// 				currency: 'RUB',
+			// 			},
+			// 			vat_code: 1,
+			// 		},
+			// 	],
+			// },
 		})
 	} catch (e) {
 		console.log(e)
