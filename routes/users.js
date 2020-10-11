@@ -152,7 +152,8 @@ router.patch('/license/:type', authUser, async (req, res) => {
 						userId: req.user.id,
 						type: 'change-card',
 						username: user.fullName,
-						key: license.key,
+            key: license.key,
+            email: user.email
 					},
 					v4(),
 				)
@@ -169,7 +170,8 @@ router.patch('/license/:type', authUser, async (req, res) => {
 					userId: req.user.id,
 					type: 'change-card',
 					username: user.fullName,
-					key: license.key,
+          key: license.key,
+          email: user.email
 				},
 				v4(),
 			)

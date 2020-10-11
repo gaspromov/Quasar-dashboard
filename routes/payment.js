@@ -45,7 +45,8 @@ router.post('/', authUser, async (req, res) => {
 					userId: req.user.id,
 					idempotence: idempotence.key,
 					type: 'buy',
-					username: user.fullName,
+          username: user.fullName,
+          email: user.email
 				},
 				idempotence.key,
 			)

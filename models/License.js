@@ -1,5 +1,6 @@
 const { Schema, model, Types } = require('mongoose')
 const { subscribe } = require('../utils/payment')
+const User = require('./User')
 
 const schema = new Schema(
 	{
@@ -62,17 +63,22 @@ schema.statics.subscribePayment = function () {
 			const licenses = await this.find({ status: 'renewal' }).populate('user')
 			const promises = licenses.map(async license => {
 				if (license.expiresIn <= date && license.paymentId) {
-					await subscribe(
-						license.paymentId,
-						2000,
-						`Продление ключа ${license.key}`,
-						{
-							type: 'subscribe',
-							licenseId: license._id,
-							username: license.user.fullName,
-							key: license.key,
-						},
-					)
+					const user = await User.find({ license: license._id })
+					if (user) {
+						await subscribe(
+							license.paymentId,
+							2000,
+							`Продление ключа ${license.key}`,
+							{
+								type: 'subscribe',
+								licenseId: license._id,
+								username: license.user.fullName,
+								key: license.key,
+								email: user.email,
+							},
+						)
+					}
+
 					console.log(`Продление ключа ${license.key}`)
 				}
 			})
