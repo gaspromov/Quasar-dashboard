@@ -84,10 +84,17 @@ router.post('/admin/login', async (req, res) => {
 router.post('/admin/password', authAdmin, async (req, res) => {
 	try {
 		const { password } = req.body
-		const candidate = await Admin.findById(req.user.userId)
-		candidate.password = await bcrypt.hash(password, parseInt(process.env.SALT))
-		await candidate.save()
-		return res.status(200).json({ message: 'Пароль изменен' })
+		if (password.length > 4) {
+			const candidate = await Admin.findById(req.user.userId)
+			candidate.password = await bcrypt.hash(
+				password,
+				parseInt(process.env.SALT),
+			)
+			await candidate.save()
+			return res.status(200).json({ message: 'Пароль изменен' })
+		} else {
+			return res.status(400).json({ message: 'Пароль не подходит' })
+		}
 	} catch (e) {
 		console.log(e)
 		return res.status(500).json({

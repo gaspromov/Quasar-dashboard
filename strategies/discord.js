@@ -35,7 +35,10 @@ const strategy = new DiscordStrategy(
 	async (accessToken, refreshToken, profile, done) => {
 		try {
 			const currentUser = await User.findOne({ discordId: profile.id })
-			if (currentUser) {
+      if (currentUser) {
+        currentUser.accessToken = accessToken
+        currentUser.refreshToken = refreshToken
+        await currentUser.save()
 				await currentUser.updateInfo()
 				done(null, currentUser)
 			} else {
