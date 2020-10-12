@@ -78,7 +78,7 @@ export class LastPaymentsComponent implements OnInit {
   deletePendingStatus(items){
     for (let i = 0; i < items.length; i++){
       if (items[i].status=='pending')
-        items = items.splice( i, 1 );
+        items.splice( i, 1 );
     }
     return items;
   }

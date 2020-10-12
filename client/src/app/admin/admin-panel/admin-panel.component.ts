@@ -16,7 +16,6 @@ export class AdminPanelComponent implements OnDestroy{
   constructor(private router: Router){
     this.subscribtion = this.router.events.subscribe((event: any = {}) => 
       {
-        console.log('here', event.url)
         if (event.url == '/admin-panel/home' || event.url == '/admin-panel')
           this.changing = true;
         else
