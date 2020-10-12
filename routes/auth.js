@@ -30,7 +30,7 @@ router.get(
 		lastDate.setDate(lastDate.getDate() - 3)
 
 		const user = await User.findById(req.user.id).populate('license')
-	
+
 		if (
 			user.license &&
 			(user.license.expiresIn >= lastDate || user.license.status === 'lifetime')
@@ -60,7 +60,7 @@ router.post('/admin/login', async (req, res) => {
 	try {
 		const { login, password } = req.body
 		const candidate = await Admin.findOne({ login }).select('password')
-		if (candidate) {
+		if (candidate && (await bcrypt.compare(password, candidate.password))) {
 			const accessToken = jwt.sign(
 				{ userId: candidate.id },
 				process.env.JWT_SECRET,
