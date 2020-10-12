@@ -28,14 +28,7 @@
         <div class="payment" *ngFor="let payment of outputPayments">
             <div class="top">
                 <div class="key"><span>{{payment.metadata.key}}</span></div>
-                <div class="date">
-                    <span>Date</span>
-                    {{payment.date1}}
-                </div>
-                <div class="time">
-                    <span>Time</span>
-                    {{payment.time}}
-                </div>
+                <div class="email">{{payment.metadata.email}}</div>
             </div>
             <div class="amount"> {{payment.amount.value}}{{payment.amount.currency}}</div>
             <div class="bottom">
@@ -47,6 +40,12 @@
                         {{payment.status}}
                 </div>
                 <div class="ddName medium-style">{{payment.metadata.username}}</div>
+                <div class="date">
+                    {{payment.date1}}
+                </div>
+                <div class="time">
+                    {{payment.time}}
+                </div>
             </div>
 
         </div>

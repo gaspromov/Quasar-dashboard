@@ -36,7 +36,7 @@ export class LastPaymentsComponent implements OnInit {
     this.spinner.show();
     await this.http.getLastPayments()
     .then( (w: any) =>{
-      this.payments = w.items;
+      this.payments = this.deletePendingStatus(w.items);
       
       for (let i = 0; i < this.payments.length; i++){
         let date = new Date(this.payments[i].created_at);
@@ -73,5 +73,13 @@ export class LastPaymentsComponent implements OnInit {
     
     this.filtPayments = this.searching.transform(this.payments, this.searchParam);
     this.filtPayments = this.filter.transform(this.payments, this.canceled, this.successed);
+  }
+
+  deletePendingStatus(items){
+    for (let i = 0; i < items.length; i++){
+      if (items[i].status=='pending')
+        items = items.splice( i, 1 );
+    }
+    return items;
   }
 }
