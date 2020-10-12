@@ -30,7 +30,7 @@ const strategy = new DiscordStrategy(
 		clientID: process.env.CLIENT_ID,
 		clientSecret: process.env.CLIENT_SECRET,
 		callbackURL: process.env.CLIENT_REDIRECT,
-		scope: ['identify', 'guilds', 'guilds.join'],
+		scope: ['identify', 'email'],
 	},
 	async (accessToken, refreshToken, profile, done) => {
 		try {
