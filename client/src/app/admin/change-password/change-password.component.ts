@@ -31,6 +31,7 @@ export class ChangePasswordComponent implements OnInit {
     })
     .catch(e => {
       console.log(e);
+      this.message = e.error.message;
     })
   }
 

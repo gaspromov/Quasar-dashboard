@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -6,11 +6,27 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './admin-panel.component.html',
   styleUrls: ['./admin-panel.component.css']
 })
-export class AdminPanelComponent {
+export class AdminPanelComponent implements OnDestroy{
   password: string = "";
   error: string;
   message: string;
   viewChanging: boolean = false;
+  changing: boolean = false;
+  subscribtion;
+  constructor(private router: Router){
+    this.subscribtion = this.router.events.subscribe((event: any = {}) => 
+      {
+        console.log('here', event.url)
+        if (event.url == '/admin-panel/home' || event.url == '/admin-panel')
+          this.changing = true;
+        else
+          this.changing = false;
+      });
+  }
+
+  ngOnDestroy(){
+    this.subscribtion.unsubscribe();
+  }
 
   changingPassword(viewing){
     this.viewChanging = viewing;

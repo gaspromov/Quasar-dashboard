@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
   templateUrl: './basic-buttons.component.html',
   styleUrls: ['./basic-buttons.component.css']
 })
-export class BasicButtonsComponent implements OnDestroy {
+export class BasicButtonsComponent {
   @Input() isAdmin: boolean = false;
-  viewChanging: boolean = false;
+  @Input() viewChanging: boolean = false;
+  
   @Output() changingPassword = new EventEmitter<boolean>();
   subscribtion;
 
@@ -20,19 +21,7 @@ export class BasicButtonsComponent implements OnDestroy {
     private router: Router,
     private adminAuth: AdminAuthService,
   ) { 
-    this.subscribtion = this.router.events.subscribe((event: any = {}) => 
-      {
-        if (event.url == '/admin-panel/home')
-          this.viewChanging = true;
-        else
-          this.viewChanging = false;
-      });
   }
-
-  ngOnDestroy(){
-    this.subscribtion.unsubscribe();
-  }
-
 
   async logout(){
     if (this.isAdmin)
