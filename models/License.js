@@ -83,11 +83,13 @@ schema.statics.subscribePayment = function () {
 				}
 			})
 			await Promise.all(promises)
-			console.log('Автоплатежи сделаны')
+			console.log(
+				`Автоплатежи сделаны ${date.getHours()}.${date.getMinutes()} ${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`,
+			)
 		} catch (e) {
 			console.log('Не удалось произвести автоплатеж:', e.message)
 		}
-	}, 60 * 1000 * 60 * 24)
+	}, 60 * 1000 * 60 * 12)
 }
 
 module.exports = model('License', schema)
