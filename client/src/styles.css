@@ -1,4 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap');
+@font-face {
+    font-family: "WhitneyBook";
+    src: url("/assets/fonts/discord/whitney_book/whitney_book.eot");
+    src: url("/assets/fonts/discord/whitney_book/whitney_book.eot?#iefix") format("embedded-opentype"),
+        url("/assets/fonts/discord/whitney_book/whitney_book.woff") format("woff"),
+        url("/assets/fonts/discord/whitney_book/whitney_book.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "WhitneySemibold";
+    src: url("/assets/fonts/discord/whitney_semibold/whitney_semibold.eot");
+    src: url("/assets/fonts/discord/whitney_semibold/whitney_semibold.eot?#iefix") format("embedded-opentype"),
+        url("/assets/fonts/discord/whitney_semibold/whitney_semibold.woff") format("woff"),
+        url("/assets/fonts/discord/whitney_semibold/whitney_semibold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+.WhitneyBook{
+    font-family: "WhitneyBook" !important;
+    font-style: normal;
+    font-weight: normal;
+}
+.WhitneySemibold{
+    font-family: "WhitneySemibold" !important;
+    font-style: normal;
+    font-weight: normal;
+}
+
 *{transition: .4s;}
 body,html .content{
     transition: none;
