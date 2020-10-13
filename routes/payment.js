@@ -38,7 +38,7 @@ router.post('/', authUser, async (req, res) => {
 			queue++
 			const { confirmation } = await payment(
 				2000,
-				`Ключ для ${user.fullName}`,
+				`Ключ для ${user.fullName} ${user.email}`,
 				{
 					dropId,
 					key,

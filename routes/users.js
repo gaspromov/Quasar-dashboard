@@ -146,14 +146,14 @@ router.patch('/license/:type', authUser, async (req, res) => {
 			} else {
 				const { confirmation } = await payment(
 					1,
-					`Ключ для ${user.fullName}`,
+					`Ключ для ${user.fullName} ${user.email}`,
 					{
 						licenseId: license._id,
 						userId: req.user.id,
 						type: 'change-card',
 						username: user.fullName,
-            key: license.key,
-            email: user.email
+						key: license.key,
+						email: user.email,
 					},
 					v4(),
 				)
@@ -164,14 +164,14 @@ router.patch('/license/:type', authUser, async (req, res) => {
 		} else if (type === 'card' && user && license) {
 			const { confirmation } = await payment(
 				1,
-				`Ключ для ${user.fullName}`,
+				`Ключ для ${user.fullName} ${user.email}`,
 				{
 					licenseId: license._id,
 					userId: req.user.id,
 					type: 'change-card',
 					username: user.fullName,
-          key: license.key,
-          email: user.email
+					key: license.key,
+					email: user.email,
 				},
 				v4(),
 			)
