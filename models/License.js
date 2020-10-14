@@ -79,7 +79,11 @@ schema.statics.subscribePayment = function () {
 						)
 					}
 
-					console.log(`Продление ключа ${license.key}`)
+					console.log(
+						`Продление ключа ${
+							license.key
+						} ${date.getHours()}.${date.getMinutes()} ${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`,
+					)
 				}
 			})
 			await Promise.all(promises)

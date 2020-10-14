@@ -81,7 +81,7 @@ router.delete('/license', authUser, async (req, res) => {
 	try {
 		const user = await User.findById(req.user.id)
 		const license = await License.findById(req.user.license)
-		if (user.license && license.user) {
+		if (user.license && license.user && !license.subscribe) {
 			const notification = new Notification({
 				user: user.fullName,
 				license: license.key,
@@ -95,7 +95,9 @@ router.delete('/license', authUser, async (req, res) => {
 			await notification.save()
 			return res.status(200).json({ message: 'Ключ удален' })
 		} else {
-			return res.status(200).json({ message: 'Ключ не найден' })
+			return res
+				.status(200)
+				.json({ message: 'Невозможно сделать отвязку ключа' })
 		}
 	} catch (e) {
 		return res.status(500).json({

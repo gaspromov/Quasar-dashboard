@@ -1,4 +1,5 @@
 const { Router } = require('express')
+const axios = require('axios')
 const authUser = require('../middleware/auth.user.middleware')
 
 const router = Router()
@@ -45,8 +46,8 @@ router.post('/', authUser, async (req, res) => {
 					userId: req.user.id,
 					idempotence: idempotence.key,
 					type: 'buy',
-          username: user.fullName,
-          email: user.email
+					username: user.fullName,
+					email: user.email,
 				},
 				idempotence.key,
 			)
@@ -94,7 +95,15 @@ router.post('/webhook', async (req, res) => {
 				type: 'Bind',
 			})
 			await notification.save()
-
+			// const config = {
+			// 	method: 'post',
+      //   url: 'https://ferma.ofd.ru/api/Authorization/CreateAuthToken',
+      //   body: {
+      //     Login: '',
+      //     Password: ''
+      //   }
+			// }
+			// const { data } = await axios(config)
 			return res.status(200).json()
 		} else if (status === 'succeeded' && metadata.type === 'change-card') {
 			const user = await User.findById(metadata.userId)
