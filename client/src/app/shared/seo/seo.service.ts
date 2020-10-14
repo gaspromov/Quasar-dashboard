@@ -16,8 +16,8 @@ export class SeoService {
   }
 
   changeUrl(url: string){
-    url = 'https://quasarcook.com' + url;
-    this.meta.updateTag({property: 'og:url', content: url});
-    this.meta.updateTag({name: 'url', content: url});
+    // url = 'https://quasarcook.com' + url;
+    // this.meta.updateTag({property: 'og:url', content: url});
+    // this.meta.updateTag({name: 'url', content: url});
   }
 }

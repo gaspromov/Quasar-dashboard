@@ -103,10 +103,17 @@ export class DashboardComponent implements OnInit {
   }
 
   confirm(type: string){
-    if (type=="unbind"){
+    if (type=="unbind" && !this.subscribe){
       this.typePopup = "unbind";
       this.headerPopup = "Отвязать ключ?"
       this.messagePopup = "Обязательно запишите куда-нибудь ключ!"
+      this.showPopup = true;
+    }else 
+    if (type=="unbind" && this.subscribe){
+      this.popupWarning = true;
+      this.typePopup = "warning_unbind";
+      this.headerPopup = "Unbind невозможен.";
+      this.messagePopup = "Отключите подписку для unbind'а!"
       this.showPopup = true;
     }else
     if (type=="unsubscribe" && this.subscribe == false && this.type != 'lifetime'){
