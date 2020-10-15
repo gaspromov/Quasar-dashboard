@@ -34,8 +34,8 @@ router.post('/', authAdmin, async (req, res) => {
 	try {
 		let { key, status, expiresIn } = req.body
 		expiresIn = new Date(expiresIn)
-    expiresIn = status === 'lifetime' ? undefined : expiresIn
-    const subscribe = status === 'lifetime' ? true : false
+		expiresIn = status === 'lifetime' ? undefined : expiresIn
+		const subscribe = status === 'lifetime' ? true : false
 		if (expiresIn >= new Date() || status === 'lifetime') {
 			const license = new License({
 				key,
@@ -96,12 +96,12 @@ router.patch('/', authAdmin, licenseEditValidators, async (req, res) => {
 		if (license) {
 			if (status === 'lifetime') {
 				license.status = status
-        license.expiresIn = undefined
-        license.subscribe = true
+				license.expiresIn = undefined
+				license.subscribe = true
 			} else {
 				license.status = status
-        license.expiresIn = correctDate
-        license.subscribe = license.paymentId ? true : false
+				license.expiresIn = correctDate
+				license.subscribe = license.paymentId ? true : false
 			}
 			await license.save()
 			await License.clear()
@@ -113,6 +113,24 @@ router.patch('/', authAdmin, licenseEditValidators, async (req, res) => {
 		return res.status(500).json({
 			message: 'Что-то пошло не так, попробуйте позже',
 			error: e.message,
+		})
+	}
+})
+
+router.post('/check', async (req, res) => {
+	try {
+		await License.clear()
+		const { key } = req.body
+		const license = await License.findOne({ key })
+		if (license && license.status !== 'expired') {
+			return res.status(200).json()
+		} else {
+			return res.status(400).json()
+		}
+	} catch (e) {
+		console.log(e)
+		return res.status(500).json({
+			message: 'Что-то пошло не так, попробуйте позже',
 		})
 	}
 })
