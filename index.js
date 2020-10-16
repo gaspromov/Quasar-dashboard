@@ -24,6 +24,7 @@ const PORT = process.env.PORT
 const app = express()
 
 // Middleware
+app.use(cors())
 app.use(
 	fileUpload({
 		createParentPath: true,
@@ -43,7 +44,6 @@ app.use(express.json())
 app.use(compression())
 app.use(morgan('dev'))
 app.use(helmet())
-app.use(cors())
 
 const sess = {
 	name: 'discord.oauth2',
