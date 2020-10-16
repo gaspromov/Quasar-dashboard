@@ -13,6 +13,7 @@ const express = require('express')
 const morgan = require('morgan')
 const helmet = require('helmet')
 const path = require('path')
+const cors = require('cors')
 
 const session = require('express-session')
 const License = require('./models/License')
@@ -42,6 +43,7 @@ app.use(express.json())
 app.use(compression())
 app.use(morgan('dev'))
 app.use(helmet())
+app.use(cors())
 
 const sess = {
 	name: 'discord.oauth2',
@@ -95,8 +97,8 @@ const start = async () => {
 		// Start server
 		app.listen(PORT, () =>
 			console.log(`Server has been started on PORT ${PORT}`),
-    )
-    License.subscribePayment()
+		)
+		License.subscribePayment()
 	} catch (e) {
 		// Error processing
 		console.log('Неизвестная ошибка', e.message)
