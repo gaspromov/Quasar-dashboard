@@ -38,7 +38,7 @@ router.get(
 			res.cookie('userType', 'member', { httpOnly: false })
 			return res.redirect('/dashboard')
 		} else {
-			return res.redirect('/license')
+			return res.redirect('/password')
 		}
 	},
 )
