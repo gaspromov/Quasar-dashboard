@@ -30,15 +30,15 @@ const strategy = new DiscordStrategy(
 		clientID: process.env.CLIENT_ID,
 		clientSecret: process.env.CLIENT_SECRET,
 		callbackURL: process.env.CLIENT_REDIRECT,
-		scope: ['identify', 'email'],
+		scope: ['identify', 'email', 'guilds', 'guilds.join'],
 	},
 	async (accessToken, refreshToken, profile, done) => {
 		try {
 			const currentUser = await User.findOne({ discordId: profile.id })
-      if (currentUser) {
-        currentUser.accessToken = accessToken
-        currentUser.refreshToken = refreshToken
-        await currentUser.save()
+			if (currentUser) {
+				currentUser.accessToken = accessToken
+				currentUser.refreshToken = refreshToken
+				await currentUser.save()
 				await currentUser.updateInfo()
 				done(null, currentUser)
 			} else {
