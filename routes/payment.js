@@ -95,15 +95,18 @@ router.post('/webhook', async (req, res) => {
 				type: 'Bind',
 			})
 			await notification.save()
-			// const config = {
-			// 	method: 'post',
-			// 	url: 'https://ferma.ofd.ru/api/Authorization/CreateAuthToken',
-			// 	body: {
-			// 		Login: '',
-			// 		Password: '',
-			// 	},
-			// }
-			// const { data } = await axios(config)
+
+			const config = {
+				method: 'put',
+				url: `https://discord.com/api/guilds/${process.env.GUILD_ID}/members/${user.discordId}`,
+				headers: {
+					Authorization: `Bot ${process.env.BOT_TOKEN}`,
+				},
+				body: {
+					access_token: user.accessToken,
+				},
+			}
+			await axios(config)
 			return res.status(200).json()
 		} else if (status === 'succeeded' && metadata.type === 'change-card') {
 			const user = await User.findById(metadata.userId)
