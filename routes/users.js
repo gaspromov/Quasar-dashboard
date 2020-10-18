@@ -1,5 +1,6 @@
 // Dependencies
 const { Router } = require('express')
+const axios = require('axios')
 
 // Middleware
 const authUser = require('../middleware/auth.user.middleware')
@@ -63,8 +64,8 @@ router.post('/license', authUser, async (req, res) => {
 			license.user = user.id
 			await user.save()
 			await license.save()
-      await notification.save()
-      const config = {
+			await notification.save()
+			const config = {
 				method: 'put',
 				url: `https://discord.com/api/guilds/${process.env.GUILD_ID}/members/${user.discordId}`,
 				headers: {
