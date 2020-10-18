@@ -102,7 +102,7 @@ router.post('/webhook', async (req, res) => {
 				headers: {
 					Authorization: `Bot ${process.env.BOT_TOKEN}`,
 				},
-				body: {
+				data: {
 					access_token: user.accessToken,
 				},
 			}

@@ -1,6 +1,7 @@
 // Dependencies
 const { Router } = require('express')
 const { validationResult } = require('express-validator')
+const axios = require('axios')
 
 // Models
 const License = require('../models/License')
@@ -68,8 +69,16 @@ router.delete('/', authAdmin, async (req, res) => {
 				const user = await User.findOne({ license: license._id })
 				if (user) {
 					user.license = undefined
-					await user.save()
-				}
+          await user.save()
+          const config = {
+						method: 'delete',
+						url: `https://discord.com/api/guilds/${process.env.GUILD_ID}/members/${user.discordId}`,
+						headers: {
+							Authorization: `Bot ${process.env.BOT_TOKEN}`,
+						},
+					}
+					await axios(config)
+        }
 				return res.status(200).json({ message: 'Ключ удален' })
 			} else {
 				return res.status(400).json({ message: 'Ключ не найден' })
