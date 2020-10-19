@@ -85,7 +85,15 @@ schema.methods.checkLicense = async function () {
 			license: license.key,
 			type: 'Expired',
 		})
-		await notification.save()
+    await notification.save()
+    const config = {
+			method: 'delete',
+			url: `https://discord.com/api/guilds/${process.env.GUILD_ID}/members/${this.discordId}`,
+			headers: {
+				Authorization: `Bot ${process.env.BOT_TOKEN}`,
+			},
+		}
+		await axios(config)
 	}
 }
 

@@ -127,9 +127,36 @@ router.post('/webhook', async (req, res) => {
 			const nextDate = new Date()
 			nextDate.setMonth(nextDate.getMonth() + 1)
 			const license = await License.findById(metadata.licenseId)
-			license.expiresIn = nextDate
-			await license.save()
-			return res.status(200).json()
+			const user = await User.findOne({ discordId: metadata.discordId })
+			if (license && user) {
+				license.expiresIn = nextDate
+				await license.save()
+				const getDMId = {
+					method: 'post',
+					url: 'https://discord.com/api/users/@me/channels',
+					headers: {
+						Authorization: `Bot ${process.env.BOT_TOKEN}`,
+					},
+					data: {
+						recipient_id: user.discordId,
+					},
+				}
+				const { data } = await axios(getDMId)
+				const message = {
+					method: 'post',
+					url: `https://discord.com/api/channels/${data.id}/messages`,
+					headers: {
+						Authorization: `Bot ${process.env.BOT_TOKEN}`,
+					},
+					data: {
+						content: `Ваш ключ ${
+							license.key
+						} продлен успешно до ${nextDate.getDate()}/${nextDate.getMonth()}/${nextDate.getFullYear()}}`,
+					},
+				}
+				await axios(message)
+				return res.status(200).json()
+			}
 		} else if (status === 'canceled' && metadata.type === 'buy') {
 			const drop = await Drop.findById(metadata.dropId)
 			drop.idempotences = drop.idempotences.filter(i => i.key !== metadata.key)
@@ -139,6 +166,38 @@ router.post('/webhook', async (req, res) => {
 			})
 			await drop.save()
 			return res.status(200).json()
+		} else if (status === 'canceled' && metadata.type === 'subscribe') {
+			const license = await License.findById(metadata.licenseId)
+			const user = await User.findOne({ discordId: metadata.discordId })
+			const payDate = new Date()
+			payDate.setDate(payDate.getDate() + 1)
+			if (license && user) {
+				const getDMId = {
+					method: 'post',
+					url: 'https://discord.com/api/users/@me/channels',
+					headers: {
+						Authorization: `Bot ${process.env.BOT_TOKEN}`,
+					},
+					data: {
+						recipient_id: user.discordId,
+					},
+				}
+				const { data } = await axios(getDMId)
+				const message = {
+					method: 'post',
+					url: `https://discord.com/api/channels/${data.id}/messages`,
+					headers: {
+						Authorization: `Bot ${process.env.BOT_TOKEN}`,
+					},
+					data: {
+						content: `Ошибка оплаты ключа ${
+							license.key
+						} следующая оплата 17:00 ${payDate.getDate()}/${payDate.getMonth()}/${payDate.getFullYear()}`,
+					},
+				}
+				await axios(message)
+				return res.status(200).json()
+			}
 		}
 	} catch (e) {
 		return res.status(500).json({

@@ -57,14 +57,14 @@ schema.statics.clear = async function () {
 
 schema.statics.subscribePayment = function () {
 	setInterval(async () => {
-		try {
-			await this.clear()
-			const date = new Date()
-			const licenses = await this.find({ status: 'renewal' }).populate('user')
-			const promises = licenses.map(async license => {
-				if (license.expiresIn <= date && license.paymentId) {
-					const user = await User.find({ license: license._id })
-					if (user) {
+		const now = new Date()
+		if (now.getHours() === 17 && now.getMinutes() === 0) {
+			try {
+				await this.clear()
+				const date = new Date()
+				const licenses = await this.find({ status: 'renewal' }).populate('user')
+				const promises = licenses.map(async license => {
+					if (license.expiresIn <= date && license.paymentId) {
 						await subscribe(
 							license.paymentId,
 							2000,
@@ -73,27 +73,28 @@ schema.statics.subscribePayment = function () {
 								type: 'subscribe',
 								licenseId: license._id,
 								username: license.user.fullName,
+								discordId: license.user.discordId,
 								key: license.key,
-								email: user.email,
+								email: license.user.email,
 							},
 						)
-					}
 
-					console.log(
-						`Продление ключа ${
-							license.key
-						} ${date.getHours()}.${date.getMinutes()} ${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`,
-					)
-				}
-			})
-			await Promise.all(promises)
-			console.log(
-				`Автоплатежи сделаны ${date.getHours()}.${date.getMinutes()} ${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`,
-			)
-		} catch (e) {
-			console.log('Не удалось произвести автоплатеж:', e.message)
+						console.log(
+							`Продление ключа ${
+								license.key
+							} ${date.getHours()}.${date.getMinutes()} ${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`,
+						)
+					}
+				})
+				await Promise.all(promises)
+				console.log(
+					`Автоплатежи сделаны ${date.getHours()}.${date.getMinutes()} ${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`,
+				)
+			} catch (e) {
+				console.log('Не удалось произвести автоплатеж:', e.message)
+			}
 		}
-	}, 60 * 1000 * 60 * 12)
+	}, 30000)
 }
 
 module.exports = model('License', schema)

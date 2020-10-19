@@ -104,13 +104,13 @@ router.delete('/license', authUser, async (req, res) => {
 			license.user = undefined
 			await user.save()
 			await license.save()
-      await notification.save()
-      const config = {
+			await notification.save()
+			const config = {
 				method: 'delete',
 				url: `https://discord.com/api/guilds/${process.env.GUILD_ID}/members/${user.discordId}`,
 				headers: {
 					Authorization: `Bot ${process.env.BOT_TOKEN}`,
-				}
+				},
 			}
 			await axios(config)
 			return res.status(200).json({ message: 'Ключ удален' })
