@@ -152,7 +152,7 @@ router.post('/webhook', async (req, res) => {
 					data: {
 						content: `Ваш ключ ${
 							license.key
-						} продлен успешно до ${nextDate.getDate()}/${nextDate.getMonth()}/${nextDate.getFullYear()}}`,
+						} продлен успешно до ${nextDate.getDate()}/${nextDate.getMonth() + 1}/${nextDate.getFullYear()}`,
 					},
 				}
 				await axios(message)
