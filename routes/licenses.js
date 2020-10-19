@@ -68,9 +68,7 @@ router.delete('/', authAdmin, async (req, res) => {
 			if (license && !err) {
 				const user = await User.findOne({ license: license._id })
 				if (user) {
-					user.license = undefined
-          await user.save()
-          const config = {
+					const config = {
 						method: 'delete',
 						url: `https://discord.com/api/guilds/${process.env.GUILD_ID}/members/${user.discordId}`,
 						headers: {
@@ -78,13 +76,16 @@ router.delete('/', authAdmin, async (req, res) => {
 						},
 					}
 					await axios(config)
-        }
+					user.license = undefined
+					await user.save()
+				}
 				return res.status(200).json({ message: 'Ключ удален' })
 			} else {
 				return res.status(400).json({ message: 'Ключ не найден' })
 			}
 		})
-	} catch (e) {
+  } catch (e) {
+    console.log(e)
 		return res.status(500).json({
 			message: 'Что-то пошло не так, попробуйте позже',
 			error: e.message,

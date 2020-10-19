@@ -94,6 +94,14 @@ router.delete('/license', authUser, async (req, res) => {
 		const user = await User.findById(req.user.id)
 		const license = await License.findById(req.user.license)
 		if (user.license && license.user && !license.subscribe) {
+			const config = {
+				method: 'delete',
+				url: `https://discord.com/api/guilds/${process.env.GUILD_ID}/members/${user.discordId}`,
+				headers: {
+					Authorization: `Bot ${process.env.BOT_TOKEN}`,
+				},
+			}
+			await axios(config)
 			const notification = new Notification({
 				user: user.fullName,
 				license: license.key,
@@ -105,14 +113,7 @@ router.delete('/license', authUser, async (req, res) => {
 			await user.save()
 			await license.save()
 			await notification.save()
-			const config = {
-				method: 'delete',
-				url: `https://discord.com/api/guilds/${process.env.GUILD_ID}/members/${user.discordId}`,
-				headers: {
-					Authorization: `Bot ${process.env.BOT_TOKEN}`,
-				},
-			}
-			await axios(config)
+
 			return res.status(200).json({ message: 'Ключ удален' })
 		} else {
 			return res
@@ -120,6 +121,7 @@ router.delete('/license', authUser, async (req, res) => {
 				.json({ message: 'Невозможно сделать отвязку ключа' })
 		}
 	} catch (e) {
+		console.log(e)
 		return res.status(500).json({
 			message: 'Что-то пошло не так, попробуйте позже',
 			error: e.message,
