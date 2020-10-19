@@ -59,8 +59,8 @@ schema.statics.subscribePayment = function () {
 	setInterval(async () => {
 		const now = new Date()
 		if (
-			now.getHours() === process.env.SUB_HOURS &&
-			now.getMinutes() === process.env.SUB_MIN
+			now.getHours() == process.env.SUB_HOURS &&
+			now.getMinutes() == process.env.SUB_MIN
 		) {
 			try {
 				await this.clear()
