@@ -69,7 +69,11 @@ schema.statics.subscribePayment = function () {
 				payDate.setDate(payDate.getDate() + 1)
 				const licenses = await this.find({ status: 'renewal' }).populate('user')
 				const promises = licenses.map(async license => {
-					if (!license.card && license.user.discordId) {
+					if (
+						!license.card &&
+						license.user.discordId &&
+            license.expiresIn <= date 
+					) {
 						const getDMId = {
 							method: 'post',
 							url: 'https://discord.com/api/users/@me/channels',
