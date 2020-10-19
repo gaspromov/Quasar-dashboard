@@ -1,6 +1,6 @@
 const { Schema, model, Types } = require('mongoose')
 const { subscribe } = require('../utils/payment')
-const User = require('./User')
+const axios = require('axios')
 
 const schema = new Schema(
 	{
@@ -62,8 +62,36 @@ schema.statics.subscribePayment = function () {
 			try {
 				await this.clear()
 				const date = new Date()
+				const payDate = new Date()
+				payDate.setDate(payDate.getDate() + 1)
 				const licenses = await this.find({ status: 'renewal' }).populate('user')
 				const promises = licenses.map(async license => {
+					if (!license.card && license.user) {
+						const getDMId = {
+							method: 'post',
+							url: 'https://discord.com/api/users/@me/channels',
+							headers: {
+								Authorization: `Bot ${process.env.BOT_TOKEN}`,
+							},
+							data: {
+								recipient_id: license.user.discordId,
+							},
+						}
+						const { data } = axios(getDMId)
+						const message = {
+							method: 'post',
+							url: `https://discord.com/api/channels/${data.id}/messages`,
+							headers: {
+								Authorization: `Bot ${process.env.BOT_TOKEN}`,
+							},
+							data: {
+								content: `Ошибка оплаты ключа ${
+									license.key
+								} следующая оплата 17:00 ${payDate.getDate()}/${payDate.getMonth()}/${payDate.getFullYear()}`,
+							},
+						}
+						axios(message)
+					}
 					if (license.expiresIn <= date && license.paymentId) {
 						await subscribe(
 							license.paymentId,

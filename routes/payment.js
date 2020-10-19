@@ -94,7 +94,9 @@ router.post('/webhook', async (req, res) => {
 				license: license.key,
 				type: 'Bind',
 			})
-			await notification.save()
+      await notification.save()
+      
+			res.status(200).json()
 
 			const config = {
 				method: 'put',
@@ -107,7 +109,6 @@ router.post('/webhook', async (req, res) => {
 				},
 			}
 			await axios(config)
-			return res.status(200).json()
 		} else if (status === 'succeeded' && metadata.type === 'change-card') {
 			const user = await User.findById(metadata.userId)
 			const license = await License.findById(metadata.licenseId)
