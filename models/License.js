@@ -58,7 +58,10 @@ schema.statics.clear = async function () {
 schema.statics.subscribePayment = function () {
 	setInterval(async () => {
 		const now = new Date()
-		if (now.getHours() === 17 && now.getMinutes() === 0) {
+		if (
+			now.getHours() === process.env.SUB_HOURS &&
+			now.getMinutes() === process.env.SUB_MIN
+		) {
 			try {
 				await this.clear()
 				const date = new Date()
@@ -66,7 +69,7 @@ schema.statics.subscribePayment = function () {
 				payDate.setDate(payDate.getDate() + 1)
 				const licenses = await this.find({ status: 'renewal' }).populate('user')
 				const promises = licenses.map(async license => {
-					if (!license.card && license.user) {
+					if (!license.card && license.user.discordId) {
 						const getDMId = {
 							method: 'post',
 							url: 'https://discord.com/api/users/@me/channels',
@@ -87,7 +90,9 @@ schema.statics.subscribePayment = function () {
 							data: {
 								content: `Ошибка оплаты ключа ${
 									license.key
-								} следующая оплата 17:00 ${payDate.getDate()}/${payDate.getMonth()}/${payDate.getFullYear()}`,
+								} следующая оплата 17:00 ${payDate.getDate()}/${
+									payDate.getMonth() + 1
+								}/${payDate.getFullYear()}`,
 							},
 						}
 						await axios(message)

@@ -126,7 +126,7 @@ router.post('/webhook', async (req, res) => {
 			return res.status(200).json()
 		} else if (status === 'succeeded' && metadata.type === 'subscribe') {
 			const nextDate = new Date()
-			nextDate.setMonth(nextDate.getMonth() + 1)
+      nextDate.setMonth(nextDate.getMonth() + 1)
 			const license = await License.findById(metadata.licenseId)
 			const user = await User.findOne({ discordId: metadata.discordId })
 			if (license && user) {
@@ -193,7 +193,7 @@ router.post('/webhook', async (req, res) => {
 					data: {
 						content: `Ошибка оплаты ключа ${
 							license.key
-						} следующая оплата 17:00 ${payDate.getDate()}/${payDate.getMonth()}/${payDate.getFullYear()}`,
+						} следующая оплата 17:00 ${payDate.getDate()}/${payDate.getMonth() + 1}/${payDate.getFullYear()}`,
 					},
 				}
 				await axios(message)
