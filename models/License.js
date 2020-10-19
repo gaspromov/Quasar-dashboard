@@ -77,7 +77,7 @@ schema.statics.subscribePayment = function () {
 								recipient_id: license.user.discordId,
 							},
 						}
-						const { data } = axios(getDMId)
+						const { data } = await axios(getDMId)
 						const message = {
 							method: 'post',
 							url: `https://discord.com/api/channels/${data.id}/messages`,
@@ -90,7 +90,7 @@ schema.statics.subscribePayment = function () {
 								} следующая оплата 17:00 ${payDate.getDate()}/${payDate.getMonth()}/${payDate.getFullYear()}`,
 							},
 						}
-						axios(message)
+						await axios(message)
 					}
 					if (license.expiresIn <= date && license.paymentId) {
 						await subscribe(
