@@ -67,7 +67,6 @@ export class MainComponent implements OnInit {
   }
   
   onOpenCheckout(checkout: any = {}){
-    console.log(checkout)
     this.checkout = checkout.drop;
     this.dropId = checkout.dropId;
     this.password = checkout.password
