@@ -64,7 +64,8 @@ router.post('/license', authUser, async (req, res) => {
 			license.user = user.id
 			await user.save()
 			await license.save()
-			await notification.save()
+      await notification.save()
+			res.status(200).json({ message: 'Ключ успешно добавлен' })
 			const config = {
 				method: 'put',
 				url: `https://discord.com/api/guilds/${process.env.GUILD_ID}/members/${user.discordId}`,
@@ -76,7 +77,6 @@ router.post('/license', authUser, async (req, res) => {
 				},
 			}
 			await axios(config)
-			return res.status(200).json({ message: 'Ключ успешно добавлен' })
 		} else {
 			return res.status(400).json({ message: 'Не удалось добавить ключ' })
 		}
