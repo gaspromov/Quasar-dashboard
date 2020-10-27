@@ -14,6 +14,7 @@ const { licenseEditValidators } = require('../utils/validators')
 // Variables
 const router = Router()
 
+
 // GET /api/v1/licenses
 router.get('/', authAdmin, async (req, res) => {
 	try {
