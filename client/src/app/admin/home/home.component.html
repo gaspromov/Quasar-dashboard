@@ -1,0 +1,35 @@
+<div class="home">
+    <div class="links">
+        <button class="admin-button" routerLink="/admin-panel/members">Members</button>
+        <button class="admin-button" routerLink="/admin-panel/drops">Drops</button>
+        <button class="admin-button" routerLink="/admin-panel/last-payments">Last payments</button>
+        <button class="admin-button notifications" routerLink="/admin-panel/notifications">
+            Notifications 
+            <span *ngIf="notifications && 100 > notifications.length" class="warning-notif"> {{notifications.length}}</span> 
+            <span *ngIf="notifications &&  notifications.length > 100" class="danger-notif">**</span> 
+        </button>
+    </div>
+    
+    <div class="action">
+        <button class="admin-button new-drop" (click)="showModal(1)">New drop <span>+</span></button>
+        <button class="admin-button new-success" (click)="showModal(2)">New success <span>+</span></button>
+        <button class="admin-button" (click)="showModal(3)">New key<span>+</span></button>
+        
+    </div>
+
+
+</div>
+
+<div class="artboard" *ngIf="modal!=0">
+    <div class="plug" (click)="hideModal()"></div>
+    <div class="modal" (click)="showModal(modal)">
+        <span (click)="hideModal()" class="danger-message pointer close-modal">Закрыть</span>
+        <app-new-drop *ngIf="modal==1"></app-new-drop>
+        <app-new-success *ngIf="modal==2"></app-new-success>
+        <app-new-key *ngIf="modal==3"></app-new-key>
+    </div>
+
+</div>
+
+
+

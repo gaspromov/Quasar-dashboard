@@ -1,0 +1,272 @@
+#%RAML 1.0
+title: Quasar
+version: v1
+mediaType: application/json
+protocols: HTTPS
+baseUri: https://localhost:5000/api/{version}
+
+types:
+  Token:
+    type: object
+    properties:
+      token_type: string
+      access_token: string
+  User:
+    type: object
+    properties:
+      name: string
+      avatar: string
+      user_group: string
+      locale: string
+      iat: integer
+
+/auth:
+  description: Запросы для работы с авторизацией
+  /discord:
+    get:
+      description: После запроса идет перенаправление на сайт discord, где идет запрос на доступ к данным
+    /redirect:
+      get:
+        description: После действия на сайте discord идет редирект на этот путь. Там я решаю куда пойдет редирект на дашборд или на активацию
+    /logout:
+      get:
+        description: Очистка куки
+  /admin:
+    /login:
+      post:
+        description: Вход для админа
+        body:
+          properties:
+            login: String
+            password: String
+        responses:
+          200:
+            body:
+              properties:
+                accessToken: String
+          400:
+            body:
+              properties:
+                message: String
+    /password:
+      post:
+        description: Смена пароля для админа
+        headers:
+          Authorization: Bearer
+        body:
+          properties:
+            password: String
+        responses:
+          200:
+            body:
+              properties:
+                message: String
+
+/successes:
+  description: Запросы для работы с successes
+  post:
+    description: Добавление success
+    headers:
+      Authorization: Bearer
+    body:
+      multipart/form-data:
+        properties:
+          date: String
+          description: String
+          image: File
+    responses:
+      201:
+        body:
+          properties:
+            message: String
+      400:
+        body:
+          properties:
+            message: String
+  get:
+    description: Получение successes
+    responses:
+      200:
+        body:
+          properties:
+            date: String
+            description: String
+            image: String
+
+/licenses:
+  description: Запросы для работы с лицензионными ключами
+  post:
+    description: Добавление лицензионного ключа
+    headers:
+      Authorization: Bearer
+    body:
+      properties:
+        key: String
+        status: String
+        expiresIn: Date
+    responses:
+      201:
+        body:
+          properties:
+            message: String
+      400:
+        body:
+          properties:
+            message: String
+  get:
+    description: Получение ключей
+    headers:
+      Authorization: Bearer
+    responses:
+      201:
+        body:
+          properties:
+            key: String
+            status: String
+            expiresIn: Date
+            createdAt: Date
+            user:
+              properties:
+                fullName: String
+  delete:
+    description: Удаление ключа
+    headers:
+      Authorization: Bearer
+    body:
+      properties:
+        id: String
+    responses:
+      200:
+        body:
+          properties:
+            message: String
+      400:
+        body:
+          properties:
+            message: String
+  patch:
+    description: Изменение ключа
+    headers:
+      Authorization: Bearer
+    body:
+      properties:
+        id: String
+        status: String
+        expiresIn: Date
+    responses:
+      200:
+        body:
+          properties:
+            message: String
+      400:
+        body:
+          properties:
+            message: String
+
+/users:
+  description: Запросы для работы с пользователями
+  /@me:
+    get:
+      description: Получение информации о пользователе
+      headers:
+        Cookies: discord.oauth2
+      responses:
+        200:
+          body:
+            properties:
+              avatar: String
+              discordId: String
+              discriminator: String
+              fullName: String
+              username: String
+              license:
+                properties:
+                  key: String
+                  status: String
+                  expiresIn: Date
+                  createdAt: Date
+
+  /license:
+    post:
+      description: Добавление ключа
+      headers:
+        Cookies: discord.oauth2
+      body:
+        properties:
+          key: String
+      responses:
+        200:
+          body:
+            properties:
+              message: String
+        400:
+          body:
+            properties:
+              message: String
+    delete:
+      description: Отвязка ключа
+      headers:
+        Cookies: discord.oauth2
+      responses:
+        200:
+          body:
+            properties:
+              message: String
+        400:
+          body:
+            properties:
+              message: String
+    
+/drops:
+  description: Запросы для работы с дропами
+  post:
+    description: Добавление дропа
+    headers:
+      Authorization: Bearer
+    body:
+      properties:
+        password: String
+        date: Date
+        quantity: Number
+    responses:
+      201:
+        body:
+          properties:
+            message: String
+      400:
+        body:
+          properties:
+            message: String
+
+/notification:
+  description: Запросы для работы с уведомлениями
+  get:
+    description: Получение уведомлений
+    headers:
+      Authorization: Bearer
+    responses:
+      200:
+        body:
+          properties:
+            _id: String
+            user: String
+            license: String
+            type: String
+            date: Date
+  delete:
+    description: Удаление уведомления
+    headers:
+      Authorization: Bearer
+    body:
+      properties:
+        id: String
+    responses:
+      200:
+        body:
+          properties:
+            message: String
+      400:
+        body:
+          properties:
+            message: String
+          

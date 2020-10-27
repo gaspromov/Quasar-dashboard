@@ -1,0 +1,68 @@
+.login-window{
+    width: 30%;
+    height: auto;
+    /* height: auto; */
+    display: grid;
+
+    position: relative;
+
+    padding: 3% 5%;
+    box-sizing: border-box;
+
+    background-color: #0F1D38;
+    border-radius: 30px;
+    color: white;
+}
+
+.info{
+    display: grid;
+    grid-row-gap: 20px;
+    align-items: center;
+    justify-items: center;
+}
+
+.logodiv{
+    height: 140px;
+    place-items: center;
+    min-height: 100px;
+}
+.logodiv img{
+    height: 100%;
+    transition: .4s;
+}
+
+.discord-login-btn img{
+    height: 13.2px;
+}
+
+
+
+@media (max-width: 940px){
+    .login-window{
+        width: 40%;
+    }
+}
+
+@media(max-width: 800px){
+}
+@media (max-width: 700px){
+    .login-window{
+        width: 50%;
+        padding: 5% 5%;
+    }
+}
+@media (max-width: 600px){
+    .login-window{
+        font-size: 12px;
+    }
+}
+@media (max-width: 550px){
+    .login-window{
+        width: 60%;
+    }
+}
+@media (max-width: 450px){
+    .login-window{
+        width: 80%;
+    }
+}

@@ -1,0 +1,26 @@
+<div class="filt-sort">
+    <!-- <select [(ngModel)]="sort" (ngModelChange)="onChange()">
+        <option value="" selected>Sorting</option>
+        <option value="date1">Date down</option>
+        <option value="date2">Date up</option>
+    </select> -->
+    
+    <div class="status">
+        <div class="">
+            <input type="checkbox" [(ngModel)]="bind" (ngModelChange)="onChange()" id="bind">
+            <label for="bind">Bind</label>   
+        </div>
+        <div>
+            <input type="checkbox" [(ngModel)]="unbind" (ngModelChange)="onChange()" id="unbind">
+            <label for="unbind" >Unbind</label> 
+        </div>
+        <div>
+            <input type="checkbox" [(ngModel)]="expired" (ngModelChange)="onChange()" id="expired">
+            <label for="expired" >Expired</label> 
+        </div>
+    </div>
+    
+    <input type="text" [(ngModel)]="search" (ngModelChange)="onChange()" placeholder="Search">
+    
+
+</div>

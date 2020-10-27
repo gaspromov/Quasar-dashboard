@@ -1,0 +1,45 @@
+<div class="drops">
+
+    <!-- <table class="drops-table" *ngIf="outputDrops[0] != null"> -->
+    <table class="drops-table" *ngIf="outputDrops[0] != null && outputDrops[0] != undefined">
+        <tr class="headers">
+            <th>Date</th>
+            <th>Password</th>
+            <th>Status</th>
+            <th>Quantity</th>
+        </tr>
+
+
+        
+        <tr *ngFor="let drop of outputDrops" class="medium-style">
+            <td *ngIf="drop.display != 'none'">{{drop.date}}</td>
+            <td *ngIf="drop.display != 'none'">{{drop.password}}</td>
+            <td *ngIf="drop.display != 'none'">{{drop.status}}</td>
+            <td *ngIf="drop.display != 'none'">{{drop.quantity}}</td>
+            <td *ngIf="drop.display == 'none'"><span class="hidden">-</span></td>
+            <td *ngIf="drop.display == 'none'"><span class="hidden">-</span></td>
+            <td *ngIf="drop.display == 'none'"><span class="hidden">-</span></td>
+            <td *ngIf="drop.display == 'none'"><span class="hidden">-</span></td>
+        </tr>
+
+
+    </table>
+    
+    <app-pagination *ngIf="drops[0] != null" 
+        [items]="drops" 
+        onPage="15"
+        (onOutputItems)="changeOutputDrops($event)"
+    >
+    </app-pagination>
+
+</div>
+
+
+<ngx-spinner
+type="ball-clip-rotate"
+bdColor=""
+size="large"
+color="#fff"
+[fullScreen]="false"
+>
+</ngx-spinner>

@@ -1,0 +1,33 @@
+<header class="relative standart-padding hiddenAll" id="main" >
+        <div class="about" data-aos="fade-right">
+            <h1 class="name bold-style">Quasar Cook <hr></h1>
+            <p class="descript light-style">
+                твой лучший помощник <br>
+                для успешной перепродажи <br>
+                лимитированных вещей
+            </p>
+            <div class="buy gradient">
+                <a class="btn-buy light-style" routerLink="/password" *ngIf="!drop">Sold out</a>
+                <a class="btn-buy light-style" *ngIf="drop" (click)="openCheckout()">Buy</a>
+            </div>
+        </div>
+
+    <div class="transition">
+        
+    </div>
+    
+    <div class="phone-success">
+        <img src="/assets/img/background/phone-success.png" alt="phone">
+        <div class="content-success" *ngIf="successes != undefined && successes != null"> 
+            <div class="message" *ngFor="let message of successes; let index = index" [ngClass]="{'firstMessage': index==0}">
+                <img src="/assets/img/logo/quasar.svg" class="avatar">
+                <div class="head">
+                    <div class="nickname WhitneySemibold">Quasar cook</div>
+                    <div class="text WhitneyBook">{{message.description}}</div>
+                </div>
+                <img [src]="message.image" class="collage">
+            </div>
+            <!-- <h3>Тут будут саксессы!</h3> fodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfreefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfreefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfrefodjivojeroijeoeirjfoierjfre -->
+        </div>
+    </div>
+</header>

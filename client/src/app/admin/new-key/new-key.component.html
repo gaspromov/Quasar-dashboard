@@ -1,0 +1,27 @@
+<div class="newKey medium-style admin-modal">
+    <h3 class="medium-style">New key</h3>
+    <form [formGroup]="addKeyForm" (ngSubmit)="onAddKey()">
+    
+        <div class="inputs">
+            <div class="label">
+                <label for="type">Type</label>
+                
+                <select id="type" formControlName="status">
+                    <option value="lifetime">Lifetime</option>
+                    <option value="renewal">Renewal</option>
+                </select>
+            </div>
+        
+            <div class="label" *ngIf="addKeyForm.value.status == 'renewal'">
+                <label for="date">Renew.d</label>
+                <input type="date" id="date" formControlName="expiresIn">
+            </div>
+
+        </div>
+    
+        <button class="admin-input medium-style">Save</button>
+        
+    </form>
+    <div class="message" *ngIf="message"><b>{{message}}</b> создан.</div>
+    <div class="danger-message message" *ngIf="error">{{error}}</div>
+</div>

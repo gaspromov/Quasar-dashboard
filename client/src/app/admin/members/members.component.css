@@ -1,0 +1,69 @@
+.members{
+    position: relative;
+    display: grid;
+    row-gap: 10px;
+}
+
+table{
+    width: 100%;
+    color: black;
+    border-collapse: collapse;
+    background-color: #A472B7;
+    border: 4px solid black;
+    font-size: 18px;
+    text-align: center;
+    
+}
+
+th{
+    padding: 15px 0px;
+    font-size: 20px;
+    font-weight: bold;
+    border: 4px solid black;
+}
+
+th:first-child{
+    width: 240px;
+}
+
+td{
+    padding-top: 10px;
+    border-left: 4px solid black;
+    border-right: 4px solid black;
+}
+
+.hidden{
+    opacity: 0.0;
+}
+
+.action{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 10px;
+    justify-items: center;
+    align-items: center;
+}
+.action img{
+    height: 18px;
+}
+
+select, input{
+    background-color: #7D6388;
+    border: none;
+    text-align: center;
+}
+
+select{
+    width: 70px;
+}
+
+input{
+    width: 90px;
+}
+input[type="date"]::-webkit-calendar-picker-indicator{
+    display: none;
+}
+
+.invalid{
+    border: 1px solid red;
+}

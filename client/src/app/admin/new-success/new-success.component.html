@@ -1,0 +1,31 @@
+<div class="newKey medium-style admin-modal">
+    <h3 class="medium-style">New success</h3>
+    <form [formGroup]="successForm" (ngSubmit)="onAddSuccess()">
+    
+        <div class="inputs">
+            <div class="label">
+                <label for="moth">mm.yy</label>
+                <input type="text" id="month" formControlName="month" mask="00.00" [showMaskTyped]="true" placeHolderCharacter="0">
+                
+            </div>
+        
+            <div class="label">
+                <label for="description">Descript</label>
+                <textarea name="" id="desctiption" formControlName="description"></textarea>
+                <!-- <input text="month" id="description" formControlName="description"> -->
+            </div>
+
+            <div class="label">
+                <label>Image</label>
+                <label for="time" class="input pointer" id="file-upload">Загрузите</label>
+                <input type="file" name="" id="time" accept=".jpg, .png" (change)="onAddFile($event)">
+            </div>
+
+        </div>
+    
+        <button class="admin-input medium-style">Save</button>
+        
+    </form>
+    <div class="message" *ngIf="message">{{message}}</div>
+    <div class="danger-message message" *ngIf="error">{{error}}</div>
+</div>

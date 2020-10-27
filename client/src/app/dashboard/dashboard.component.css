@@ -1,0 +1,435 @@
+.basic-buttons:first-child{
+    top: 6% ;
+    left: 9%;
+}
+.basic-buttons:nth-child(2){
+    top: 6%;
+    right: 9%;
+}
+
+.row-2{
+    grid-template-rows: auto 1fr;
+}
+
+
+.db-window{
+    display: grid;
+    grid-row-gap: 3%;
+    height: auto;
+    min-height: 70%;
+    padding: 1% 5% !important;
+    grid-template-rows: 0.5fr 1fr auto;
+    place-items: stretch;
+}
+
+.info{
+    display: grid;
+    grid-template-columns: 1fr minmax(130px, auto);
+    padding-bottom: 20px;
+    justify-self: stretch;
+    align-self: stretch;
+    border-top: 2px solid white;
+}
+
+
+
+.info>div{
+    padding: 15px 0px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    /* height: 240px; */
+}
+
+.info>div:first-child{
+    border-right: 1px solid white;
+}
+
+.info>div:last-child{
+    border-left: 1px solid white;
+    row-gap: 10px;
+}
+
+
+.subscribe-info{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    column-gap: 5%;
+    font-size: 14px;
+}
+
+.subscribe-info>*{
+    height: 100%;
+
+    display: grid;
+
+    row-gap: 5%;
+    grid-template-rows: repeat(4, 1fr);
+}
+/* 
+.subscribe-info>*:first-child{
+    background-color: rgb(142, 30, 207);
+}
+
+.subscribe-info>*:last-child{
+    background-color: rgb(30, 207, 192);
+} */
+
+
+.subscribe-info .payment{
+    grid-row: 3/5;
+    grid-template-rows: auto 1fr;
+    /* row-gap: px !important; */
+}
+
+.payment .subscribe{
+    display: grid;
+    align-self: end;
+    justify-items: start;
+    padding: 10px 0px;
+}
+
+.payment .subscribe button{
+    border-radius: 12px;
+    background-color: rgba(33, 102, 48, 0.5);;
+    border: 1px solid #E5E5E5;
+    color: white;
+    padding: 0px 10px;
+    height: 30px;
+    box-sizing: border-box;
+
+}
+
+
+.subscribe-info label{
+    font-size: 16px;
+    align-self: end;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 5px;
+    align-items: center;
+}
+
+.subscribe-info>div>div{
+    display: grid;
+    grid-row-gap: 4px;
+}
+.subscribe-info>div>div label:first-child{
+    font-weight: 500;
+}
+
+.subscribe-info .unbind{
+    align-items: end;
+    justify-items: start;
+    padding: 10px 0px;
+    
+}
+.subscribe-info .unbind button{
+    border-radius: 12px;
+    background-color: rgba(174, 41, 41, 0.5);
+    border: 1px solid #E5E5E5;
+    color: white;
+    padding: 0px 30px;
+    height: 30px;
+    box-sizing: border-box;
+
+    transition: 0.2s;
+    /* min-height: 20px; */
+}
+.subscribe-info .unbind button:hover{
+    background-color: #AE2929;
+}
+
+
+.other{
+    display: grid;
+    color: black;
+    font-size: 9px;
+    /* justify-items: center; */
+    padding: 15px 10px !important;
+}
+
+.other a{color: black}
+
+.other .img{
+    display: grid;
+    justify-items: center;
+    width: 80px;
+    height: 80px;
+    
+    border-radius: 50%;
+    background-color: #E5E5E5;
+    transition: .4s;
+}
+
+.other .img:hover{
+    background-color: #BABABA;
+}
+
+.other .img:first-child img{
+    margin-left: 5px;
+}
+
+.other .img img{
+    align-self: end;
+    height: 30px;
+}
+
+.other .img span{
+    align-self: start;
+    text-align: center;
+}
+/* 
+.other a:last-child{
+    border: 1px solid white;
+    padding: 5px 7px;
+    border-radius: 30px;
+    width: 125px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    place-items: center;
+    column-gap: 5px;
+    color: white;
+    font-size: 12px;
+    transition: .4s;
+    align-self: end;
+    margin-bottom: 12px;
+
+}
+
+.other a:last-child:hover{background-color: #21355b;}
+
+.other a:last-child img{
+    height: 10px;
+} */
+
+
+.checkbox{
+    font-size: 14px;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    column-gap: 5px;
+    align-items: center;
+    align-self: start;
+    justify-self: start;
+}
+
+.switch {
+    position: relative;
+    display: inline-block !important;
+    width: 26px;
+    height: 14px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {display:none;}
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(174, 41, 41, 0.75);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 1px;
+    bottom: 1px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: rgba(51, 174, 41, 0.5);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px rgba(51, 174, 41, 0.5);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(11px);
+    -ms-transform: translateX(11px);
+    transform: translateX(11px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 13px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .disabled{
+      opacity: .3;
+  }
+  .disabled *{
+      cursor: default;
+  }
+
+  
+    .card-info{
+      display: grid;
+      row-gap: 5%;
+      align-items: center;
+    }
+  
+  .card-info input{
+    display: inline-block;
+    box-sizing: border-box;
+    height: 30px;
+    border-radius: 50px;
+    background-color: #21355B;
+    text-align: center;
+    border: none;
+    color: white;
+  }
+  .card-info .card-number{
+      width: 90%;
+  }
+
+  .card-info .date-cvv input:last-child{
+      margin-left: 10%;
+  }
+  .card-info .date-cvv input:first-child, .card-info .date-cvv input:last-child{
+      width: 40%; 
+  }
+
+  .changeCard{
+      background: none;
+      border: 0px;
+      text-decoration: underline;
+      color: white;
+      justify-self: end;
+      font-size: 10px;
+      margin-right: 10%;
+  }
+
+  .changeCard.button{display: none;}
+
+  @media(max-width: 800px){
+      .db-window{
+          height: auto;
+          min-height: 60%;
+          grid-template-rows: minmax(50px, 130px) 1fr auto;
+      }
+      .info{
+          grid-template-columns: auto;
+          padding-bottom: 0px;
+      }
+      .info>div{
+          padding: 15px 0px;
+      }
+      .info>div:first-child{
+          border-right: none;
+      }
+      .info>div:last-child{
+          border-left: none;
+          border-top: 1px solid white;
+          grid-template-columns: repeat(2, 1fr);
+          place-items: center;
+      }
+      .info>div:last-child>*{
+        width: 60px;
+        height: 60px;
+        margin: 0px;
+        font-size: 8px;
+        font-weight: 500;
+        grid-template-columns: auto;
+        place-items: center;
+        text-align: center;
+      }
+      .info>div:last-child>*:last-child{
+        filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.3));
+        align-self: center;
+      }
+      .info>div:last-child>a>img{
+          width: 30px;
+          height: 30px;
+      }
+      .info>div:last-child>a:last-child>img{
+          width: 20px;
+          height: auto;
+          align-self: end;
+      }
+      .subscribe-info{
+        grid-template-columns: repeat(2, minmax(90px, 1fr));
+    }
+}
+
+@media (max-width: 600px){
+    .subscribe-info{
+      font-size: 10px;
+  }
+    .subscribe-info label{
+      font-size: 12px;
+    }
+    .subscribe-info label img{height: 11px; width: auto;}
+    .subscribe-info .unbind button, .subscribe-info .subscribe button{
+        padding: 0px 10px;
+        height: 18px;
+        font-size: 10px;
+    }
+    .subscribe-info .subscribe button{
+        padding: 0px 2px;
+    }
+    .checkbox{
+        font-size: 10px;
+    }
+    .subscribe-info .unbind{
+        padding: 0px;
+    }
+    .payment .subscribe{
+        padding: 0px;
+    }
+
+
+
+    .card-info{align-self: end; margin-bottom: 10px;}
+  .card-info input{
+    height: 17px;
+    /* width:  */
+    font-size: 7px;
+    border-radius: 50px;
+  }
+  .card-info .card-number{
+      width: 80%;
+  }
+  .card-info .date-cvv input:last-child{
+      margin-left: 10%;
+  }
+  .card-info .date-cvv input:first-child, .card-info .date-cvv input:last-child{
+      width: 35%; 
+  }
+
+  .card-info button.changeCard.text{display: none;}
+  .card-info button.changeCard.button{
+      margin: 0px;
+      position: absolute;
+      top: 50%;
+      right: 0px;
+      transform: translate(0%, -50%);
+      height: 100%;
+      padding: 0px 5px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #E5E5E5;
+      border-radius: 12px;
+    }
+
+    .other{
+        padding: 15px 15px 20px !important;
+    }
+}

@@ -1,0 +1,15 @@
+<div class="content admin-content">
+
+    <div class="window admin-window">
+
+            <div class="discord-avatar" id="filter">
+                <img routerLink="home" src="/assets/img/logo/quasar.svg" class="pointer logo" > 
+                <app-basic-buttons [isAdmin]="true" [viewChanging]="changing" (changingPassword)="changingPassword($event)"></app-basic-buttons>
+            </div>
+
+        <router-outlet></router-outlet>
+
+        <app-change-password *ngIf="viewChanging" (onCloseChanging)="onCloseChanging($event)"></app-change-password>
+    </div>
+
+</div>

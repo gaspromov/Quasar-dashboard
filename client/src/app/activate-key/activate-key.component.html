@@ -1,0 +1,14 @@
+<div class="content">
+    <div class="window ak-window">
+        <app-discord-info [border]="true"></app-discord-info>
+        <div class="key-input">
+            <label for="key" class="meidum-style font-24">Activate the key</label>
+            <form class="input-button simple-input" [ngClass]="{'error': error}" (ngSubmit)="bind()">
+                <input type="text" placeholder="License key" mask="AAAA-AAAA-AAAA-AAAA" [(ngModel)]="key" [ngModelOptions]="{standalone: true}">
+                <button type="submit" [ngClass]="{'error': error}"><img src="/assets/img/buttons/arrow.svg"></button>
+            </form>
+
+        </div>
+
+    </div>
+</div>

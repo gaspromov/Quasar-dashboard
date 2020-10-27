@@ -1,0 +1,55 @@
+<div class="notifications">
+
+    <app-notif-filter (onChangeParams)="onChangeParams($event)"></app-notif-filter>
+    <div class="all">
+        <div class="notification" *ngFor="let notification of output">
+            <div class="top">
+                <div class="key"><span>{{notification.license}}</span></div>
+                <div class="date">
+                    <span>Date</span>
+                    {{notification.date1}}
+                </div>
+                <div class="time">
+                    <span>Time</span>
+                    {{notification.time}}
+                </div>
+            </div>
+            <div class="delete pointer" (click)="deleteNotifications(notification._id)"><img src="/assets/img/icons/trash.svg" alt="delete"></div>
+            <div class="bottom">
+                <div class="action" 
+                    [ngClass]="{
+                        'bind': notification.type == 'Bind',
+                        'unbind': notification.type == 'Unbind',
+                        'expired': notification.type == 'Expired'
+                    }">
+                        {{notification.type}}
+                </div>
+                <div class="ddName medium-style">{{notification.user}}</div>
+            </div>
+
+        </div>
+    </div>
+
+    <ngx-spinner
+    type="ball-clip-rotate"
+    bdColor=""
+    size="large"
+    color="#fff"
+    [fullScreen]="false"
+    >
+    </ngx-spinner>
+
+    <app-pagination
+        [items]="notifFilter"
+        [onPage]="4"
+        (onOutputItems)="changeOutputNotifications($event)"
+    ></app-pagination>
+
+    
+</div>
+
+<!-- date: "2020-09-14T19:15:44.837Z"
+license: "jCR9-xguS-gtIg-nw7v"
+type: "Expired"
+user: "Maximus"
+_id: "5f5fc160a8693f167a8cb2a3" -->

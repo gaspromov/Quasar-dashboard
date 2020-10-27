@@ -1,0 +1,64 @@
+.ak-window{
+    display: grid;
+    row-gap: 10%;
+    align-items: stretch;
+    justify-items: stretch;
+    grid-template-rows: 1fr 0.7fr;
+}
+
+.key-input{
+    display: grid;
+    grid-template-rows: auto 1fr;
+    row-gap: 10%;
+    justify-items: center;
+    align-self: center;
+}
+
+.key-input label{
+    align-self: center;
+}
+
+.error{
+    border-color: red;
+}
+
+.simple-input, button{
+    transition: .4s !important;
+}
+
+button img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@media(max-width: 800px){
+    .ak-window{
+        height: auto;
+    }
+}
+@media(max-width: 600px){
+    .font-24{
+        font-size: 18px;
+    }
+    .ak-window{
+        grid-template-rows: auto;
+        height: auto;
+    }
+
+    .key-input{
+        padding-bottom: 35px;
+    }
+
+}
+
+
+/* .key-input input{
+} */
+
+/* .discord-info{
+    width: 100%;
+    padding-bottom: 2%;
+    border-bottom: 2px solid white;
+} */
+

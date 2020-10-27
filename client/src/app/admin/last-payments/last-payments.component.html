@@ -1,0 +1,71 @@
+
+<div class="payments">
+    
+        <div class="filt-sort">
+            
+            <div class="status">
+                <div class="">
+                    <input type="checkbox" [(ngModel)]="successed" (ngModelChange)="onChange()" id="successed">
+                    <label for="successed">Success</label>   
+                </div>
+                <div>
+                    <input type="checkbox" [(ngModel)]="canceled" (ngModelChange)="onChange()" id="canceled">
+                    <label for="canceled" >Canceled</label> 
+                </div>
+            </div>
+            
+            <input type="text" [(ngModel)]="searchParam" (ngModelChange)="onChange()" placeholder="Search">
+            
+        
+        </div>
+
+
+
+
+
+
+    <div class="all" *ngIf="outputPayments[0] != undefined && outputPayments[0] != null">
+        <div class="payment" *ngFor="let payment of outputPayments">
+            <div class="top">
+                <div class="key"><span>{{payment.metadata.key}}</span></div>
+                <div class="email">{{payment.metadata.email}}</div>
+            </div>
+            <div class="amount"> {{payment.amount.value}}{{payment.amount.currency}}</div>
+            <div class="bottom">
+                <div class="action" 
+                [ngClass]="{
+                    'error': payment.status == 'canceled',
+                    'success' : payment.status == 'succeeded'
+                }">
+                        {{payment.status}}
+                </div>
+                <div class="ddName medium-style">{{payment.metadata.username}}</div>
+                <div class="date">
+                    {{payment.date1}}
+                </div>
+                <div class="time">
+                    {{payment.time}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    
+    <app-pagination
+        [items]="filtPayments"
+        [onPage]="4"
+        (onOutputItems)="changeOutputPayments($event)"
+    ></app-pagination>
+    
+    <ngx-spinner
+    type="ball-clip-rotate"
+    bdColor=""
+    size="large"
+    color="#fff"
+    [fullScreen]="false"
+    >
+    </ngx-spinner>
+
+    
+</div>

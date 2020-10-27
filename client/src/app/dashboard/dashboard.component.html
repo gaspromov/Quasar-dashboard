@@ -1,0 +1,92 @@
+<div class="content">
+    <div class="window db-window">
+        <app-discord-info [showSpinner]="false" (onSendData)="onSendData($event)" [changingData]="unsubscription"></app-discord-info>
+
+        <div class="info">
+            <div class="subscribe-info">
+                <div class="first">
+                    <div class="key row-2">
+                        <label> <img src="/assets/img/dashboard-icons/key.svg">Key</label>
+                        {{userData.key}}
+                    </div>
+                    <div class="joining row-2">
+                        <label> <img src="/assets/img/dashboard-icons/joing.svg">Joining</label>
+                        {{userData.createdAt}}
+                    </div>
+
+                    <div class="subscribe row-2" [ngClass]="{ 'disabled': type == 'lifetime' }">
+                        <label> <img src="/assets/img/dashboard-icons/subscribe.svg">Subscription</label>
+
+                        <div class="light-style checkbox">
+                            OFF
+                            <label class="switch" id="theme">
+                                <input type="checkbox" [(ngModel)]="subscribe" (ngModelChange)="confirm('unsubscribe')" [disabled]="type == 'lifetime'">
+                                <span class="slider round"></span>
+                            </label>
+                            ON
+                        </div>
+                    </div>
+
+                    <div class="unbind"><button (click)="confirm('unbind')">Unbind</button></div>
+
+                </div>
+                <div class="second">
+                    <div class="type-subscribe row-2">
+                        <label> <img src="/assets/img/dashboard-icons/type-subscribe.svg">Type</label>
+                        {{userData.status}}
+                    </div>
+                    <div class="renewal row-2"  [ngClass]="{ 'disabled': type == 'lifetime' }">
+                        <label> <img src="/assets/img/dashboard-icons/renewal.svg">Renew</label>
+                        {{userData.expiresIn}}
+                    </div>
+                    <div class="payment" [ngClass]="{ 'disabled': type == 'lifetime' }">
+                        <label> <img src="/assets/img/dashboard-icons/payment.svg">Payment</label>
+                        <div class="card-info relative" *ngIf="userData.card">
+                            <button class="changeCard text" (click)="confirm('change')">Изменить способ оплаты</button>
+                            <input type="text" class="card-number" [value]="userData.card.number" disabled>
+                            <div class="date-cvv">
+                                <input type="text" class="card-date" [value]="userData.card.expiry_month + '/' + userData.card.expiry_year" disabled>
+                                <input type="text" class="card-cvv" value="***" disabled>
+                            </div>
+                            <button class="changeCard button" (click)="confirm('change')">
+                                <img src="/assets/img/dashboard-icons/changeCard.svg" alt="change payment card">
+                            </button>
+                        </div>
+                        <div class="subscribe" *ngIf="!userData.card">
+                            <button  (click)="confirm('subscribe')">
+                                Привязать карту
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="other">
+                <a class="img pointer" href="https://www.notion.so/Quasar-Cook-Guides-53e50dbe31af4fcfb1372738b5772681" target="_blank">
+                    <img src="/assets/img/dashboard/guides.svg" alt="">
+                    <span>Guides</span>
+                </a>
+                <a class="img pointer" href="https://vk.com/quasar_logistic" target="_blank">
+                    <img src="/assets/img/dashboard/logistic.svg" alt="">
+                    <span>Quasar <br>Logistic</span>
+                </a>
+            </div>
+
+        </div>
+        <ngx-spinner
+        type="ball-clip-rotate"
+        bdColor="#21355B"
+        size="large"
+        color="#fff"
+        [fullScreen]="false"
+        >
+        <p style="font-size: 20px; margin-top: 50px; color: white">Loading...</p>
+        </ngx-spinner>
+        
+
+    </div>
+    <app-pop-up *ngIf="showPopup" [warning]="popupWarning" [header]="headerPopup" [message]="messagePopup" (onConfirm)="onConfirm($event)"></app-pop-up>
+    <app-checkout-widget *ngIf="checkout" [typeCheckout]="typeCheckout" (onCloseCheckout)="onCloseCheckout($event)"></app-checkout-widget>
+
+
+</div>
+
