@@ -102,7 +102,7 @@ export class DashboardComponent implements OnInit {
     this.spinner.hide();
   }
 
-  confirm(type: string){
+  confirm(type: string, message?: string, header?: string){
     if (type=="unbind" && !this.subscribe){
       this.typePopup = "unbind";
       this.headerPopup = "Отвязать ключ?"
@@ -139,6 +139,12 @@ export class DashboardComponent implements OnInit {
       this.popupWarning = true;
       this.headerPopup = "Подписка отключена."
       this.messagePopup = "Привяжите карту, чтобы не потерять свой ключ навсегда."
+      this.showPopup = true;
+    }else
+    if (type == 'onAddDiscord'){
+      this.popupWarning = true;
+      this.headerPopup = header;
+      this.messagePopup = message;
       this.showPopup = true;
     }
   }
@@ -182,6 +188,19 @@ export class DashboardComponent implements OnInit {
     this.checkout = close;
     if (this.typeCheckout == 'subscribe')
       this.subscribe = false;
+  }
+
+  async addToDiscord(){
+    await this.http.addToDiscord()
+      .then( () => {
+        this.confirm('onAddDiscord', 'Теперь вы есть на закрытом сервере QuasarCook!', 'Добавлены.')
+      })
+      .catch( e =>{
+        if (e.status == 401)
+          this.auth.logoutCookie();
+        else 
+          this.confirm('onAddDiscord', 'Что-то пошло не так... Попробуйте еще раз.', 'Ошибка.')
+      })
   }
 
 }

@@ -39,4 +39,8 @@ export class UsersService {
   async changeCard(){
     return await this.http.patch(`${this.url}/users/license/card`, {}).toPromise();
   }
+
+  async addToDiscord(){
+    return await this.http.get(`${this.url}/users/discord`).toPromise();
+  }
 }

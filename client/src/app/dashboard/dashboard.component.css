@@ -179,7 +179,7 @@
     align-self: start;
     text-align: center;
 }
-/* 
+
 .other a:last-child{
     border: 1px solid white;
     padding: 5px 7px;
@@ -201,7 +201,7 @@
 
 .other a:last-child img{
     height: 10px;
-} */
+}
 
 
 .checkbox{
@@ -338,7 +338,7 @@
       .info>div:last-child{
           border-left: none;
           border-top: 1px solid white;
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           place-items: center;
       }
       .info>div:last-child>*{
