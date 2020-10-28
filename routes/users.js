@@ -45,49 +45,6 @@ router.get('/@me', authUser, async (req, res) => {
 
 // POST /api/v1/users/license
 router.post('/license', authUser, async (req, res) => {
-<<<<<<< HEAD
-	try {
-		await License.clear()
-		const { key } = req.body
-		const license = await License.findOne({
-			key,
-			status: ['lifetime', 'renewal'],
-			user: null,
-		})
-		const user = await User.findOne({ _id: req.user.id, license: null })
-		if (license && user) {
-			const notification = new Notification({
-				user: user.fullName,
-				license: license.key,
-				type: 'Bind',
-			})
-			user.license = license.id
-			license.user = user.id
-			await user.save()
-			await license.save()
-      await notification.save()
-			res.status(200).json({ message: 'Ключ успешно добавлен' })
-			const config = {
-				method: 'put',
-				url: `https://discord.com/api/guilds/${process.env.GUILD_ID}/members/${user.discordId}`,
-				headers: {
-					Authorization: `Bot ${process.env.BOT_TOKEN}`,
-				},
-				data: {
-					access_token: user.accessToken,
-				},
-			}
-			await axios(config)
-		} else {
-			return res.status(400).json({ message: 'Не удалось добавить ключ' })
-		}
-	} catch (e) {
-		return res.status(500).json({
-			message: 'Что-то пошло не так, попробуйте позже',
-			error: e.message,
-		})
-	}
-=======
   try {
     await License.clear()
     const { key } = req.body
@@ -129,50 +86,10 @@ router.post('/license', authUser, async (req, res) => {
       error: e.message
     })
   }
->>>>>>> c70affac26afcf183a8e17587bb8023cde0b88b6
 })
 
 // DELETE /api/v1/users/license
 router.delete('/license', authUser, async (req, res) => {
-<<<<<<< HEAD
-	try {
-		const user = await User.findById(req.user.id)
-		const license = await License.findById(req.user.license)
-		if (user.license && license.user && !license.subscribe) {
-			const config = {
-				method: 'delete',
-				url: `https://discord.com/api/guilds/${process.env.GUILD_ID}/members/${user.discordId}`,
-				headers: {
-					Authorization: `Bot ${process.env.BOT_TOKEN}`,
-				},
-			}
-			await axios(config)
-			const notification = new Notification({
-				user: user.fullName,
-				license: license.key,
-				type: 'Unbind',
-			})
-
-			user.license = undefined
-			license.user = undefined
-			await user.save()
-			await license.save()
-			await notification.save()
-
-			return res.status(200).json({ message: 'Ключ удален' })
-		} else {
-			return res
-				.status(200)
-				.json({ message: 'Невозможно сделать отвязку ключа' })
-		}
-	} catch (e) {
-		console.log(e)
-		return res.status(500).json({
-			message: 'Что-то пошло не так, попробуйте позже',
-			error: e.message,
-		})
-	}
-=======
   try {
     const user = await User.findById(req.user.id)
     const license = await License.findById(req.user.license)
@@ -210,7 +127,6 @@ router.delete('/license', authUser, async (req, res) => {
       error: e.message
     })
   }
->>>>>>> c70affac26afcf183a8e17587bb8023cde0b88b6
 })
 
 router.post('/drop', authUser, async (req, res) => {
