@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<htl lang="en" prefix="og: http://ogp.me/ns#">
+  <exthead>
+    <meta charset="utf-8" />
+    <meta name="keywords" content="resell, cook-group, cookgroup, quasar, quasarcook, реселл, квазар">
+
+<<<<<<< HEAD
+    <meta name="og:title" content="Quasar">
+    <meta name="og:site_name" content="Quasar">
+    <meta name="og:url" content="https://quasarcook.com">
+    <meta name="og:type" content="website">
+    <meta name="og:image" content="https://quasarcook.com/assets/img/logo/quasar.svg">
+    <meta name="og:image:secure_url" content="https://quasarcook.com/assets/img/logo/quasar.svg">
+    <meta name="og:description" content="Quasar Cook - твой лучший помощник для успешной перепродажи лимитированных вещей">
+    <meta name="og:author" content="CactusWeb">
+    <meta name="og:copyright" content="QuasarCook">
+    
+    <meta property="og:title" content="QuasarCook">
+    <meta property="og:site_name" content="QuasarCook">
+    <meta property="og:url" content="https://quasarcook.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://quasarcook.com/assets/img/logo/quasar.svg">
+    <meta property="og:image:secure_url" content="https://quasarcook.com/assets/img/logo/quasar.svg">
+    <meta property="og:description" content="Quasar Cook - твой лучший помощник для успешной перепродажи лимитированных вещей">
+    <meta property="og:author" content="CactusWeb">
+    <meta property="og:copyright" content="QuasarCook">
+    <meta property="og:title" content="QuasarCook">
+>>>>>>> 3995cf9ab09cb94fb004d7d2d30e54a46b7ebf62
+    <title>Quasar</title>
+    <base href="/" />
+
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self'; script-src * 'self' 'unsafe-inline'; style-src * 'self' 'unsafe-inline'; img-src * 'self' data: https:;"/>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" type="image/x-icon" href="assets/img/logo/quasar.svg" />
+  <link rel="stylesheet" href="styles.be4964c6871e829b06f6.css"></head>
+  <body id="body">
+    <app-root></app-root>
+    <script src="https://kassa.yandex.ru/checkout-ui/v2.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-179008629-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-179008629-1");
+    </script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        (k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a);
+      })(
+        window,
+        document,
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js",
+        "ym"
+      );
+
+      ym(67691446, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+      });
+    </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/67691446"
+          style="position: absolute; left: -9999px"
+          alt=""
+        /></div
+    ></noscript>
+    <!-- /Yandex.Metrika counter -->
+  <script src="runtime.e227d1a0e31cbccbf8ec.js" defer></script><script src="polyfills.a4021de53358bb0fec14.js" defer></script><script src="scripts.8c895b14ac5afb48e4f9.js" defer></script><script src="main.40072e3580ca0deefa9b.js" defer></script></body>
+</html>
+
