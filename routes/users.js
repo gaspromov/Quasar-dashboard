@@ -216,6 +216,7 @@ router.patch('/license/:type', authUser, async (req, res) => {
 router.get('/discord', authUser, async (req, res) => {
   try {
     const user = await User.findById(req.user.id)
+    await user.refresh()
     const config = {
       method: 'put',
       url: `https://discord.com/api/guilds/${process.env.GUILD_ID}/members/${user.discordId}`,
